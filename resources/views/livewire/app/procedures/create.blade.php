@@ -43,7 +43,7 @@
                       <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
                         <span class="text-[13px] text-[#414d6a]">{{ $requirement->name }}</span>
                       </div>
-                      <input name="files[][file]" id="files" class="cursor-pointer w-full flex text-[13px] text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none" type="file" accept="" ref="fileInput" @required(true)>
+                      <input name="files[][file]" id="files" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none" type="file" accept="" ref="fileInput" @required(true)>
                     </div>
                     @empty
                     <div class="w-full border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px]">
