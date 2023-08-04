@@ -13,6 +13,7 @@ class Register extends Component
   public $selectTypeCode;
 
   public $code;
+  public $keycap;
 
   public function updatedSelectTypeuser($value)
   {
