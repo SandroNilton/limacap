@@ -18,25 +18,25 @@
           <div class="text-sm">
             <select wire:model="selectTypeuser" name="type" id="type" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0">
               <option value="">Seleccione tipo de usuario</option>
-              <option value="1">Persona Natural</option>
-              <option value="2">Persona Juridica</option>
-              <option value="3">Agremiados</option>
+              <option value="natural">Persona Natural</option>
+              <option value="juridico">Persona Juridica</option>
+              <option value="agremiado">Agremiados</option>
             </select>
           </div>
-          @if ($optionSelected == 1)
+          @if ($optionSelected == 'natural')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
               <div class="mb-3 mt-3">
                 <select wire:model="selectTypeCode" name="natural_type" id="natural_type" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" required>
                   <option value="">Seleccione tipo de documento</option>
-                  <option value="1">DNI</option>
-                  <option value="2">Carne de Extranjeria</option>
+                  <option value="DNI">DNI</option>
+                  <option value="CARNET EXT.">Carne de Extranjeria</option>
                 </select>
               </div>
-              @if($selectTypeCode == 1)
+              @if($selectTypeCode == "DNI")
                 <div class="mb-3">
                   <div class="flex gap-x-2">
-                    <input type="hidden" id="type" name="type" value="{{ $selectTypeCode }}">
+                    <input type="hidden" id="type" name="type" value="{{ $optionSelected }}">
                     <input wire:model="code" id="code" name="code" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="999999999999" x-prod placeholder="Número de documento" @required(true)>
                     <a x-on:click="searchDNI" class="px-1.5 py-1.5 cursor-pointer bg-red-600 text-white self-center rounded">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="32px" height="32px" viewBox="0 0 32 32" version="1.1">
@@ -52,15 +52,15 @@
                 <div class="mb-3">
                   <input type="text" id="name" name="name" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Nombre completo" @required(true)>
                 </div>
-              @elseif ($selectTypeCode == 2)
+              @elseif ($selectTypeCode == "CARNET EXT.")
                 <div class="mb-3">
-                  <input type="hidden" id="code_type" name="code_type" value="{{ $selectTypeCode }}">
                   <input type="text" id="code" name="code" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="999999999999" placeholder="Número de documento" @required(true)>
                 </div>
                 <div class="mb-3">
                   <input type="text" id="name" name="name" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Nombre completo" @required(true)>
                 </div>
               @endif
+              <input type="hidden" id="code_type" name="code_type" value="{{ $selectTypeCode }}">
               <div class="mb-3">
                 <input type="hidden" id="address" name="address">
                 <input type="text" id="phone" name="phone" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="999-999-999" placeholder="Número de teléfono" @required(true)>
@@ -82,7 +82,7 @@
                 <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
               </div>
             </form>
-          @elseif ($optionSelected == 2)
+          @elseif ($optionSelected == 'juridico')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
               <div class="mb-3 mt-3">
@@ -127,7 +127,7 @@
                 <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
               </div>
             </form>
-          @elseif ($optionSelected == 3)
+          @elseif ($optionSelected == 'agremiado')
           <form method="POST" action="{{ route('register') }}" class="w-full">
             @csrf
             <div class="mb-3 mt-3">

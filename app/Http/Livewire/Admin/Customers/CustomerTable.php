@@ -35,15 +35,15 @@ class CustomerTable extends DataTableComponent
         }),
         SelectFilter::make('Tipo')
         ->setFilterPillTitle('Tipo')
-        ->setFilterPillValues(['1' => 'Natural', '2' => 'Jurídico', '3' => 'Agremiado'])
-        ->options(['' => 'Todo', '1' => 'Natural', '2' => 'Jurídico', '3' => 'Agremiado'])
+        ->setFilterPillValues(['natural' => 'Natural', 'juridico' => 'Jurídico', 'agremiado' => 'Agremiado'])
+        ->options(['' => 'Todo', 'natural' => 'Natural', 'juridico' => 'Jurídico', 'agremiado' => 'Agremiado'])
         ->filter(function(Builder $builder, string $value) {
-          if ($value === '1') {
-              $builder->where('type', 1);
-          } elseif ($value === '2') {
-              $builder->where('type', 2);
-          } elseif ($value === '3') {
-              $builder->where('type', 3);
+          if ($value === 'natural') {
+              $builder->where('type', 'natural');
+          } elseif ($value === 'juridico') {
+              $builder->where('type', 'juridico');
+          } elseif ($value === 'agremiado') {
+              $builder->where('type', 'agremiado');
         }
         }),
       ];
@@ -95,8 +95,11 @@ class CustomerTable extends DataTableComponent
       return [
         Column::make("Tipo", "type")
           ->sortable()
-          ->format( fn($value, $row, Column $column) => view('admin.customers.type')->withRow($row)->withValue($value) ),
-        Column::make("Codigo", "code")
+          ->format( fn($value, $row, Column $column) => view('admin.customers.type')->withRow($row)->withValue($value) )
+          ->searchable(),
+        Column::make("Tipo doc.", "code_type")
+          ->sortable(),
+        Column::make("Documento", "code")
           ->sortable()
           ->searchable(),
         Column::make("Nombre", "name")

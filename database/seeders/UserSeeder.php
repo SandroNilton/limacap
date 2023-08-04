@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'type' => 10,
+            'type' => 'admin',
             'code' => null,
             'code_type'=> null,
             'name' => 'Admin',
