@@ -23,7 +23,7 @@ class Create extends Component
   public $roles_val = [];
 
   protected $rules = [
-    'name' => 'required|unique:users',
+    'name' => 'required',
     'email' => 'required|email|unique:users',
     'area_id' => 'required',
     'password' => 'required',
@@ -32,7 +32,6 @@ class Create extends Component
 
   protected $messages = [
     'name.required' => 'El nombre es obligatorio.',
-    'name.unique' => 'El nombre ya existe',
     'email.required' => 'El correo electrónico es obligatorio.',
     'email.email' => 'El correo electrónico no es válido',
     'email.unique' => 'El correo electrónico ya existe',

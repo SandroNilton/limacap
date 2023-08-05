@@ -30,7 +30,7 @@
           ],
           [
             'id' => 'tramites',
-            'title' => 'Trámites',
+            'title' => 'Crear trámite',
             'url' => route('app.procedures.index'),
             'active' => request()->routeIs('app.procedures.index') or request()->routeIs('app.procedures.create') or request()->routeIs('app.procedures.edit'),
             'icon' => 'document-outline',
