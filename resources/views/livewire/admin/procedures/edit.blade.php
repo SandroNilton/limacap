@@ -225,7 +225,7 @@
                   <div class="text-sm mb-3">
                     <form wire:submit.prevent="finish_procedure" class="w-full gap-x-3">
                       <div class="mb-3">
-                        <input type="text" wire:model="message_finish" class="rounded-[3px] peer bg-transparent block w-full py-1.5 leading-4 text-[13px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('messagefinish')) border-[#d72d30] @endif" placeholder="Ingrese un mensaje de finalizacion"/>
+                        <textarea type="text" wire:model="message_finish" class="rounded-[3px] peer bg-transparent block w-full py-1.5 leading-4 text-[13px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('messagefinish')) border-[#d72d30] @endif" placeholder="Ingrese un mensaje de finalizacion"></textarea>
                       </div>
                       <div class="mb-3">
                         <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px] hover:border-[#0d8a72] ">
@@ -245,5 +245,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 </div>

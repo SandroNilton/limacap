@@ -21,6 +21,8 @@ use Livewire\Component;
 
 class Edit extends Component
 {
+    use WithFileUploads;
+
     public $procedure;
 
     public $procedure_data;
@@ -37,6 +39,9 @@ class Edit extends Component
 
     public $area_id;
     public $user_id;
+
+    public $message_finish;
+    public $file_finish;
 
     public $procedure_message_finish;
     public $procedure_files_finish;
@@ -113,6 +118,47 @@ class Edit extends Component
           $this->notice('Se actualizo el estado correctamente', 'success');
         }
       }
+    }
+
+    public function finish_procedure()
+    {
+      $this->validate(
+        [
+          'message_finish' => 'required',
+          'file_finish' => 'required'
+        ],
+        [
+          'file_finish.required' => 'Seleccione archivos de respuesta',
+          'message_finish.required' => 'Rellena este campo obligatorio',
+        ]
+      );
+      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 5]);
+      Proceduremessagefinish::create([
+        'procedure_id' => $this->procedure->id,
+        'description' => $this->message_finish,
+      ]);
+      Procedurehistory::create([
+        'procedure_id' => $this->procedure->id,
+        'typeprocedure_id' => $this->procedure->typeprocedure_id,
+        'area_id' => $this->procedure->area_id,
+        'user_id' => $this->procedure->user_id,
+        'administrator_id' => $this->procedure->administrator_id,
+        'description' => $this->procedure->description,
+        'action' => 'Finalizar tramite aceptado',
+        'state' => 5
+      ]);
+      $date = Carbon::now()->format('Y');
+      foreach ($this->file_finish as $file) {
+        $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
+        Fileprocedure::create([
+          'procedure_id' => $this->procedure->id,
+          'requirement_id' => 0,
+          'name' => $file->GetClientOriginalName(),
+          'file' => (string)$file_url,
+          'state' => '4'
+        ]);
+      }
+      $this->notice('Trámite finalizado correctamente', 'alert');
     }
 
     public function render()
