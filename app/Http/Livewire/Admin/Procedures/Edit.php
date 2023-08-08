@@ -132,20 +132,17 @@ class Edit extends Component
           'message_finish.required' => 'Rellena este campo obligatorio',
         ]
       );
-      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 5]);
+      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 'aprobado']);
       Proceduremessagefinish::create([
         'procedure_id' => $this->procedure->id,
         'description' => $this->message_finish,
       ]);
       Procedurehistory::create([
         'procedure_id' => $this->procedure->id,
-        'typeprocedure_id' => $this->procedure->typeprocedure_id,
         'area_id' => $this->procedure->area_id,
-        'user_id' => $this->procedure->user_id,
-        'administrator_id' => $this->procedure->administrator_id,
-        'description' => $this->procedure->description,
-        'action' => 'Finalizar tramite aceptado',
-        'state' => 5
+        'admin_id' => auth()->user()->id,
+        'action' => "El usuario ". auth()->user()->name ." finalizo el tramite aprobado",
+        'state' => 'aprobado'
       ]);
       $date = Carbon::now()->format('Y');
       foreach ($this->file_finish as $file) {
@@ -155,23 +152,35 @@ class Edit extends Component
           'requirement_id' => 0,
           'name' => $file->GetClientOriginalName(),
           'file' => (string)$file_url,
-          'state' => '4'
+          'state' => 'aprobado'
         ]);
       }
-      $this->notice('Trámite finalizado correctamente', 'alert');
+      $this->notice('Trámite finalizado aprobado correctamente', 'success');
+    }
+
+    public function finish_procedure_decline(){
+      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 'rechazado']);
+      Procedurehistory::create([
+        'procedure_id' => $this->procedure->id,
+        'area_id' => $this->procedure->area_id,
+        'admin_id' => auth()->user()->id,
+        'action' => "El usuario ". auth()->user()->name ." finalizo el tramite rechazado",
+        'state' => 'rechazado'
+      ]);
+      $this->notice('Trámite finalizado rechazado correctamente', 'alert');
     }
 
     public function render()
     {
       $this->procedure_data = Procedure::where('id', '=', $this->procedure->id)->get();
       $this->procedure_messages = Proceduremessage::where('procedure_id', '=', $this->procedure->id)->orderBy('created_at', 'desc')->get();
-      $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '!=', 'finalizado']])->get();
+      $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '!=', 'aprobado'], ['state', '!=', 'rechazado']])->get();
       $this->procedure_histories = Procedurehistory::where([['procedure_id', '=',  $this->procedure->id]])->get();
 
       $this->areas = Area::where('state', '=', 'activo')->get();
       $this->users = User::where([['state', '=', 'activo'], ['type', '=', 10], ['name', '!=' ,'admin']])->get();
 
-      $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'finalizado']])->get();
+      $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'aprobado']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'rechazado']])->get();
       $this->procedure_message_finish = Proceduremessagefinish::where([['procedure_id', '=', $this->procedure->id]])->get();
 
       $this->procedure_accepted = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'sin verificar']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'rechazado']])->get();

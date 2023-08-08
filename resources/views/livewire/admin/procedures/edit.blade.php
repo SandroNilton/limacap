@@ -51,7 +51,7 @@
           </ul>
         </div>
       </div>
-      @if ($procedure_data[0]->state == 5)
+      @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
       @else
         <!-- Change area -->
         @can('admin.procedures.assign_area')
@@ -105,7 +105,7 @@
           <span class="text-[13px] leading-4 text-[#414d6a]">Mensaje de trámite:</span>
         </div>
         <div class="w-full p-[12px]">
-          @if ($procedure_data[0]->state == 5)
+          @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
           @else
             <div class="flex text-[13px] leading-4 mb-3">
               <form wire:submit.prevent="addMessage" class="flex w-full gap-x-2.5">
@@ -154,15 +154,15 @@
                   </button>
                   <div class="flex-1">
                     <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
-                    @if ($procedure_data[0]->state == 'aceptado')
+                    @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
                     @else
                       <div class="flex gap-x-3">
                         <form wire:submit.prevent="changeStateFile(Object.fromEntries(new FormData($event.target)))" class="flex w-full gap-x-2.5">
                           <input type="hidden" name="procedurefile_id" value="{{ $procedure_file->id }}">
                           <select id="{{ $procedure_file->id }}" name="state_id" class="w-full py-1.5 text-[13px] leading-4 rounded-[3px] border-[#cdd5de] focus:border-[#4482ff] hover:border-[#4482ff] focus:ring-0 transition duration-300">
-                            <option value="sin verificar" @if($procedure_file->state == 1) @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                            <option value="aceptado" @if($procedure_file->state == 2) @selected(true) @else @selected(false) @endif>Aceptado</option>
-                            <option value="rechazado" @if($procedure_file->state == 3) @selected(true) @else @selected(false) @endif>Rechazado</option>
+                            <option value="sinverificar" @if($procedure_file->state == "sinverificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
+                            <option value="aceptado" @if($procedure_file->state == "aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
+                            <option value="rechazado" @if($procedure_file->state == "rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
                           </select>
                           <button class="bg-[#0d8a72] px-1.5 rounded-[3px] text-white text-[16px] py-1 inline-flex items-center">
                             <ion-icon  wire:ignore name="refresh-outline"></ion-icon>
@@ -181,6 +181,53 @@
           </div>
         </div>
       </div>
+
+      @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
+        <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
+          <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
+            <span class="text-[13px] leading-4 text-[#414d6a]">Finalizacion de trámite:</span>
+          </div>
+          <div class="w-full p-[12px]">
+            <li class="flex gap-x-3 overflow-hidden">
+              <p class="text-[13px] leading-4 text-[#414d6a]">
+                <span>Mensaje:</span>
+                <span>
+                  @if (!empty($procedure_message_finish[0]->description))
+                    {{ $procedure_message_finish[0]->description }}
+                  @else
+                    --
+                  @endif
+                </span>
+              </p>
+            </li>
+          </div>
+        </div>
+        <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
+          <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
+            <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de finalización:</span>
+          </div>
+          <div class="w-full p-[12px]">
+            <div class="flex flex-col columns-1 grid-cols-1 text-sm gap-x-3">
+              @forelse ($procedure_files_finish as $procedure_file_finish)
+                <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
+                  <div class="rounded-sm flex flex-1 items-center p-2 gap-x-3">
+                    <button wire:click="downloadFile('{{ $procedure_file_finish->id }}', '{{ $procedure_file_finish->name }}', '{{ $procedure_file_finish->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
+                      <ion-icon  wire:ignore name="download-outline"></ion-icon>
+                    </button>
+                    <div class="flex-1">
+                      <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file_finish->name }}">{{ $procedure_file_finish->name }}</div>
+                    </div>
+                  </div>
+                </div>
+              @empty
+                <div class="w-full border border-dashed border-[#cdd5de] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-[#cdd5de]">
+                  No hay archivos
+                </div>
+              @endforelse
+            </div>
+          </div>
+        </div>
+      @endif
     </div>
 
     <div class="w-full md:w-1/2 lg:w-1/4 mb-4">
@@ -215,7 +262,10 @@
           <span class="text-[13px] leading-4 text-[#414d6a]">Finalizar trámite:</span>
         </div>
         <div class="w-full p-[12px]">
-          @if ($procedure_data[0]->state == 5)
+          @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
+            <div class="w-full border border-dashed border-[#414d6a] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-[#414d6a]">
+              Tramite finalizado
+            </div>
           @else
             @if ($procedure_accepted->count() > 0)
               <div class="text-[13px] leading-4 text-[#414d6a]">Para generar la opción de finalizacion de trámite por favor aceptar todos los archivos adjuntos.</div>
@@ -244,6 +294,19 @@
           @endif
         </div>
       </div>
+      @if ($procedure_data[0]->state != 'aprobado' and $procedure_data[0]->state != 'rechazado')
+        <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
+          <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
+            <span class="text-[13px] leading-4 text-[#414d6a]">Rechazar trámite:</span>
+          </div>
+          <div class="w-full p-[12px]">
+            <button wire:click="finish_procedure_decline" class="w-full bg-[#ca2d45] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-white">
+              Rechazar trámite
+            </button>
+          </div>
+        </div>
+      @else
+      @endif
     </div>
-  </div> 
+  </div>
 </div>

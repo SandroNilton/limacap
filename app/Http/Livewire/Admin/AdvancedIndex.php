@@ -11,7 +11,7 @@ use Livewire\Component;
 class AdvancedIndex extends Component
 {
 
-    public $state = ["sin asignar", "asignado", "observado", "revisado", "aprovado", "rechazado"];
+    public $state = ["sin asignar", "asignado", "observado", "revisado", "aprobado", "rechazado"];
     public $colors = ["sin asignar" => '#f6ad55', "asignado" => '#fc8181', "observado" => '#90cdf4', "revisado" => '#66DA26', "aprovado" => '#cbd5e0', "rechazado" => '#66DA26'];
 
     public $firstRun = true;
