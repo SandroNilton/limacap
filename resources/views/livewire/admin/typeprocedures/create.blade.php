@@ -104,7 +104,7 @@
               <div class="flex -mr-px">
                 <span class="flex items-center bg-[#0d8a72] border-[#0d8a72] text-white rounded-[3px] rounded-r-none px-2 text-[13px] leading-4">S/.</span>
               </div>
-              <input wire:model="price" type="number" name="price" placeholder="Precio" class="rounded-l-none relative flex-1 w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('price')) border-[#d72d30] @endif"/>
+              <input wire:model="price" x-mask:dynamic="$money($input)" name="price" placeholder="Precio" class="rounded-l-none relative flex-1 w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('price')) border-[#d72d30] @endif"/>
             </div>
             @error('price')
               <span class="px-3 text-xs scale-75 text-[#d72d30] mb-0 mt-0.5">{{ $message }}</strong>
@@ -121,7 +121,7 @@
           </div>
           @can('admin.typeprocedures.create')
             <div class="mb-2">
-              <button type="submit" class="text-[#0d8a72] rounded-[3px] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="add-outline" wire:ignore></ion-icon> Registrar</button>
+              <button type="submit" class="text-[#0d8a72] rounded-[3px] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="add-outline" wire:ignore></ion-icon> Guardar</button>
             </div>
           @endcan
         </div>

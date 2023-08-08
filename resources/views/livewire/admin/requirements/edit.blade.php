@@ -31,7 +31,7 @@
           </div>
           @can('admin.requirements.edit')
             <div>
-              <button type="submit" class="text-[#0d8a72] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="pencil-outline" wire:ignore></ion-icon> Editar</button>
+              <button type="submit" class="text-[#0d8a72] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="pencil-outline" wire:ignore></ion-icon> Guardar</button>
             </div>
           @endcan
         </div>

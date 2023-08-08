@@ -52,7 +52,7 @@
           </div>
           @can('admin.users.create')
             <div class="mb-2">
-              <button type="submit" class="text-[#0d8a72] rounded-[3px] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="add-outline" wire:ignore></ion-icon> Registrar</button>
+              <button type="submit" class="text-[#0d8a72] rounded-[3px] text-[13px] leading-4 items-center inline-flex gap-1 align-middle"><ion-icon name="add-outline" wire:ignore></ion-icon> Guardar</button>
             </div>
           @endcan
           <div class="text-[13px] items-center inline-flex gap-1 align-middle">

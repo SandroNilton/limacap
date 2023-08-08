@@ -18,6 +18,7 @@ class Typeprocedure extends Model
       'name',
       'description',
       'area_id',
+      'price',
       'category_id',
       'state',
     ];
