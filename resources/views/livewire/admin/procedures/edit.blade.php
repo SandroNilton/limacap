@@ -8,7 +8,7 @@
       <!-- Info procedure -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
-          <span class="text-[13px] text-[#414d6a] leading-4">Asignar trámite a otra área:</span>
+          <span class="text-[13px] text-[#414d6a] leading-4">Parametros de trámite:</span>
         </div>
         <div class="w-full p-[12px]">
           <ul class="flex flex-col text-left gap-2.5">
