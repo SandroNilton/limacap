@@ -256,6 +256,31 @@
           </div>
         </div>
       </div>
+
+      @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'rechazado')
+      @else
+        <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
+          <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
+            <span class="text-[13px] leading-4 text-[#414d6a]">Cambiar estado de trámite:</span>
+          </div>
+          <div class="w-full p-[12px]">
+            <div class="items-center">
+              <form wire:submit.prevent="assignStateProcedure" class="flex w-full gap-x-2.5">
+                <select wire:model="stateproc_id" class="rounded-[3px] peer bg-transparent block w-full py-1.5 leading-4 text-[13px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('user_id')) border-[#d72d30] @endif">
+                  <option value="">Seleccione el estado</option>
+                  <option value="observado" @if( $procedure_data[0]->state == "observado") @selected(true) @else @selected(false) @endif>Observado</option>
+                  <option value="proceso" @if( $procedure_data[0]->state == "proceso") @selected(true) @else @selected(false) @endif>Proceso</option>
+                  <option value="revisado" @if( $procedure_data[0]->state == "revisado") @selected(true) @else @selected(false) @endif>Revisado</option>
+                </select>
+                <button  wire:ignore class="bg-[#0d8a72] px-1 rounded-[3px] text-white text-[20px] py-1 inline-flex items-center">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      @endif
+
       <!-- finish procedure -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">

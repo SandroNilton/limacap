@@ -39,6 +39,7 @@ class Edit extends Component
 
     public $area_id;
     public $user_id;
+    public $stateproc_id;
 
     public $message_finish;
     public $file_finish;
@@ -103,6 +104,24 @@ class Edit extends Component
       } else {
         $this->notice('El tramite ya se encuentra asignado al usuario seleccionado', 'info');
       }
+    }
+
+    public function assignStateProcedure()
+    {
+        $this->validate(['stateproc_id' => 'required'], ['stateproc_id.required' => 'Seleccione este campo obligatorio',]);
+        if($this->procedure->state != $this->stateproc_id){
+          Procedure::where('id', '=', $this->procedure->id)->update(['state' => $this->stateproc_id]);
+          Procedurehistory::create([
+            'procedure_id' => $this->procedure->id,
+            'area_id' => $this->procedure->area_id,
+            'admin_id' => auth()->user()->id,
+            'action' => "El usuario ". auth()->user()->name ." cambio el estado a ". $this->stateproc_id.".",
+            'state' => $this->stateproc_id
+          ]);
+          $this->notice('Se cambio el estado correctamente', 'success');
+        } else {
+          $this->notice('El tramite ya se encuentra con el estado seleccionado actualmente', 'info');
+        }
     }
 
     public function changeStateFile($formData)
