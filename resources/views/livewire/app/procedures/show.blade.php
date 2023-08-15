@@ -77,6 +77,8 @@
           </div>
         </div>
       </div>
+
+
     </div>
     @if ($procedure_data[0]->state == "aprobado")
       <div class="w-full md:w-1/2 lg:w-1/4 mb-4">

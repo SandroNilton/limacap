@@ -51,7 +51,7 @@ class ProcedureController extends Controller
           'requirement_id' => $file['id'],
           'name' => $file['file']->GetClientOriginalName(),
           'file' => (string)$file_url,
-          'state' => 'sin verificar'
+          'state' => 'sinverificar'
         ]);
       }
       return redirect()->route('app.procedures.index')->notice('El trámite se registro correctamente', 'success');
