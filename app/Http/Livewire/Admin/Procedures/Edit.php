@@ -106,24 +106,6 @@ class Edit extends Component
       }
     }
 
-    public function assignStateProcedure()
-    {
-        $this->validate(['stateproc_id' => 'required'], ['stateproc_id.required' => 'Seleccione este campo obligatorio',]);
-        if($this->procedure->state != $this->stateproc_id){
-          Procedure::where('id', '=', $this->procedure->id)->update(['state' => $this->stateproc_id]);
-          Procedurehistory::create([
-            'procedure_id' => $this->procedure->id,
-            'area_id' => $this->procedure->area_id,
-            'admin_id' => auth()->user()->id,
-            'action' => "El usuario ". auth()->user()->name ." cambio el estado a ". $this->stateproc_id.".",
-            'state' => $this->stateproc_id
-          ]);
-          $this->notice('Se cambio el estado correctamente', 'success');
-        } else {
-          $this->notice('El tramite ya se encuentra con el estado seleccionado actualmente', 'info');
-        }
-    }
-
     public function changeStateFile($formData)
     {
       $file_get_state = Fileprocedure::where('id', '=', $formData['procedurefile_id'])->get();
@@ -139,70 +121,66 @@ class Edit extends Component
       }
     }
 
-    public function finish_procedure()
+    public function assignStateProcedure()
     {
       $this->validate(
         [
+          'stateproc_id' => 'required',
           'message_finish' => 'required',
           'file_finish' => 'required'
         ],
         [
           'file_finish.required' => 'Seleccione archivos de respuesta',
           'message_finish.required' => 'Rellena este campo obligatorio',
+          'stateproc_id.required' => 'Seleccione este campo obligatorio'
         ]
       );
-      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 'aprobado']);
-      Proceduremessagefinish::create([
-        'procedure_id' => $this->procedure->id,
-        'description' => $this->message_finish,
-      ]);
-      Procedurehistory::create([
-        'procedure_id' => $this->procedure->id,
-        'area_id' => $this->procedure->area_id,
-        'admin_id' => auth()->user()->id,
-        'action' => "El usuario ". auth()->user()->name ." finalizo el tramite aprobado",
-        'state' => 'aprobado'
-      ]);
-      $date = Carbon::now()->format('Y');
-      foreach ($this->file_finish as $file) {
-        $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
-        Fileprocedure::create([
-          'procedure_id' => $this->procedure->id,
-          'requirement_id' => 0,
-          'name' => $file->GetClientOriginalName(),
-          'file' => (string)$file_url,
-          'state' => 'aprobado'
-        ]);
-      }
-      $this->notice('Trámite finalizado aprobado correctamente', 'success');
-    }
 
-    public function finish_procedure_decline(){
-      Procedure::where('id', '=', $this->procedure->id)->update(['state' => 'rechazado']);
-      Procedurehistory::create([
-        'procedure_id' => $this->procedure->id,
-        'area_id' => $this->procedure->area_id,
-        'admin_id' => auth()->user()->id,
-        'action' => "El usuario ". auth()->user()->name ." finalizo el tramite rechazado",
-        'state' => 'rechazado'
-      ]);
-      $this->notice('Trámite finalizado rechazado correctamente', 'alert');
+      if($this->procedure->state != $this->stateproc_id){
+        Procedure::where('id', '=', $this->procedure->id)->update(['state' => $this->stateproc_id]);
+        Proceduremessagefinish::create([
+          'procedure_id' => $this->procedure->id,
+          'description' => $this->message_finish,
+        ]);
+        Procedurehistory::create([
+          'procedure_id' => $this->procedure->id,
+          'area_id' => $this->procedure->area_id,
+          'admin_id' => auth()->user()->id,
+          'action' => "El usuario ". auth()->user()->name ." cambio el estado a ". $this->stateproc_id.".",
+          'state' => $this->stateproc_id
+        ]);
+        $date = Carbon::now()->format('Y');
+        foreach ($this->file_finish as $file) {
+          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
+          Fileprocedure::create([
+            'procedure_id' => $this->procedure->id,
+            'requirement_id' => 0,
+            'name' => $file->GetClientOriginalName(),
+            'file' => (string)$file_url,
+            'state' => $this->stateproc_id
+          ]);
+        }
+        $this->notice('Se cambio el estado correctamente', 'success');
+      } else {
+        $this->notice('El tramite ya se encuentra con el estado seleccionado actualmente', 'info');
+      }
     }
 
     public function render()
     {
       $this->procedure_data = Procedure::where('id', '=', $this->procedure->id)->get();
       $this->procedure_messages = Proceduremessage::where('procedure_id', '=', $this->procedure->id)->orderBy('created_at', 'desc')->get();
-      $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '!=', 'aprobado'], ['state', '!=', 'rechazado']])->get();
+      $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'sinverificar']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'aceptado']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'rechazado']])->get();
       $this->procedure_histories = Procedurehistory::where([['procedure_id', '=',  $this->procedure->id]])->get();
 
       $this->areas = Area::where('state', '=', 'activo')->get();
       $this->users = User::where([['state', '=', 'activo'], ['type', '=', 10], ['name', '!=' ,'admin']])->get();
 
-      $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'aprobado']])->get();
+      $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '!=', 'sinverificar'], ['state', '!=', 'aceptado'], ['state', '!=', 'rechazado'], ['state', '!=', 'aprobado'], ['state', '!=', 'cancelado']])->get();
+      $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'aprobado']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'cancelado']])->get();
       $this->procedure_message_finish = Proceduremessagefinish::where([['procedure_id', '=', $this->procedure->id]])->get();
 
-      $this->procedure_accepted = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'sin verificar']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'rechazado']])->get();
+      $this->procedure_accepted = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 'sinverificar']])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 'rechazado']])->get();
 
       return view('livewire.admin.procedures.edit');
     }
