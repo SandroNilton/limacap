@@ -45,7 +45,7 @@ class ProcedureController extends Controller
       ]);
       $date = Carbon::now()->format('Y');
       foreach ($request['files'] as $file) {
-        $file_url = Storage::put('procedures/'.$date."/".$procedure->id."", $file['file']);
+        $file_url = Storage::put('procedures/'.$date."/".$procedure->id, $file['file']);
         Fileprocedure::create([
           'procedure_id' => $procedure->id,
           'requirement_id' => $file['id'],
