@@ -319,7 +319,7 @@
                     <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
                       <span class="text-[13px] text-[#414d6a]">Archivos</span>
                     </div>
-                    <input type="file" multiple wire:model="file_finish" id="file_finish" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none" accept="" ref="fileInput" @required(true)>
+                    <input type="file" wire:model="file_finish[]" id="file_finish" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none" accept="" ref="fileInput" @required(true)>
                   </div>
                 </div>
                 <button type="submit" class="bg-[#0d8a72] rounded-[3px] peer text-white block w-full py-1.5 leading-4 text-[13px] focus:ring-0">Guardar</button>

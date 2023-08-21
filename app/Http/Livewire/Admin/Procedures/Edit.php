@@ -42,7 +42,7 @@ class Edit extends Component
     public $stateproc_id;
 
     public $message_finish;
-    public $file_finish;
+    public $file_finish = [];
 
     public $procedure_message_finish;
     public $procedure_files_finish;
