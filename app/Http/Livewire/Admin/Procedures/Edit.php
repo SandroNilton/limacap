@@ -150,14 +150,16 @@ class Edit extends Component
         ]);
         $date = Carbon::now()->format('Y');
 
-          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $this->filefinish);
+        foreach ($this->filefinish as $file) {
+          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
           Fileprocedure::create([
             'procedure_id' => $this->procedure->id,
             'requirement_id' => 0,
-            'name' => $this->filefinish->GetClientOriginalName(),
+            'name' => $file->GetClientOriginalName(),
             'file' => (string)$file_url,
             'state' => $this->stateproc_id
           ]);
+        }
 
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {

@@ -1,3 +1,4 @@
+
 <div>
   <div class="flex justify-between items-center py-2.5 px-2.5 border-b border-[#cdd5de] bg-white">
     <span class="text-[#414d6a] text-xs">Editar trámite</span>
