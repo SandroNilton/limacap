@@ -1,4 +1,3 @@
-
 <div>
   <div class="flex justify-between items-center py-2.5 px-2.5 border-b border-[#cdd5de] bg-white">
     <span class="text-[#414d6a] text-xs">Editar trámite</span>
@@ -300,7 +299,7 @@
           </div>
           <div class="w-full p-[12px]">
             <div class="items-center">
-              <form wire:submit.prevent="assignStateProcedure" class="w-full">
+              <form wire:submit.prevent="assignStateProcedure" class="w-full" enctype="multipart/form-data">
                 <select wire:model="stateproc_id" class="rounded-[3px] peer mb-3 bg-transparent block w-full py-1.5 leading-4 text-[13px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('user_id')) border-[#d72d30] @endif">
                   <option value="">Seleccione el estado</option>
                   <option value="observado" @if( $procedure_data[0]->state == "observado") @selected(true) @else @selected(false) @endif>Observado</option>
@@ -315,16 +314,19 @@
                 <div class="mb-3">
                   <textarea type="text" wire:model="message_finish" class="rounded-[3px] peer bg-transparent block w-full py-1.5 leading-4 text-[13px] border-[#cdd5de] focus:border-inherit focus:ring-0 @if($errors->has('messagefinish')) border-[#d72d30] @endif" placeholder="Ingrese un mensaje de finalizacion"></textarea>
                 </div>
+
                 <div class="mb-3">
-                  <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px] hover:border-[#0d8a72] ">
-                    <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
-                      <span class="text-[13px] text-[#414d6a]">Archivos</span>
+                    <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px] hover:border-[#0d8a72] ">
+                      <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
+                        <span class="text-[13px] text-[#414d6a]">Archivos</span>
+                      </div>
+                      <input type="file" MULTIPLE wire:model="file_finish" id="file_finish" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
                     </div>
-                    <input type="file" wire:model="filefinish" id="filefinish" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
                   </div>
-                </div>
+
                 <button type="submit" class="bg-[#0d8a72] rounded-[3px] peer text-white block w-full py-1.5 leading-4 text-[13px] focus:ring-0">Guardar</button>
               </form>
+
             </div>
           </div>
         </div>
@@ -332,3 +334,4 @@
     </div>
   </div>
 </div>
+

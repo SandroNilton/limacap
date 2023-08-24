@@ -42,7 +42,7 @@ class Edit extends Component
     public $stateproc_id;
 
     public $message_finish;
-    public $filefinish;
+    public $file_finish = [];
 
     public $procedure_message_finish;
     public $procedure_files_finish;
@@ -127,7 +127,7 @@ class Edit extends Component
         [
           'stateproc_id' => 'required',
           'message_finish' => 'required',
-          'filefinish' => 'required'
+          'file_finish.*' => 'required'
         ],
         [
           'filefinish.required' => 'Seleccione archivos de respuesta',
@@ -150,7 +150,7 @@ class Edit extends Component
         ]);
         $date = Carbon::now()->format('Y');
 
-        foreach ($this->filefinish as $file) {
+        foreach ($this->file_finish as $file) {
           $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
           Fileprocedure::create([
             'procedure_id' => $this->procedure->id,
