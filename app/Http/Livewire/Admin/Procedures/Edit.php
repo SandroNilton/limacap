@@ -42,7 +42,7 @@ class Edit extends Component
     public $stateproc_id;
 
     public $message_finish;
-    public $file_finish = [];
+    public $filefinish;
 
     public $procedure_message_finish;
     public $procedure_files_finish;
@@ -127,12 +127,11 @@ class Edit extends Component
         [
           'stateproc_id' => 'required',
           'message_finish' => 'required',
-          'file_finish' => 'required'
+          'filefinish' => 'required'
         ],
         [
-          'file_finish.required' => 'Seleccione archivos de respuesta',
+          'filefinish.required' => 'Seleccione archivos de respuesta',
           'message_finish.required' => 'Rellena este campo obligatorio',
-          'stateproc_id.required' => 'Seleccione este campo obligatorio'
         ]
       );
 
@@ -150,16 +149,16 @@ class Edit extends Component
           'state' => $this->stateproc_id
         ]);
         $date = Carbon::now()->format('Y');
-        foreach ($this->file_finish as $file) {
-          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
+
+          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $this->filefinish);
           Fileprocedure::create([
             'procedure_id' => $this->procedure->id,
             'requirement_id' => 0,
-            'name' => $file->GetClientOriginalName(),
+            'name' => $this->filefinish->GetClientOriginalName(),
             'file' => (string)$file_url,
             'state' => $this->stateproc_id
           ]);
-        }
+
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {
         $this->notice('El tramite ya se encuentra con el estado seleccionado actualmente', 'info');

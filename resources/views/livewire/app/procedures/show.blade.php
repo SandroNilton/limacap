@@ -90,10 +90,10 @@
                       <button wire:click="downloadFile('{{ $procedure_file->id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
                         <ion-icon  wire:ignore name="download-outline"></ion-icon>
                       </button>
-                      <div class="flex-1">
-                        <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
-                        <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->state }}">{{ $procedure_file->state }}</div>
-                    </div>
+                        <div class="flex-1">
+                            <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
+                            <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->state }}">{{ $procedure_file->state }}</div>
+                        </div>
                     </div>
                   </div>
               @endif
