@@ -68,17 +68,20 @@
                       @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'cancelado')
                       @else
                         <div class="flex gap-x-3">
-                          <form wire:submit.prevent="changeStateFile(Object.fromEntries(new FormData($event.target)))" class="flex w-full gap-x-2.5">
-                            <input type="hidden" name="procedurefile_id" value="{{ $procedure_file->id }}">
-                            <select id="{{ $procedure_file->id }}" name="state_id" class="w-full py-1.5 text-[13px] leading-4 rounded-[3px] border-[#cdd5de] focus:border-[#4482ff] hover:border-[#4482ff] focus:ring-0 transition duration-300">
-                              <option value="sinverificar" @if($procedure_file->state == "sinverificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                              <option value="aceptado" @if($procedure_file->state == "aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
-                              <option value="rechazado" @if($procedure_file->state == "rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
-                            </select>
-                            <button class="bg-[#0d8a72] px-1.5 rounded-[3px] text-white text-[16px] py-1 inline-flex items-center">
-                              <ion-icon  wire:ignore name="refresh-outline"></ion-icon>
-                            </button>
-                          </form>
+                            <div class="flex text-[13px] leading-4 mb-3">
+                                <form wire:submit.prevent="changeFile('{{ $procedure_file->id }}', '{{ $procedure_file->requirement_id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" enctype="multipart/form-data" class="flex w-full gap-x-2.5">
+                                    <div class="border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px] hover:border-[#0d8a72] gap-x-2.5">
+                                        <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
+                                        <span class="text-[13px] text-[#414d6a]">Archivo</span>
+                                        </div>
+                                        <input type="file" wire:model="file_replace" id="file_replace" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
+                                    </div>
+                                    <button type="submit" class="bg-[#0d8a72] px-1 rounded-[3px] text-white text-[20px] py-1 inline-flex items-center">
+                                        <ion-icon wire:ignore name="refresh-outline"></ion-icon>
+                                    </button>
+                                </form>
+                              </div>
+
                         </div>
                       @endif
                     </div>

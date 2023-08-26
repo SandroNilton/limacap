@@ -7,13 +7,18 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Fileprocedure;
 use App\Models\Procedure;
 use App\Models\Proceduremessagefinish;
+use Livewire\WithFileUploads;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Show extends Component
 {
 
+    use WithFileUploads;
+
     public $procedure;
     public $procedure_data;
+    public $file_replace = [];
 
     public function mount()
     {
@@ -24,6 +29,36 @@ class Show extends Component
     {
       $headers = ['Content-Description' => 'File Transfer', 'Content-Type' => Storage::mimeType($name),];
       return Storage::download($file, $name, $headers);
+    }
+
+    public function changeFile($id, $requirement_id, $name, $file)
+    {
+        $this->validate(
+            [
+              'file_replace' => 'required'
+            ],
+            [
+              'file_replace.required' => 'seleccione archivo de reemplazo',
+            ]
+          );
+          $date = Carbon::now()->format('Y');
+
+          foreach ($this->file_replace as $file) {
+            $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."",  $file);
+            Fileprocedure::create([
+                'procedure_id' => $this->procedure->id,
+                'requirement_id' => $requirement_id,
+                'name' =>  $file->GetClientOriginalName(),
+                'file' => (string)$file_url,
+                'state' => 'sinverificar'
+            ]);
+        }
+
+        Fileprocedure::where('id', $id)->delete();
+        Storage::delete($file);
+
+
+        $this->notice('Se reemplazo correctamente', 'success');
     }
 
     public function render()
