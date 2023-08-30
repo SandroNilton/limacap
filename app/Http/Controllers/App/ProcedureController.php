@@ -9,6 +9,7 @@ use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
 use Carbon\Carbon;
+use App\Mail\createproc;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
