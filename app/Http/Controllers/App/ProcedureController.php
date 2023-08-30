@@ -9,6 +9,7 @@ use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ProcedureController extends Controller
@@ -54,6 +55,9 @@ class ProcedureController extends Controller
           'state' => 'sinverificar'
         ]);
       }
+
+      Mail::to(auth()->user()->email)->send(new createproc);
+
       return redirect()->route('app.procedures.index')->notice('El trámite se registro correctamente', 'success');
     }
 
