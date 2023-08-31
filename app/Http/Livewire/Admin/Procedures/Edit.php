@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 
+use App\Mail\ChangeStateProcedureMailable;
+use Illuminate\Support\Facades\Mail;
+
 use Livewire\Component;
 
 class Edit extends Component
@@ -160,6 +163,8 @@ class Edit extends Component
             'state' => $this->stateproc_id
           ]);
         }
+
+        Mail::to( $this->procedure->user->email)->send(new ChangeStateProcedureMailable);
 
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {

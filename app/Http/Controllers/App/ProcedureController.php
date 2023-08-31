@@ -9,7 +9,7 @@ use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
 use Carbon\Carbon;
-use App\Mail\createproc;
+use App\Mail\CreateProcedureMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -57,7 +57,7 @@ class ProcedureController extends Controller
         ]);
       }
 
-      Mail::to(auth()->user()->email)->send(new createproc);
+      Mail::to(auth()->user()->email)->send(new CreateProcedureMailable);
 
       return redirect()->route('app.procedures.index')->notice('El trámite se registro correctamente', 'success');
     }
