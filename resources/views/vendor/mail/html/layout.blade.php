@@ -39,49 +39,19 @@ width: 100% !important;
 <!-- Body content -->
 <tr>
 <td class="content-cell">
+{{ Illuminate\Mail\Markdown::parse($slot) }}
 
-  <table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-    <tr>
-    <td>
-
-      <p>
-        Colegio de Arquitectos del Perú
-      </p>
-      <img src="https://limacap.org/wp-content/uploads/2021/12/logo-niubiz.jpg" height="300" width="300" style="margin: -15px">
-        <h1>Asunto: Nueva Solicitud Trámite documentario – expediente </h1>
-      <p>
-        Le informamos que la solicitud con número de expediente xxxxx de trámite (tipo de tramite) + Categoría ha sido registrada
-      </p>
-      <p>
-        Puede visualizar la solicitud en el siguiente link: :::::::::::::::::::
-      </p>
-
-    </td>
-    </tr>
-    </table>
-
+{{ $subcopy ?? '' }}
 </td>
 </tr>
 </table>
 </td>
 </tr>
 
-<tr>
-  <td>
-  <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-  <tr>
-  <td class="content-cell" align="center">
-    Puede visualizar la solicitud en el siguiente link:
-  </td>
-  </tr>
-  </table>
-  </td>
-  </tr>
-
+{{ $footer ?? '' }}
 </table>
 </td>
 </tr>
 </table>
 </body>
 </html>
-
