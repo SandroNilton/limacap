@@ -57,7 +57,10 @@ class ProcedureController extends Controller
         ]);
       }
 
-      Mail::to(auth()->user()->email)->send(new CreateProcedureMailable);
+      $data = ["idprocedure" => $procedure->id, "typeprocedure" => $typeprocedure_area[0]->name];
+
+
+      Mail::to(auth()->user()->email)->send(new CreateProcedureMailable($data));
 
       return redirect()->route('app.procedures.index')->notice('El trámite se registro correctamente', 'success');
     }

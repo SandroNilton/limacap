@@ -13,12 +13,14 @@ class CreateProcedureMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -27,7 +29,7 @@ class CreateProcedureMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Create Procedure Mailable',
+            subject: 'Registro de nuevo trámite',
         );
     }
 
