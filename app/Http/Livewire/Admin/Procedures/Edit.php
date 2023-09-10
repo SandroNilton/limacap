@@ -9,6 +9,7 @@ use App\Models\Proceduremessage;
 use App\Models\Proceduremessagefinish;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
+use App\Models\Typeprocedure;
 
 use App\Models\Area;
 use App\Models\User;
@@ -164,7 +165,17 @@ class Edit extends Component
           ]);
         }
 
-        Mail::to( $this->procedure->user->email)->send(new ChangeStateProcedureMailable);
+        $typeprocedure_area = Typeprocedure::where([['id', '=', $this->procedure->typeprocedure_id]])->get();
+
+        $data = ["idprocedure" => $this->procedure->id, "typeprocedure" => $typeprocedure_area[0]->name, "state" => $this->stateproc_id];
+
+        if ($this->stateproc_id == 'aprobado') {
+            Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
+        }
+
+        if ($this->stateproc_id == 'cancelado') {
+            Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
+        }
 
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {

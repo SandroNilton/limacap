@@ -13,13 +13,16 @@ class ChangeStateProcedureMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $data;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
+
 
     /**
      * Get the message envelope.
@@ -27,7 +30,7 @@ class ChangeStateProcedureMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Change State Procedure Mailable',
+            subject: 'Cambio de estado de trámite',
         );
     }
 
