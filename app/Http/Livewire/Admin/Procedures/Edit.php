@@ -19,6 +19,7 @@ use Livewire\WithFileUploads;
 use Carbon\Carbon;
 
 use App\Mail\ChangeStateProcedureMailable;
+use App\Mail\ChangeAssigneProcedureMailable;
 use Illuminate\Support\Facades\Mail;
 
 use Livewire\Component;
@@ -103,6 +104,14 @@ class Edit extends Component
           'action' => "El usuario ". auth()->user()->name ." asigno al usuario ". $user_get_area[0]->name.".",
           'state' => 'asignado'
         ]);
+
+        $area = Area::where([['id', '=', $user_get_area[0]->area_id]])->get();
+        $user = User::where([['id', '=', $this->user_id]])->get();
+
+        $data = ["idprocedure" => $this->procedure->id, "area" => $area[0]->name, "user" =>  $user[0]->name, "admin" => auth()->user()->name];
+
+        Mail::to($this->procedure->user->email)->send(new ChangeAssigneProcedureMailable($data));
+
         $this->reset('user_id');
         $this->notice('Se asigno al usuario correctamente', 'success');
       } else {
@@ -169,13 +178,7 @@ class Edit extends Component
 
         $data = ["idprocedure" => $this->procedure->id, "typeprocedure" => $typeprocedure_area[0]->name, "state" => $this->stateproc_id];
 
-        if ($this->stateproc_id == 'aprobado') {
-            Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
-        }
-
-        if ($this->stateproc_id == 'cancelado') {
-            Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
-        }
+        Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
 
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {
