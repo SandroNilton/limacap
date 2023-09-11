@@ -110,7 +110,7 @@ class Edit extends Component
 
         $data = ["idprocedure" => $this->procedure->id, "area" => $area[0]->name, "user" =>  $user[0]->name, "admin" => auth()->user()->name];
 
-        Mail::to($this->procedure->user->email)->send(new ChangeAssigneProcedureMailable($data));
+        Mail::to($user[0]->email)->send(new ChangeAssigneProcedureMailable($data));
 
         $this->reset('user_id');
         $this->notice('Se asigno al usuario correctamente', 'success');
