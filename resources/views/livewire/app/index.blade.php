@@ -17,7 +17,8 @@
     </div>
     <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
       <div class="bg-white rounded p-4 mb-4">
-        <iframe class="w-full" height="479" src="https://www.instagram.com/lima_cap/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        <embed src="https://bialima.org/" style="width:100%; height: 479px;">
+        <!--<iframe class="w-full" height="479" src="https://www.instagram.com/lima_cap/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>-->
       </div>
     </div>
     <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
