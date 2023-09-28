@@ -20,7 +20,7 @@
               <option value="">Seleccione tipo de usuario</option>
               <option value="natural">Persona Natural</option>
               <option value="juridico">Persona Juridica</option>
-              <option value="agremiado">Agremiados</option>
+              <!--<option value="agremiado">Agremiados</option>-->
             </select>
           </div>
           @if ($optionSelected == 'natural')
