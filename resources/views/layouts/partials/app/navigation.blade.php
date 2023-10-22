@@ -4,6 +4,9 @@
       <button @click="toggleSidbarMenu()" class="p-1.5 flex content-center">
         <ion-icon name="reorder-three-outline" class="text-[20px] text-white"></ion-icon>
       </button>
+      <a href="{{ route('app.procedures.create') }}" class="text-white text-[13px] items-center inline-flex gap-1">
+        <ion-icon name="add-outline" class="text-[20px] text-white"></ion-icon> crear trámite
+      </a>
     </div>
     <div class="flex content-center space-x-3">
       <x-dropdown align="right" width="48">

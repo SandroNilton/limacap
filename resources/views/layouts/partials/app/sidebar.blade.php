@@ -32,7 +32,7 @@
     const setup = () => {
       return {
         loading: true,
-        isSidebarOpen: false,
+        isSidebarOpen: true,
         toggleSidbarMenu() {
           this.isSidebarOpen = !this.isSidebarOpen
         },
