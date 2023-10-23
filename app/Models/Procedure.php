@@ -27,8 +27,6 @@ class Procedure extends Model
       'user_id',
       'admin_id',
       'date',
-      'code',
-      'serie',
       'state'
     ];
 
@@ -60,9 +58,11 @@ class Procedure extends Model
     public static function boot() { 
       parent::boot(); 
       self::creating(function ($model) { 
+
       $prefix = 'CAPRL'.Carbon::now()->year;
       $model->id = UniqueIdGenerator::generate(['table' => 'procedures', 'length' => 15,'prefix' =>$prefix]); 
       }); 
+
     }
 
 }
