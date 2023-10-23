@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bad9e08de02f369e2f2f84e7e6143323",
+    "content-hash": "30a31bf8e1ebbad42b7243de481e12f9",
     "packages": [
         {
             "name": "asantibanez/livewire-charts",
@@ -4113,6 +4113,50 @@
                 }
             ],
             "time": "2023-05-19T01:55:52+00:00"
+        },
+        {
+            "name": "sirajcse/laravel-unique-id-generator",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SirajCse/laravel-unique-id-generator.git",
+                "reference": "4982afb5a3c9d243500f516c1f9be565fceab4ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SirajCse/laravel-unique-id-generator/zipball/4982afb5a3c9d243500f516c1f9be565fceab4ba",
+                "reference": "4982afb5a3c9d243500f516c1f9be565fceab4ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "sirajcse\\UniqueIdGenerator\\UniqueIdGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "sirajcse\\UniqueIdGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Md. Siraj-Ud-Doulla",
+                    "email": "sirajuddoulla@gmail.com"
+                }
+            ],
+            "description": "Generate custom Unique ID or Code (With Prefix or Suffix Or Both Or Only Unique Id) Or reset your ID after change of Prefix or Suffix Or Both  in laravel framework",
+            "support": {
+                "issues": "https://github.com/SirajCse/laravel-unique-id-generator/issues",
+                "source": "https://github.com/SirajCse/laravel-unique-id-generator/tree/v1.0.1"
+            },
+            "time": "2022-05-12T17:25:31+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

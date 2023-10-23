@@ -28,6 +28,7 @@ class ProcedureController extends Controller
     public function store(Request $request)
     {
       $typeprocedure_area = Typeprocedure::where([['id', '=', $request->typeprocedure_id]])->get();
+
       $procedure = Procedure::create([
         'user_id' => auth()->user()->id,
         'area_id' => $typeprocedure_area[0]->area_id,
@@ -65,7 +66,7 @@ class ProcedureController extends Controller
       return redirect()->route('app.procedures.index')->notice('El trámite se registro correctamente', 'success');
     }
 
-    public function show(Procedure $procedure)
+    public function show($procedure)
     {
         return view('app.procedures.show');
     }
