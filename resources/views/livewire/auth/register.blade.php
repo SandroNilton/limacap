@@ -1,15 +1,15 @@
 <div>
-  <section class="flex flex-col md:flex-row h-screen items-center">
-    <div class="hidden md:block w-full md:w-1/2 xl:w-2/3 h-screen">
+  <section class="flex flex-col items-center h-screen md:flex-row">
+    <div class="hidden w-full h-screen md:block md:w-1/2 xl:w-2/3">
       @include('layouts.partials.guest.slide')
     </div>
-    <div class="bg-white w-full md:max-w-md lg:max-w-full md:mw-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center overflow-hidden overflow-y-scroll">
-      <div class="w-full h-100 px-4">
+    <div class="flex items-center justify-center w-full h-screen px-6 overflow-hidden overflow-y-scroll bg-white md:max-w-md lg:max-w-full md:mw-auto md:mx-0 md:w-1/2 xl:w-1/3 lg:px-16 xl:px-12">
+      <div class="w-full px-4 h-100">
 
-        <div class="justify-center flex mb-4">
+        <div class="flex justify-center mb-4">
           <img src="https://i.postimg.cc/PqDTPv8d/logo-niubiz-removebg-preview-3.png" width=220" alt="">
         </div>
-        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+        <ul class="mt-3 text-sm text-red-600 list-disc list-inside">
           @foreach ($errors->all() as $error)
               <li>{{ $error }}</li>
           @endforeach
@@ -26,7 +26,7 @@
           @if ($optionSelected == 'natural')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
-              <div class="mb-3 mt-3">
+              <div class="mt-3 mb-3">
                 <select wire:model="selectTypeCode" name="natural_type" id="natural_type" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" required>
                   <option value="">Seleccione tipo de documento</option>
                   <option value="DNI">DNI</option>
@@ -85,7 +85,7 @@
           @elseif ($optionSelected == 'juridico')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
-              <div class="mb-3 mt-3">
+              <div class="mt-3 mb-3">
                 <div class="flex gap-x-2">
                   <input type="hidden" id="type" name="type" value="{{ $optionSelected }}">
                   <input type="hidden" id="code_type" name="code_type">
@@ -123,20 +123,20 @@
                 <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
               </div>
               <div class="flex space-x-1">
-                <span class="text-red-500 text-xs">Nota:</span>
+                <span class="text-xs text-red-500">Nota:</span>
                 <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
               </div>
             </form>
           @elseif ($optionSelected == 'agremiado')
           <form method="POST" action="{{ route('register') }}" class="w-full">
             @csrf
-            <div class="mb-3 mt-3">
+            <div class="mt-3 mb-3">
               <div class="flex gap-x-2">
                 <input type="hidden" id="type" name="type" value="{{ $optionSelected }}">
                 <input type="hidden" id="code_type" name="code_type">
                 <input wire:model="code" id="code" name="code" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="99999999999" placeholder="Codigo de cap" @required(true)>
                 <input wire:model="keycap" id="keycap" name="keycap" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="99999999999" placeholder="Clave de cap" @required(true)>
-                <a x-on:click="searchAgremiado" class="px-1.5 py-1.5 cursor-pointer bg-[#cfa133] text-white self-center rounded">
+                <a wire:click="searchAgremiado" class="px-1.5 py-1.5 cursor-pointer bg-[#cfa133] text-white self-center rounded">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="32px" height="32px" viewBox="0 0 32 32" version="1.1">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
                       <g id="icon-111-search" sketch:type="MSArtboardGroup" fill="#FFFFFF">
@@ -169,7 +169,7 @@
               <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
             </div>
             <div class="flex space-x-1">
-              <span class="text-red-500 text-xs">Nota:</span>
+              <span class="text-xs text-red-500">Nota:</span>
               <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
             </div>
           </form>
@@ -241,34 +241,21 @@
       }
     }
 
-    function searchAgremiado(e) {
-      var codesearch = document.getElementById('code').value;
-      var keysearch = document.getElementById('keycap').value;
-      if (codesearch.length > 0 && keysearch.length > 0) {
-        var headers = {}
+    document.addEventListener("DOMContentLoaded", () => {
+      Livewire.hook('message.processed', (el, component) => {
+        var data = @this.data;
+        console.log(data);
+        
+        if(data.message == "found data"){
+          document.getElementById("name").value = data['result'][0]['Nombres'] + " " + data['result'][0]['Apellidos'];
+          document.getElementById("address").value = data['result'][0]['Direccion'];
+          document.getElementById("email").value = data['result'][0]['Email1'];
+        }
+        
+      })
 
-        fetch(`https://4.228.202.241:441/api/Arquitecto/Listar?cap=${codesearch}&clave=${keysearch}`, {method : "GET", mode: 'cors', headers: headers}).then(function(response) {
-          // The API call was successful!
-          if (response.ok) {
-            return response.json();
-          } else {
-            return Promise.reject(response);
-          }
-        }).then(function(data) {
-          // This is the JSON from our response
-          document.getElementById("name").value = data.Nombres + " " + data.Apellidos;
-          document.getElementById("address").value = data.Direccion;
-          document.getElementById("email").value = data.Email1;
-        }).catch(function(err) {
-          // There was an error
-          console.warn('Something went wrong.', err);
-        });
-      } else {
-        document.getElementById("code").focus();
-      }
-    }
-
-    searchAgremiado
+         
+    });
 
   </script>
 @endpush
