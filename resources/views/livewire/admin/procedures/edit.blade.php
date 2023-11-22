@@ -4,7 +4,7 @@
   </div>
   <div class="p-[14px] bg-[#f1f3f6] sm:flex gap-3">
 
-    <div class="w-full md:w-1/2 lg:w-1/4 mb-4">
+    <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
       <!-- Info procedure -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
@@ -12,37 +12,37 @@
         </div>
         <div class="w-full p-[12px]">
           <ul class="flex flex-col text-left gap-2.5">
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Fecha de creación:</span>
                 <span>{{ $procedure_data[0]->created_at->format('d/m/Y h:i') }}</span>
               <p>
             </li>
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Tipo de trámite:</span>
                 <span>{{ $procedure_data[0]->typeprocedure->name }}</span>
               </p>
             </li>
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Área:</span>
                 <span>{{ $procedure_data[0]->area->name }}</span>
               </p>
             </li>
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Tipo de usuario:</span>
                 <span>@switch($procedure_data[0]->user->type) @case(1) Natural @break @case(2) Juridica  @break @case(3) Agremiado @break @case(10)  Administrativo @break @endswitch</span>
               </p>
             </li>
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Nombre:</span>
                 <span>{{ $procedure_data[0]->user->name }}</span>
               </p>
             </li>
-            <li class="flex gap-x-3 overflow-hidden">
+            <li class="flex overflow-hidden gap-x-3">
               <p class="text-[13px] leading-4 text-[#414d6a]">
                 <span>Descripción:</span>
                 <span>@if (!empty($procedure_data[0]->description)) {{ $procedure_data[0]->description }} @else --  @endif</span>
@@ -98,7 +98,7 @@
       @endif
     </div>
 
-    <div class="w-full md:w-1/2 lg:w-1/4 mb-4">
+    <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
       <!-- Message -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
@@ -119,7 +119,7 @@
           <div class="mt-3">
             <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px]">
               @forelse ($procedure_messages as $procedure_message)
-                <div class="group flex items-center gap-x-3 mb-2">
+                <div class="flex items-center mb-2 group gap-x-3">
                   <div class="transform relative flex items-center p-2 bg-[#0d8a72] text-white rounded-[3px] flex-col md:flex-row space-y-4 md:space-y-0">
                     <div class="flex-auto">
                       <h1 class="text-[10px]">{{ $procedure_message->created_at->format('d/m/Y h:i') }}</h1>
@@ -138,17 +138,17 @@
       </div>
     </div>
 
-    <div class="w-full md:w-1/2 lg:w-1/4 mb-4">
+    <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
       <!-- files -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
           <span class="text-[13px] leading-4 text-[#414d6a]">Archivos solicitados:</span>
         </div>
         <div class="w-full p-[12px]">
-          <div class="flex flex-col columns-1 grid-cols-1 text-sm gap-x-3">
+          <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
             @forelse ($procedure_files as $procedure_file)
               <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
-                <div class="rounded-sm flex flex-1 items-center p-2 gap-x-3">
+                <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
                   <button wire:click="downloadFile('{{ $procedure_file->id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
                     <ion-icon  wire:ignore name="download-outline"></ion-icon>
                   </button>
@@ -187,11 +187,11 @@
           <span class="text-[13px] leading-4 text-[#414d6a]">Respuestas de trámite:</span>
         </div>
         <div class="w-full p-[12px]">
-          <li class="flex gap-x-3 overflow-hidden">
+          <li class="flex overflow-hidden gap-x-3">
             <p class="text-[13px] leading-4 text-[#414d6a]">
               <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px]">
                 @forelse ($procedure_message_finish as $procedure_message)
-                <div class="relative flex gap-x-4 pb-2 overflow-hidden">
+                <div class="relative flex pb-2 overflow-hidden gap-x-4">
                   <div wire:ignore class="mt-0.5 relative h-full">
                     <div class="absolute top-5 bottom-0 left-2 w-px h-32 -ml-px border-r border-dashed border-[#cdd5de]"></div>
                     <ion-icon name="time-outline"></ion-icon>
@@ -213,10 +213,10 @@
           <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de cambios de estado:</span>
         </div>
         <div class="w-full p-[12px]">
-          <div class="flex flex-col columns-1 grid-cols-1 text-sm gap-x-3">
+          <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
             @forelse ($procedure_files_responses as $procedure_file_response)
               <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
-                <div class="rounded-sm flex flex-1 items-center p-2 gap-x-3">
+                <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
                   <button wire:click="downloadFile('{{ $procedure_file_response->id }}', '{{ $procedure_file_response->name }}', '{{ $procedure_file_response->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
                     <ion-icon  wire:ignore name="download-outline"></ion-icon>
                   </button>
@@ -241,10 +241,10 @@
             <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de finalización:</span>
           </div>
           <div class="w-full p-[12px]">
-            <div class="flex flex-col columns-1 grid-cols-1 text-sm gap-x-3">
+            <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
               @forelse ($procedure_files_finish as $procedure_file_finish)
                 <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
-                  <div class="rounded-sm flex flex-1 items-center p-2 gap-x-3">
+                  <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
                     <button wire:click="downloadFile('{{ $procedure_file_finish->id }}', '{{ $procedure_file_finish->name }}', '{{ $procedure_file_finish->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
                       <ion-icon  wire:ignore name="download-outline"></ion-icon>
                     </button>
@@ -264,7 +264,7 @@
       @endif
     </div>
 
-    <div class="w-full md:w-1/2 lg:w-1/4 mb-4">
+    <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
       <!-- history -->
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
@@ -273,7 +273,7 @@
         <div class="w-full p-[12px]">
           <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px]">
             @forelse ($procedure_histories as $procedurehistory)
-              <div class="relative flex gap-x-4 pb-2 overflow-hidden">
+              <div class="relative flex pb-2 overflow-hidden gap-x-4">
                 <div wire:ignore class="mt-0.5 relative h-full">
                   <div class="absolute top-5 bottom-0 left-2 w-px h-32 -ml-px border-r border-dashed border-[#cdd5de]"></div>
                   <ion-icon name="time-outline"></ion-icon>

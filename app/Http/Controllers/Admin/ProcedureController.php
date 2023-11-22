@@ -21,7 +21,7 @@ class ProcedureController extends Controller
     return view('admin.procedures.index');
   }
 
-  public function edit(Procedure $procedure)
+  public function edit($procedure)
   {
     return view('admin.procedures.edit');
   }

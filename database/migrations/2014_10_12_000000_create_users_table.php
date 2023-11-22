@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->foreignUuid('area_id')->nullable()->constrained()->onDelete('set null');
             $table->tinyInteger('is_admin')->default(0);
             $table->string('state')->default("activo");
