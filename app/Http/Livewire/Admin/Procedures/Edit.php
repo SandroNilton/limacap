@@ -55,12 +55,16 @@ class Edit extends Component
     public function mount()
     {
       $this->procedure = Route::current()->parameter('procedure');
+      
     }
 
     public function addMessage()
     {
+
+      $proc = Procedure::where('id', '=', $this->procedure)->get();
+
       $this->validate(['message' => 'required'], ['message.required' => 'Rellena este campo obligatorio',]);
-      $messages = ['procedure_id' => $this->procedure->id, 'description' => $this->message];
+      $messages = ['procedure_id' => $proc[0]->id, 'description' => $this->message];
       Proceduremessage::create($messages);
       $this->reset('message');
     }
@@ -73,12 +77,15 @@ class Edit extends Component
 
     public function changeArea()
     {
+      $proc = Procedure::where('id', '=', $this->procedure)->get();
+
+
       $this->validate(['area_id' => 'required'], ['area_id.required' => 'Seleccione este campo obligatorio',]);
-      if($this->procedure->area_id != $this->area_id){
-        Procedure::where('id', '=', $this->procedure->id)->update(['area_id' => $this->area_id]);
+      if($proc[0]->area_id != $this->area_id){
+        Procedure::where('id', '=', $proc[0]->id)->update(['area_id' => $this->area_id]);
         $area_data = Area::where('id', '=', $this->area_id)->get();
         Procedurehistory::create([
-          'procedure_id' => $this->procedure->id,
+          'procedure_id' => $proc[0]->id,
           'area_id' => $this->area_id,
           'admin_id' => auth()->user()->id,
           'action' => "El usuario ". auth()->user()->name ." asigno al area ". $area_data[0]->name.".",
@@ -93,12 +100,14 @@ class Edit extends Component
 
     public function assignUser()
     {
+      $proc = Procedure::where('id', '=', $this->procedure)->get();
+      
       $this->validate(['user_id' => 'required'], ['user_id.required' => 'Seleccione este campo obligatorio',]);
-      if($this->procedure->administrator_id != $this->user_id){
+      if($proc[0]->administrator_id != $this->user_id){
         $user_get_area = User::where('id', '=', $this->user_id)->get();
-        Procedure::where('id', '=', $this->procedure->id)->update(array('admin_id' => $this->user_id, 'area_id' => $user_get_area[0]->area_id));
+        Procedure::where('id', '=', $proc[0]->id)->update(array('admin_id' => $this->user_id, 'area_id' => $user_get_area[0]->area_id));
         Procedurehistory::create([
-          'procedure_id' => $this->procedure->id,
+          'procedure_id' => $proc[0]->id,
           'area_id' => $user_get_area[0]->area_id,
           'admin_id' => auth()->user()->id,
           'action' => "El usuario ". auth()->user()->name ." asigno al usuario ". $user_get_area[0]->name.".",
@@ -108,7 +117,7 @@ class Edit extends Component
         $area = Area::where([['id', '=', $user_get_area[0]->area_id]])->get();
         $user = User::where([['id', '=', $this->user_id]])->get();
 
-        $data = ["idprocedure" => $this->procedure->id, "area" => $area[0]->name, "user" =>  $user[0]->name, "admin" => auth()->user()->name];
+        $data = ["idprocedure" => $proc[0]->id, "area" => $area[0]->name, "user" =>  $user[0]->name, "admin" => auth()->user()->name];
 
         Mail::to($user[0]->email)->send(new ChangeAssigneProcedureMailable($data));
 
@@ -148,15 +157,17 @@ class Edit extends Component
         ]
       );
 
-      if($this->procedure->state != $this->stateproc_id){
-        Procedure::where('id', '=', $this->procedure->id)->update(['state' => $this->stateproc_id]);
+      $proc = Procedure::where('id', '=', $this->procedure)->get();
+
+      if($proc[0]->state != $this->stateproc_id){
+        Procedure::where('id', '=', $proc[0]->id)->update(['state' => $this->stateproc_id]);
         Proceduremessagefinish::create([
-          'procedure_id' => $this->procedure->id,
+          'procedure_id' => $proc[0]->id,
           'description' => $this->message_finish,
         ]);
         Procedurehistory::create([
-          'procedure_id' => $this->procedure->id,
-          'area_id' => $this->procedure->area_id,
+          'procedure_id' => $proc[0]->id,
+          'area_id' => $proc[0]->area_id,
           'admin_id' => auth()->user()->id,
           'action' => "El usuario ". auth()->user()->name ." cambio el estado a ". $this->stateproc_id.".",
           'state' => $this->stateproc_id
@@ -164,9 +175,9 @@ class Edit extends Component
         $date = Carbon::now()->format('Y');
 
         foreach ($this->file_finish as $file) {
-          $file_url = Storage::put('procedures/'.$date."/".$this->procedure->id."", $file);
+          $file_url = Storage::put('procedures/'.$date."/".$proc[0]->id."", $file);
           Fileprocedure::create([
-            'procedure_id' => $this->procedure->id,
+            'procedure_id' => $proc[0]->id,
             'requirement_id' => 0,
             'name' => $file->GetClientOriginalName(),
             'file' => (string)$file_url,
@@ -174,11 +185,11 @@ class Edit extends Component
           ]);
         }
 
-        $typeprocedure_area = Typeprocedure::where([['id', '=', $this->procedure->typeprocedure_id]])->get();
+        $typeprocedure_area = Typeprocedure::where([['id', '=', $proc[0]->typeprocedure_id]])->get();
 
-        $data = ["idprocedure" => $this->procedure->id, "typeprocedure" => $typeprocedure_area[0]->name, "state" => $this->stateproc_id];
+        $data = ["idprocedure" => $proc[0]->id, "typeprocedure" => $typeprocedure_area[0]->name, "state" => $this->stateproc_id];
 
-        Mail::to($this->procedure->user->email)->send(new ChangeStateProcedureMailable($data));
+        Mail::to($proc[0]->user->email)->send(new ChangeStateProcedureMailable($data));
 
         $this->notice('Se cambio el estado correctamente', 'success');
       } else {
