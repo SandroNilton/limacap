@@ -27,9 +27,9 @@
             wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
             x-data
             @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('hidden') : null"
-            class="hidden md:hidden bg-white dark:bg-gray-700 dark:text-white"
+            class="hidden bg-white md:hidden"
         >
-            <td class="pt-4 pb-2 px-4" colspan="{{ $colspan }}">
+            <td class="px-4 pt-4 pb-2" colspan="{{ $colspan }}">
                 <div>
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())
@@ -49,7 +49,7 @@
             @toggle-row-content.window="$event.detail.row === {{ $rowIndex }} ? $el.classList.toggle('d-none') : null"
             class="d-none d-md-none"
         >
-            <td class="pt-3 p-2" colspan="{{ $colspan }}">
+            <td class="p-2 pt-3" colspan="{{ $colspan }}">
                 <div>
                     @foreach($columns as $colIndex => $column)
                         @continue($column->isHidden())

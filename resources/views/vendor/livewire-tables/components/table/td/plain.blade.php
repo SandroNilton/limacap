@@ -8,7 +8,7 @@
 @if ($theme === 'tailwind')
     <td {{ $attributes
         ->merge($customAttributes)
-        ->class(['px-6 py-1.5 text-center whitespace-nowrap text-xs dark:text-white' => $customAttributes['default'] ?? true])
+        ->class(['px-4 py-1.5 text-center whitespace-nowrap text-sm dark:text-white' => $customAttributes['default'] ?? true])
         ->class(['hidden sm:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnTablet()])
         ->except('default')

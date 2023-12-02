@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 use App\Models\Typeprocedure;
+use Illuminate\Http\Request;
 
 class TypeprocedureController extends Controller
 {
@@ -16,18 +17,18 @@ class TypeprocedureController extends Controller
     $this->middleware('can:admin.typeprocedures.destroy')->only('destroy');
   }
 
-  public function index()
+  public function index(): view
   {
     return view('admin.typeprocedures.index');
   }
 
-  public function create()
+  public function create(): view
   {
     return view('admin.typeprocedures.create');
   }
 
-  public function edit(Typeprocedure $typeprocedure)
+  public function edit(Typeprocedure $typeprocedure): view
   {
-    return view('admin.typeprocedures.edit');
+    return view('admin.typeprocedures.edit', compact('typeprocedure'));
   }
 }

@@ -4,27 +4,27 @@
     }
 
     .notification.notice-position-tr {
-        @apply top-0 right-0 mr-2 flex-col;
+        @apply top-0 right-0 flex-col mr-2;
     }
 
     .notification.notice-position-tl {
-        @apply top-0 left-0 ml-2 flex-col;
+        @apply top-0 left-0 flex-col ml-2;
     }
 
     .notification.notice-position-br {
-        @apply bottom-0 right-0 mr-2 mb-2 flex-col-reverse;
+        @apply bottom-0 right-0 flex-col-reverse mb-2 mr-2;
     }
 
     .notification.notice-position-bl {
-        @apply bottom-0 left-0 ml-2 mb-2 flex-col-reverse;
+        @apply bottom-0 left-0 flex-col-reverse mb-2 ml-2;
     }
 
     .notification .widget {
-        @apply relative w-80 max-w-xs  border-2 rounded-md shadow;
+        @apply relative max-w-xs border-t-2 rounded-md shadow w-80;
     }
 
     .notification .notice-button .close-icon {
-        @apply w-3.5 h-3.5;
+        @apply w-3 h-3;
     }
 
     .notification .notice-button {
@@ -33,55 +33,55 @@
 
     /** alert */
     .notification .notice-alert {
-        @apply bg-[#fbeaf0] border-[#ec4899] bg-opacity-95;
+        @apply bg-[#fff] border-t-[#E11D48] bg-opacity-100 shadow;
     }
 
     .notification .notice-alert .title,
     .notification .notice-alert .icon {
-        @apply text-[#d94274];
+        @apply bg-[#E11D48] text-white;
     }
 
     .notification .notice-alert .description {
-        @apply text-[#a6526e];
+        @apply text-[#E11D48];
     }
 
     .notification .notice-alert .notice-button {
-        @apply text-[#ec4899] hover:text-[#d94274];
+        @apply text-[#6B7280] text-opacity-100;
     }
 
     /** info */
     .notification .notice-info {
-        @apply bg-[#e5f7fd] border-[#9cbedf] bg-opacity-95;
+        @apply bg-[#fff] border-t-[#0EA5E9] bg-opacity-100 shadow;
     }
 
     .notification .notice-info .title,
     .notification .notice-info .icon {
-        @apply text-[#597e99];
+        @apply bg-[#0EA5E9] text-white;
     }
 
     .notification .notice-info .description {
-        @apply text-[#1e5680];
+        @apply text-[#0EA5E9];
     }
 
     .notification .notice-info .notice-button {
-        @apply text-[#9cbedf] hover:text-[#597e99];
+        @apply text-[#6B7280] text-opacity-100;
     }
 
     /** success */
     .notification .notice-success {
-        @apply bg-[#d3f8c2] border-[#6ba28e] bg-opacity-95;
+        @apply bg-[#fff] border-t-[#059669] bg-opacity-100 shadow;
     }
 
     .notification .notice-success .title,
     .notification .notice-success .icon {
-        @apply text-[#4e846b];
+        @apply bg-[#059669] text-white;
     }
 
     .notification .notice-success .description {
-        @apply text-[#4d7158];
+        @apply text-[#059669];
     }
 
     .notification .notice-success .notice-button {
-        @apply text-[#6ba28e] hover:text-[#4e846b];
+        @apply text-[#6B7280] text-opacity-100;
     }
 }

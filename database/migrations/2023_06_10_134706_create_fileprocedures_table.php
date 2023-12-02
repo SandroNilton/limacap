@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('requirement_id');
             $table->string('name');
             $table->string('file');
-            $table->string('state')->default("sin verificar");
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
         });
     }

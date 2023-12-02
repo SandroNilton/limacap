@@ -3,7 +3,7 @@
 
 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
     @class([
-        'block text-[13px] leading-5 text-[#414d6a] dark:text-white' => $theme === 'tailwind',
+        'block text-sm text-[#414d6a]' => $theme === 'tailwind',
         'd-block' => $theme === 'bootstrap-4' && $filterLayout == 'slide-down',
         'mb-2' => $theme === 'bootstrap-4' && $filterLayout == 'popover',
         'd-block' => $theme === 'bootstrap-5' && $filterLayout == 'slide-down',

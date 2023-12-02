@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'phone' => null,
             'area_id' => null,
             'is_admin' => 1,
-            'state' => 'activo',
+            'state' => 1,
           ])->assignRole('admin');
     }
 }

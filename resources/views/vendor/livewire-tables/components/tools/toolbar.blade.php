@@ -11,8 +11,8 @@
 @endif
 
 @if ($theme === 'tailwind')
-    <div class="md:flex md:justify-between mb-4 px-4 md:p-0">
-        <div class="w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2">
+    <div class="px-4 mb-4 md:flex md:justify-between md:p-0">
+        <div class="w-full mb-4 space-y-4 md:mb-0 md:w-2/4 md:flex md:space-y-0 md:space-x-2">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include(
                     $component->getConfigurableAreaFor('toolbar-left-start'),
@@ -23,7 +23,7 @@
                 <button
                     wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
                     type="button"
-                    class="inline-flex justify-center items-center w-full md:w-auto px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600">
+                    class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm md:w-auto hover:text-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 active:bg-gray-50 active:text-gray-800 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600">
                     @if ($component->currentlyReorderingIsEnabled())
                         @lang('Done Reordering')
                     @else
@@ -36,11 +36,11 @@
                 <div class="flex rounded-md shadow-sm">
                     <input wire:model{{ $component->getSearchOptions() }}="{{ $component->getTableName() }}.search"
                         placeholder="{{ __('Buscar') }}" type="text"
-                        class="block w-full border py-1.5 border-[#e9ebec] text-[#414d6a] text-[13px] leading-3 @if ($component->hasSearch()) rounded-none rounded-l-[3px] focus:border-inherit focus:ring-0 @else focus:border-inherit focus:ring-0 rounded-[3px] @endif" />
+                        class="block w-full border py-1.5 border-[#e9ebec] text-[rgb(17,24,39)] text-opacity-100 text-sm focus:border-[#10B981] focus:ring-[#10B981] @if ($component->hasSearch()) rounded-l-md @else rounded-md @endif" />
 
                     @if ($component->hasSearch())
                         <span wire:click.prevent="clearSearch"
-                            class="inline-flex items-center px-2 bg-[#0d8a72] rounded-r-[3px] border border-l-0 border-[#0d8a72] cursor-pointer">
+                            class="inline-flex items-center px-2 bg-[#10B981] rounded-r-md border border-l-0 border-[#10B981] cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                 stroke="#FFFF">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,10 +55,10 @@
                 <div @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false  }"
                         x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                         x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
-                    class="relative block md:inline-block text-left">
+                    class="relative block text-left md:inline-block">
                     <div>
                         <button type="button"
-                            class="inline-flex justify-center items-center w-full rounded-[3px] py-1 border border-[#e9ebec] shadow-sm px-4 bg-white text-[13px] text-[#414d6a] focus:ring-0"
+                            class="inline-flex justify-center items-center w-full rounded-md py-1.5 border border-[#e9ebec] shadow-sm px-4 bg-white text-sm text-[rgb(17,24,39)] focus:ring-0"
                             @if ($component->isFilterLayoutPopover()) x-on:click="open = !open"
                                 aria-haspopup="true"
                                 x-bind:aria-expanded="open"
@@ -68,13 +68,13 @@
 
                             @if ($count = $component->getFilterBadgeCount())
                                 <span
-                                    class="ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-[13px] leading-4 bg-white">
+                                    class="inline-flex items-center px-2 py-1 ml-1 text-sm leading-4 bg-white rounded-full">
                                     {{ $count }}
                                 </span>
                             @endif
 
-                            <svg class="-mr-1 ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="#414d6a">
+                            <svg class="w-4 h-4 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="#111827">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
                             </svg>
                         </button>
@@ -119,7 +119,7 @@
             @endif
         </div>
 
-        <div class="md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2">
+        <div class="space-y-4 md:flex md:items-center md:space-y-0 md:space-x-2">
             @if ($component->hasConfigurableAreaFor('toolbar-right-start'))
                 @include(
                     $component->getConfigurableAreaFor('toolbar-right-start'),
@@ -127,19 +127,19 @@
             @endif
 
             @if ($component->showBulkActionsDropdownAlpine())
-                <div x-cloak x-show="selectedItems.length > 0" class="w-full md:w-auto mb-4 md:mb-0">
+                <div x-cloak x-show="selectedItems.length > 0" class="w-full mb-4 md:w-auto md:mb-0">
                     <div x-data="{ open: false, childElementOpen: false }" @keydown.window.escape="if (!childElementOpen) { open = false }"
                         x-on:click.away="if (!childElementOpen) { open = false }"
-                        class="relative inline-block text-left z-10 w-full md:w-auto">
+                        class="relative z-10 inline-block w-full text-left md:w-auto">
                         <div>
                             <span class="rounded-md shadow-sm">
                                 <button x-on:click="open = !open" type="button"
-                                    class="inline-flex justify-center w-full rounded-[3px] border border-[#e9ebec] shadow-sm px-3 py-1 bg-white text-[13px] text-[#414d6a] focus:ring-0 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+                                    class="inline-flex justify-center w-full rounded-md border border-[#e9ebec] shadow-sm px-3 py-1.5 bg-white text-sm text-[rgb(17,24,39)] text-opacity-100 focus:ring-0"
                                     aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
                                     @lang('Acciones masivas')
 
-                                    <svg class="-mr-1 ml-2 h-5 w-5" x-description="Heroicon name: chevron-down"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#788195">
+                                    <svg class="w-5 h-5 ml-2 -mr-1" x-description="Heroicon name: chevron-down"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#111827">
                                         <path fill-rule="evenodd"
                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                             clip-rule="evenodd"></path>
@@ -154,14 +154,14 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50">
-                            <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
-                                <div class="py-1" role="menu" aria-orientation="vertical">
+                            class="absolute right-0 z-50 w-full mt-2 origin-top-right bg-white border border-[#e9ebec] rounded-md shadow-sm md:w-48 focus:outline-none">
+                            <div class="bg-white rounded-md shadow-sm">
+                                <div class="py-1.5" role="menu" aria-orientation="vertical">
                                     @foreach ($component->getBulkActions() as $action => $title)
                                         <button wire:click="{{ $action }}"
                                             wire:key="bulk-action-{{ $action }}-{{ $component->getTableName() }}"
                                             type="button"
-                                            class="block w-full px-4 py-1 text-[13px] leading-5 text-[#414d6a] hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 flex items-center space-x-2 dark:text-white dark:hover:bg-gray-600"
+                                            class="w-full px-4 py-1 text-sm text-[rgb(17,24,39)] text-opacity-100 focus:outline-none flex items-center"
                                             role="menuitem">
                                             <span>{{ $title }}</span>
                                         </button>
@@ -178,16 +178,16 @@
                     class="@if ($component->getColumnSelectIsHiddenOnMobile()) hidden sm:block @elseif ($component->getColumnSelectIsHiddenOnTablet()) hidden md:block @endif mb-4 w-full md:w-auto md:mb-0 md:ml-2">
                     <div x-data="{ open: false, childElementOpen: false }" @keydown.window.escape="if (!childElementOpen) { open = false }"
                         x-on:click.away="if (!childElementOpen) { open = false }"
-                        class="inline-block relative w-full text-left md:w-auto"
+                        class="relative inline-block w-full text-left md:w-auto"
                         wire:key="column-select-button-{{ $component->getTableName() }}">
                         <div>
                             <span class="rounded-[3px] shadow-sm">
                                 <button x-on:click="open = !open" type="button"
-                                    class="inline-flex justify-center px-3 py-1 w-full text-[13px] text-[#414d6a] bg-white rounded-[3px] border border-[#e9ebec]  focus:ring-0 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600"
+                                    class="inline-flex justify-center px-3 py-1.5 w-full text-sm text-[rgb(17,24,39)] text-opacity-100 bg-white rounded-md border border-[#e9ebec] focus:ring-0"
                                     aria-haspopup="true" x-bind:aria-expanded="open" aria-expanded="true">
                                     @lang('Columnas')
 
-                                    <svg class="-mr-1 ml-2 w-5 h-5" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#788195">
+                                    <svg class="w-5 h-5 ml-2 -mr-1" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#111827">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
@@ -200,22 +200,22 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute right-0 z-50 mt-2 w-full bg-white rounded-[3px] divide-y divide-gray-100 ring-1 ring-black ring-opacity-5 shadow-lg origin-top-right md:w-48 focus:outline-none">
-                            <div class="bg-white rounded-[3px] shadow-xs dark:bg-gray-700 dark:text-white text-[13px]">
+                            class="absolute right-0 z-50 w-full mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-sm ring-1 ring-black ring-opacity-5 md:w-48 focus:outline-none">
+                            <div class="text-sm bg-white rounded-md shadow-sm">
                                 <div class="p-1.5" role="menu" aria-orientation="vertical"
                                     aria-labelledby="column-select-menu">
                                     <div>
                                         <label wire:loading.attr="disabled"
-                                            class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
+                                            class="inline-flex items-center px-2 py-1.5 disabled:opacity-50 disabled:cursor-wait">
                                             <input
-                                                class="text-[#0d8a72] transition duration-150 ease-in-out border-gray-300 rounded-[3px] shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                                class="text-[#10B981] transition duration-150 ease-in-out border-[#e9ebec] rounded-full shadow-sm focus:border-[#10B981] focus:ring-[#10B981] disabled:opacity-50 disabled:cursor-wait"
                                                 @if ($component->allDefaultVisibleColumnsAreSelected()) checked
                                                     wire:click="deselectAllColumns"
                                                 @else
                                                     unchecked
                                                     wire:click="selectAllColumns" @endif
                                                 wire:loading.attr="disabled" type="checkbox" />
-                                            <span class="ml-2 text-[#414d6a]">{{ __('Todas las columnas') }}</span>
+                                            <span class="ml-2 text-[rgb(17,24,39)] text-opacity-100">{{ __('Todas las columnas') }}</span>
                                         </label>
                                     </div>
                                     @foreach ($component->getColumns() as $column)
@@ -223,13 +223,13 @@
                                             <div
                                                 wire:key="columnSelect-{{ $loop->index }}-{{ $component->getTableName() }}">
                                                 <label wire:loading.attr="disabled" wire:target="selectedColumns"
-                                                    class="inline-flex items-center px-2 py-1 disabled:opacity-50 disabled:cursor-wait">
+                                                    class="inline-flex items-center px-2 py-1.5 disabled:opacity-50 disabled:cursor-wait">
                                                     <input
-                                                        class="text-[#0d8a72] rounded border-gray-300 shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-900 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:bg-gray-600 disabled:opacity-50 disabled:cursor-wait"
+                                                        class="text-[#10B981] rounded-full border-[#e9ebec] shadow-sm transition duration-150 ease-in-out focus:border-[#10B981] focus:ring-[#10B981] disabled:opacity-50 disabled:cursor-wait"
                                                         wire:model="selectedColumns" wire:target="selectedColumns"
                                                         wire:loading.attr="disabled" type="checkbox"
                                                         value="{{ $column->getSlug() }}" />
-                                                    <span class="ml-2 text-[#414d6a]">{{ $column->getTitle() }}</span>
+                                                    <span class="ml-2 text-[rgb(17,24,39)] text-opacity-100">{{ $column->getTitle() }}</span>
                                                 </label>
                                             </div>
                                         @endif
@@ -244,7 +244,7 @@
             @if ($component->paginationIsEnabled() && $component->perPageVisibilityIsEnabled())
                 <div>
                     <select wire:model="perPage" id="perPage"
-                        class="block cursor-pointer w-full py-1 border-[#e9ebec] rounded-[3px] shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-inherit focus:ring-0 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                        class="block cursor-pointer w-full py-1.5 border-[#e9ebec] rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:border-inherit focus:ring-0">
                         @foreach ($component->getPerPageAccepted() as $item)
                             <option value="{{ $item }}"
                                 wire:key="per-page-{{ $item }}-{{ $component->getTableName() }}">
@@ -273,7 +273,7 @@
             x-transition:leave-end="transform opacity-0">
 
             @foreach ($component->getFiltersByRow() as $filterRowIndex => $filterRow)
-                <div row="{{ $filterRowIndex }}" class="grid grid-cols-12 gap-6 px-4 md:p-0 mb-6"
+                <div row="{{ $filterRowIndex }}" class="grid grid-cols-12 gap-6 px-4 mb-6 md:p-0"
                     @class([
                         'col-span-12  sm:col-span-12 sm:col-span-6 sm:col-span-3 sm:col-span-1 md:col-span-12 md:col-span-6 md:col-span-3 md:col-span-1 lg:col-span-12 lg:col-span-6 lg:col-span-3 lg:col-span-1 row-start-1 row-start-2 row-start-3 row-start-4 row-start-5 row-start-6 row-start-7 row-start-8 row-start9' =>
                             true == false,
@@ -298,7 +298,7 @@
         </div>
     @endif
 @elseif ($theme === 'bootstrap-4')
-    <div class="d-md-flex justify-content-between mb-3">
+    <div class="mb-3 d-md-flex justify-content-between">
         <div class="d-md-flex">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include(
@@ -307,7 +307,7 @@
             @endif
 
             @if ($component->reorderIsEnabled())
-                <div class="mr-0 mr-md-2 mb-3 mb-md-0">
+                <div class="mb-3 mr-0 mr-md-2 mb-md-0">
                     <button
                         wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
                         type="button" class="btn btn-default d-block w-100 d-md-inline">
@@ -341,7 +341,7 @@
             @endif
 
             @if ($component->filtersAreEnabled() && $component->filtersVisibilityIsEnabled() && $component->hasVisibleFilters())
-                <div class="ml-0 ml-md-2 mb-3 mb-md-0">
+                <div class="mb-3 ml-0 ml-md-2 mb-md-0">
                     <div @if ($component->isFilterLayoutPopover()) x-data="{ open: false, childElementOpen: false  }"
                             x-on:keydown.escape.stop="if (!childElementOpen) { open = false }"
                             x-on:mousedown.away="if (!childElementOpen) { open = false }" @endif
@@ -380,7 +380,7 @@
                                     <div class="dropdown-divider"></div>
 
                                     <button wire:click.prevent="setFilterDefaults" x-on:click="open = false"
-                                        class="dropdown-item btn text-center">
+                                        class="text-center dropdown-item btn">
                                         @lang('Clear')
                                     </button>
                                 @endif
@@ -440,7 +440,7 @@
                             @lang('Columns')
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-right w-100 mt-0 mt-md-3"
+                        <div class="mt-0 dropdown-menu dropdown-menu-right w-100 mt-md-3"
                             x-bind:class="{ 'show': open }"
                             aria-labelledby="columnSelect-{{ $component->getTableName() }}">
                             <div>
@@ -527,7 +527,7 @@
         </div>
     @endif
 @elseif ($theme === 'bootstrap-5')
-    <div class="d-md-flex justify-content-between mb-3">
+    <div class="mb-3 d-md-flex justify-content-between">
         <div class="d-md-flex">
             @if ($component->hasConfigurableAreaFor('toolbar-left-start'))
                 @include(
@@ -536,7 +536,7 @@
             @endif
 
             @if ($component->reorderIsEnabled())
-                <div class="me-0 me-md-2 mb-3 mb-md-0">
+                <div class="mb-3 me-0 me-md-2 mb-md-0">
                     <button
                         wire:click="{{ $component->currentlyReorderingIsEnabled() ? 'disableReordering' : 'enableReordering' }}"
                         type="button" class="btn btn-default d-block w-100 d-md-inline">
@@ -605,7 +605,7 @@
                                     <div class="dropdown-divider"></div>
 
                                     <button wire:click.prevent="setFilterDefaults" x-on:click="open = false"
-                                        class="dropdown-item text-center">
+                                        class="text-center dropdown-item">
                                         @lang('Clear')
                                     </button>
                                 @endif

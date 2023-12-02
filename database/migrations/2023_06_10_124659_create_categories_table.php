@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->string('state')->default("activo");
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
         });
     }

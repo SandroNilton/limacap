@@ -14,10 +14,10 @@
 @if ($theme === 'tailwind')
     <div>
         @if ($component->paginationVisibilityIsEnabled())
-            <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
+            <div class="items-center justify-between px-4 mt-4 space-y-4 md:p-0 sm:flex sm:space-y-0">
                 <div>
                     @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
-                        <p class="paged-pagination-results text-[13px] text-[#414d6a] leading-5 dark:text-white">
+                        <p class="paged-pagination-results text-sm text-[rgb(17,24,39)] text-opacity-100">
                             <span>@lang('Mostrando')</span>
                             <span class="font-medium">{{ $rows->firstItem() }}</span>
                             <span>@lang('al')</span>
@@ -27,14 +27,14 @@
                             <span>@lang('resultados')</span>
                         </p>
                     @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
-                        <p class="paged-pagination-results text-[13px] text-[#414d6a] leading-5 dark:text-white">
+                        <p class="paged-pagination-results text-sm text-[rgb(17,24,39)] text-opacity-100">
                             <span>@lang('Mostrando')</span>
                             <span class="font-medium">{{ $rows->firstItem() }}</span>
                             <span>@lang('al')</span>
                             <span class="font-medium">{{ $rows->lastItem() }}</span>
                         </p>
                     @else
-                        <p class="total-pagination-results text-[13px] text-[#414d6a] leading-5 dark:text-white">
+                        <p class="total-pagination-results text-sm text-[rgb(17,24,39)] text-opacity-100">
                             @lang('Mostrando')
                             <span class="font-medium">{{ $rows->count() }}</span>
                             @lang('resultados')
@@ -52,12 +52,12 @@
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
-                <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
+                <div class="mt-3 row">
+                    <div class="overflow-auto col-12 col-md-6">
                         {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
                     </div>
 
-                    <div class="col-12 col-md-6 text-center text-md-right text-muted">
+                    <div class="text-center col-12 col-md-6 text-md-right text-muted">
                         <span>@lang('Showing')</span>
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
@@ -68,12 +68,12 @@
                     </div>
                 </div>
             @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
-                <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
+                <div class="mt-3 row">
+                    <div class="overflow-auto col-12 col-md-6">
                         {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
                     </div>
 
-                    <div class="col-12 col-md-6 text-center text-md-right text-muted">
+                    <div class="text-center col-12 col-md-6 text-md-right text-muted">
                         <span>@lang('Showing')</span>
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             @else
-                <div class="row mt-3">
+                <div class="mt-3 row">
                     <div class="col-12 text-muted">
                         @lang('Showing')
                         <strong>{{ $rows->count() }}</strong>
@@ -95,12 +95,12 @@
     <div >
         @if ($component->paginationVisibilityIsEnabled())
             @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
-                <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
+                <div class="mt-3 row">
+                    <div class="overflow-auto col-12 col-md-6">
                         {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
                     </div>
 
-                    <div class="col-12 col-md-6 text-center text-md-end text-muted">
+                    <div class="text-center col-12 col-md-6 text-md-end text-muted">
                         <span>@lang('Showing')</span>
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
@@ -111,12 +111,12 @@
                     </div>
                 </div>
             @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
-                <div class="row mt-3">
-                    <div class="col-12 col-md-6 overflow-auto">
+                <div class="mt-3 row">
+                    <div class="overflow-auto col-12 col-md-6">
                         {{ $rows->links('livewire-tables::specific.bootstrap-4.pagination') }}
                     </div>
 
-                    <div class="col-12 col-md-6 text-center text-md-end text-muted">
+                    <div class="text-center col-12 col-md-6 text-md-end text-muted">
                         <span>@lang('Showing')</span>
                         <strong>{{ $rows->count() ? $rows->firstItem() : 0 }}</strong>
                         <span>@lang('to')</span>
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             @else
-                <div class="row mt-3">
+                <div class="mt-3 row">
                     <div class="col-12 text-muted">
                         @lang('Showing')
                         <strong>{{ $rows->count() }}</strong>

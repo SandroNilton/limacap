@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->foreignUuid('area_id')->nullable()->constrained()->onDelete('set null');
             $table->tinyInteger('is_admin')->default(0);
-            $table->string('state')->default("activo");
+            $table->tinyInteger('state')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

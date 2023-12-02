@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AreaController;
 use App\Http\Controllers\Admin\TypeprocedureController;
 use App\Http\Controllers\Admin\ProcedureController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,6 @@ use App\Http\Controllers\Admin\CustomerController;
 */
 
 Route::get('/', function () { return view('admin.index'); })->name('index');
-Route::get('/advanced-index', function() { return view('admin.advanced-index'); })->middleware('can:admin.dashboard.index')->name('advanced-index');
 Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('categories', CategoryController::class);
@@ -31,3 +31,7 @@ Route::resource('areas', AreaController::class);
 Route::resource('typeprocedures', TypeprocedureController::class);
 Route::resource('procedures', ProcedureController::class);
 Route::resource('customers', CustomerController::class);
+
+Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

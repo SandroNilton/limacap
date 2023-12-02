@@ -12,7 +12,7 @@
 @if ($theme === 'tailwind')
     <th scope="col" {{
         $attributes->merge($customAttributes)
-            ->class(['px-6 py-1.5 text-left text-[#414d6a] text-[13px] tracking-wider font-normal dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
+            ->class(['px-6 py-2 text-left text-[rgb(17,24,39)] text-opacity-100 text-sm tracking-wider font-normal' => $customAttributes['default'] ?? true])
             ->class(['hidden sm:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
@@ -24,7 +24,7 @@
                 wire:click="sortBy('{{ $column->getColumnSelectName() }}')"
                 {{
                     $attributes->merge($customSortButtonAttributes)
-                        ->class(['flex items-center space-x-1 text-left leading-4 text-[#414d6a] text-[13px] tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
+                        ->class(['flex items-center space-x-1 text-left text-[rgb(17,24,39)] text-opacity-100 text-sm tracking-wider group focus:outline-none' => $customSortButtonAttributes['default'] ?? true])
                         ->except(['default', 'wire:key'])
                 }}
             >
@@ -36,11 +36,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                         </svg>
 
-                        <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute w-3 h-3 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     @elseif ($direction === 'desc')
-                        <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="absolute w-3 h-3 opacity-0 group-hover:opacity-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
 
@@ -48,7 +48,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     @else
-                        <svg class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-3 h-3 transition-opacity duration-300 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
                         </svg>
                     @endif

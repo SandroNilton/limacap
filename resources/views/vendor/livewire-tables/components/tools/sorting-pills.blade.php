@@ -7,8 +7,8 @@
 @if ($theme === 'tailwind')
     <div>
         @if ($component->sortingPillsAreEnabled() && $component->hasSorts())
-            <div class="mb-4 px-4 md:p-0">
-                <small class="text-[#414d6a] dark:text-white mr-1 text-[13px]">@lang('Clasificación aplicada'):</small>
+            <div class="px-4 mb-4 md:p-0">
+                <small class="text-[rgb(17,24,39)] mr-1 text-sm">@lang('Clasificación aplicada'):</small>
 
                 @foreach($component->getSorts() as $columnSelectName => $direction)
                     @php
@@ -21,17 +21,17 @@
 
                     <span
                         wire:key="sorting-pill-{{ $columnSelectName }}"
-                        class="inline-flex items-center px-2.5 py-0.5 mr-1 rounded-[3px] text-xs font-medium leading-4 bg-[#0d8a71d1] text-white capitalize dark:bg-indigo-200 dark:text-indigo-900"
+                        class="inline-flex items-center px-2 py-1 mr-1 rounded-md text-xs font-medium bg-[#10B981] text-white capitalize"
                     >
                         {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($component, $direction) }}
 
                         <button
                             wire:click="clearSort('{{ $columnSelectName }}')"
                             type="button"
-                            class="flex-shrink-0 ml-2 h-4 w-4 rounded-full inline-flex items-center justify-center text-white hover:bg-[#2b655ad1] hover:text-white focus:outline-none focus:bg-indigo-500 focus:text-white"
+                            class="inline-flex items-center justify-center flex-shrink-0 w-4 h-4 ml-1.5 text-white rounded-full"
                         >
                             <span class="sr-only">@lang('Remove sort option')</span>
-                            <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+                            <svg class="w-2 h-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
                                 <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
                             </svg>
                         </button>
@@ -42,7 +42,7 @@
                     wire:click.prevent="clearSorts"
                     class="focus:outline-none active:outline-none"
                 >
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-[3px] text-[13px] font-normal bg-gray-100 text-[#414d6a] dark:bg-gray-200 dark:text-gray-900">
+                    <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-[rgb(17,24,39)] text-opacity-100">
                         @lang('Limpiar')
                     </span>
                 </button>
@@ -73,7 +73,7 @@
                         <a
                             href="#"
                             wire:click="clearSort('{{ $columnSelectName }}')"
-                            class="text-white ml-2"
+                            class="ml-2 text-white"
                         >
                             <span class="sr-only">@lang('Remove sort option')</span>
                             <svg style="width:.5em;height:.5em" stroke="currentColor" fill="none" viewBox="0 0 8 8">

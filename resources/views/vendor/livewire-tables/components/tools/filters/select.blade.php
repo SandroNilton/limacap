@@ -10,12 +10,12 @@
         <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
         @if ($theme === 'tailwind')
-        <div class="rounded-[3px] shadow-xs">
+        <div class="rounded-md shadow-sm">
             <select
                 wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
-                class="block w-full py-1 border-[#e9ebec] rounded-[3px] text-[13px] shadow-xs focus:border-inherit focus:ring-0 dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                class="block w-full py-1.5 border-[#e9ebec] rounded-md text-sm shadow-sm focus:border-[#10B981] focus:ring-[#10B981]"
             >
                 @foreach($filter->getOptions() as $key => $value)
                     @if (is_iterable($value))

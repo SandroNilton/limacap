@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Typeprocedure extends Model
@@ -15,13 +16,20 @@ class Typeprocedure extends Model
     ];
 
     protected $fillable = [
-      'name',
-      'description',
-      'area_id',
-      'price',
-      'category_id',
-      'state',
+        'name',
+        'description',
+        'area_id',
+        'price',
+        'category_id',
+        'state',
     ];
+
+    protected function status(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) => ["Inactivo", "Activo"][$this->state],
+        );
+    }
 
     public function area()
     {

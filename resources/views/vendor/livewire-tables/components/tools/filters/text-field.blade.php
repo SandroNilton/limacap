@@ -10,7 +10,7 @@
         <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
         @if ($theme === 'tailwind')
-        <div class="rounded-[3px] shadow-sm">
+        <div class="rounded-md shadow">
             <input
                 wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"

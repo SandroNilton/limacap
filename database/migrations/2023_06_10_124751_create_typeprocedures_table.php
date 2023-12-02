@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignUuid('area_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignUuid('category_id')->nullable()->constrained()->onDelete('set null');
             $table->string('price')->nullable()->default(0.00);
-            $table->string('state')->default("activo");
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
         });
     }

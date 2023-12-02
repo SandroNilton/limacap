@@ -10,7 +10,7 @@
         <x-livewire-tables::tools.filter-label :filter="$filter" :theme="$theme" :filterLayout="$filterLayout" :tableName="$tableName" />
     @endif
         @if ($theme === 'tailwind')
-        <div class="rounded-[3px] shadow-sm">
+        <div class="rounded-md shadow-sm">
             <input
                 wire:model.stop="{{ $tableName }}.filters.{{ $filter->getKey() }}"
                 wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
@@ -18,7 +18,7 @@
                 type="datetime-local"
                 @if($filter->hasConfig('min')) min="{{ $filter->getConfig('min') }}" @endif
                 @if($filter->hasConfig('max')) max="{{ $filter->getConfig('max') }}" @endif
-                class="block w-full py-1 border-[#e9ebec] text-[13px] rounded-[3px] transition duration-150 ease-in-out focus:border-inherit focus:ring-0 dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                class="block w-full py-1.5 text-sm transition duration-150 ease-in-out border-[#e9ebec] rounded-md focus:border-[#10B981] focus:ring-[#10B981]"
             />
         </div>
     @elseif ($theme === 'bootstrap-4' || $theme === 'bootstrap-5')

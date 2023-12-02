@@ -15,7 +15,7 @@
 
         {{
             $attributes->merge($customAttributes)
-                ->class(['px-6 py-1.5 whitespace-nowrap text-[13px] text-[#414d6a] dark:text-white' => $customAttributes['default'] ?? true])
+                ->class(['px-6 py-2 whitespace-nowrap text-sm text-[rgb(17,24,39)] text-opacity-100' => $customAttributes['default'] ?? true])
                 ->class(['hidden sm:table-cell' => $column && $column->shouldCollapseOnMobile()])
                 ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnTablet()])
                 ->except('default')
