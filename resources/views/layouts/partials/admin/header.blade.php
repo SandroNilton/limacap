@@ -43,7 +43,7 @@
         </x-dropdown>
         <!-- Mobile menu button -->
         <div class="flex md:hidden">
-          <button @click="isOpen = !isOpen" type="button" class="flex text-opacity-100 p-2 inline-flex items-center rounded-full text-[#6B7280] hover:bg-[#F2F2F2] hover:text-[#111b27]">
+          <button @click="isOpen = !isOpen" type="button" class="flex text-opacity-100 p-2 items-center rounded-full text-[#6B7280] hover:bg-[#F2F2F2] hover:text-[#111b27]">
             <ion-icon name="menu-outline" class="text-xl leading-0"></ion-icon>
           </button>
         </div>
