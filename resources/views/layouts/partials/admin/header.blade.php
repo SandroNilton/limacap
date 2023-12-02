@@ -43,7 +43,7 @@
         </x-dropdown>
         <!-- Mobile menu button -->
         <div class="flex md:hidden">
-          <button @click="isOpen = !isOpen" type="button" class="flex text-opacity-100 p-2 inline-flex items-center rounded-full text-[#6B7280] hover:bg-[#F2F2F2] hover:text-[rgb(17,27,39)]">
+          <button @click="isOpen = !isOpen" type="button" class="flex text-opacity-100 p-2 inline-flex items-center rounded-full text-[#6B7280] hover:bg-[#F2F2F2] hover:text-[#111b27]">
             <ion-icon name="menu-outline" class="text-xl leading-0"></ion-icon>
           </button>
         </div>
@@ -56,7 +56,7 @@
       <div class="flex items-center">
         <span class="flex flex-col md:flex-row items-center w-full overflow-y-auto whitespace-no-wrap scroll-hidden">
           @foreach ($links as $link)
-            <div class="rounded-md flex lg:inline hover:bg-[rgb(243,244,246)] bg-opacity-100 text-[rgb(75,85,99)] text-opacity-100 pointer py-2 md:py-0 md:border-b-0 border-opacity-100 w-full md:w-auto">
+            <div class="rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer py-2 md:py-0 md:border-b-0 border-opacity-100 w-full md:w-auto">
               <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-1.5">
                 <ion-icon class="text-lg" name="{{  $link['icon']  }}"></ion-icon>
                 <span class="text-sm font-medium">{{ $link['title'] }}</span>
