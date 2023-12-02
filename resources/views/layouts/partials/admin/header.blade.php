@@ -2,7 +2,7 @@
   <nav class="px-4 py-2 bg-white bg-opacity-100 shadow lg:px-6">
     <div class="flex flex-wrap items-center justify-between">
       <div class="flex items-center justify-start">
-        <a href="{{ route('app.index') }}" class="flex mr-4">
+        <a href="{{ route('app.index') }}" class="flex h-8 mr-4">
           <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full" style="32px">
         </a>
       </div>
