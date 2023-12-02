@@ -3,7 +3,7 @@
     <div class="flex flex-wrap items-center justify-between">
       <div class="flex items-center justify-start">
         <a href="{{ route('app.index') }}" class="flex h-8 mr-4">
-          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full" style="32px">
+          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full" style="height: 32px">
         </a>
       </div>
       <div class="flex items-center space-x-1 lg:order-2">
