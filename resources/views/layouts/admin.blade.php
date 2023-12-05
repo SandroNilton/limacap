@@ -15,72 +15,72 @@
   </head>
   <body class="bg-[rgb(243,244,246)] antialiased text-[rgb(107,114,128)] text-opacity-100 bg-opacity-100 font-inter">
     @php
-        $links =  [
-          [
-            'title' => 'Inicio',
-            'url' => route('admin.index'),
-            'active' => request()->routeIs('admin.index'),
-            'icon' => 'home-outline',
-            'can' => 'admin.dashboard.index'
-          ],
-          [
-            'title' => 'Trámites',
-            'url' => route('admin.procedures.index'),
-            'active' => request()->routeIs('admin.procedures.index') or request()->routeIs('admin.procedures.edit'),
-            'icon' => 'document-text-outline',
-            'can' => 'admin.procedures.index'
-          ],
-          [
-            'title' => 'Usuarios',
-            'url' => route('admin.users.index'),
-            'active' => request()->routeIs('admin.users.index') or request()->routeIs('admin.users.create') or request()->routeIs('admin.users.edit'),
-            'icon' => 'people-outline',
-            'can' => 'admin.users.index'
-          ],
-          [
-            'title' => 'Clientes',
-            'url' => route('admin.customers.index'),
-            'active' => request()->routeIs('admin.customers.index') or request()->routeIs('admin.customers.create') or request()->routeIs('admin.customers.edit'),
-            'icon' => 'body-outline',
-            'can' => 'admin.customers.index'
-          ],
-          [
-            'title' => 'Roles',
-            'url' => route('admin.roles.index'),
-            'active' => request()->routeIs('admin.roles.index') or request()->routeIs('admin.roles.create') or request()->routeIs('admin.roles.edit'),
-            'icon' => 'shield-outline',
-            'can' => 'admin.roles.index'
-          ],
-          [
-            'title' => 'Categorias',
-            'url' => route('admin.categories.index'),
-            'active' => request()->routeIs('admin.categories.index') or request()->routeIs('admin.categories.create') or request()->routeIs('admin.categories.edit'),
-            'icon' => 'folder-outline',
-            'can' => 'admin.categories.index'
-          ],
-          [
-            'title' => 'Areas',
-            'url' => route('admin.areas.index'),
-            'active' => request()->routeIs('admin.areas.index') or request()->routeIs('admin.areas.create') or request()->routeIs('admin.areas.edit'),
-            'icon' => 'file-tray-outline',
-            'can' => 'admin.areas.index'
-          ],
-          [
-            'title' => 'Requisitos',
-            'url' => route('admin.requirements.index'),
-            'active' => request()->routeIs('admin.requirements.index') or request()->routeIs('admin.requirements.create') or request()->routeIs('admin.requirements.edit'),
-            'icon' => 'attach-outline',
-            'can' => 'admin.requirements.index'
-          ],
-          [
-            'title' => 'Tipos de tramite',
-            'url' => route('admin.typeprocedures.index'),
-            'active' => request()->routeIs('admin.typeprocedures.index') or request()->routeIs('admin.typeprocedures.create') or request()->routeIs('admin.typeprocedures.edit'),
-            'icon' => 'briefcase-outline',
-            'can' => 'admin.typeprocedures.index'
-          ]
-        ];
-      @endphp
+      $links =  [
+        [
+          'title' => 'Inicio',
+          'url' => route('admin.index'),
+          'active' => request()->routeIs('admin.index'),
+          'icon' => 'home-outline',
+          'can' => 'admin.dashboard.index'
+        ],
+        [
+          'title' => 'Trámites',
+          'url' => route('admin.procedures.index'),
+          'active' => request()->routeIs('admin.procedures.index') or request()->routeIs('admin.procedures.edit'),
+          'icon' => 'document-text-outline',
+          'can' => 'admin.procedures.index'
+        ],
+        [
+          'title' => 'Usuarios',
+          'url' => route('admin.users.index'),
+          'active' => request()->routeIs('admin.users.index') or request()->routeIs('admin.users.create') or request()->routeIs('admin.users.edit'),
+          'icon' => 'people-outline',
+          'can' => 'admin.users.index'
+        ],
+        [
+          'title' => 'Clientes',
+          'url' => route('admin.customers.index'),
+          'active' => request()->routeIs('admin.customers.index') or request()->routeIs('admin.customers.create') or request()->routeIs('admin.customers.edit'),
+          'icon' => 'body-outline',
+          'can' => 'admin.customers.index'
+        ],
+        [
+          'title' => 'Roles',
+          'url' => route('admin.roles.index'),
+          'active' => request()->routeIs('admin.roles.index') or request()->routeIs('admin.roles.create') or request()->routeIs('admin.roles.edit'),
+          'icon' => 'shield-outline',
+          'can' => 'admin.roles.index'
+        ],
+        [
+          'title' => 'Categorias',
+          'url' => route('admin.categories.index'),
+          'active' => request()->routeIs('admin.categories.index') or request()->routeIs('admin.categories.create') or request()->routeIs('admin.categories.edit'),
+          'icon' => 'folder-outline',
+          'can' => 'admin.categories.index'
+        ],
+        [
+          'title' => 'Areas',
+          'url' => route('admin.areas.index'),
+          'active' => request()->routeIs('admin.areas.index') or request()->routeIs('admin.areas.create') or request()->routeIs('admin.areas.edit'),
+          'icon' => 'file-tray-outline',
+          'can' => 'admin.areas.index'
+        ],
+        [
+          'title' => 'Requisitos',
+          'url' => route('admin.requirements.index'),
+          'active' => request()->routeIs('admin.requirements.index') or request()->routeIs('admin.requirements.create') or request()->routeIs('admin.requirements.edit'),
+          'icon' => 'attach-outline',
+          'can' => 'admin.requirements.index'
+        ],
+        [
+          'title' => 'Tipos de tramite',
+          'url' => route('admin.typeprocedures.index'),
+          'active' => request()->routeIs('admin.typeprocedures.index') or request()->routeIs('admin.typeprocedures.create') or request()->routeIs('admin.typeprocedures.edit'),
+          'icon' => 'briefcase-outline',
+          'can' => 'admin.typeprocedures.index'
+        ]
+      ];
+    @endphp
     <livewire:laravel-notification.notice/>
     <div class="flex flex-col flex-auto font-sans">
       <div class="flex flex-auto min-w-0">

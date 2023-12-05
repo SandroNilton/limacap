@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             //$table->uuid('id')->primary();
-            $table->string('id',36)->primary();
+            $table->string('id', 36)->primary();
             $table->foreignUuid('user_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignUuid('area_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignUuid('typeprocedure_id')->nullable()->constrained()->onDelete('set null');

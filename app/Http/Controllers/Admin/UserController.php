@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,18 +17,18 @@ class UserController extends Controller
     $this->middleware('can:admin.users.destroy')->only('destroy');
   }
 
-  public function index()
+  public function index(): view
   {
     return view('admin.users.index');
   }
 
-  public function create()
+  public function create(): view
   {
     return view('admin.users.create');
   }
 
-  public function edit(User $user)
+  public function edit(User $user): view
   {
-    return view('admin.users.edit');
+    return view('admin.users.edit', compact('user'));
   }
 }

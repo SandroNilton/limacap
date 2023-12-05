@@ -1,9 +1,10 @@
 <header x-data="{ isOpen: false }" class="sticky top-0 z-30 w-full antialiased bg-white border-b border-b-[rgb(229,231,235)] border-opacity-100">
   <nav class="px-4 py-2 bg-white bg-opacity-100 shadow lg:px-6">
-    <div class="flex flex-wrap items-center justify-between">
+    <div class="flex items-center justify-between">
       <div class="flex items-center justify-start">
-        <a href="{{ route('app.index') }}" class="flex h-8 mr-4">
-          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full" style="height: 32px">
+        <a href="{{ route('admin.index') }}" class="flex mr-4">
+          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full h-8">
+          <x-application-logo></x-application-logo>
         </a>
       </div>
       <div class="flex items-center space-x-1 lg:order-2">
@@ -56,8 +57,8 @@
       <div class="flex items-center">
         <span class="flex flex-col md:flex-row items-center w-full overflow-y-auto whitespace-no-wrap scroll-hidden">
           @foreach ($links as $link)
-            <div class="rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer py-2 md:py-0 md:border-b-0 border-opacity-100 w-full md:w-auto">
-              <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-1.5">
+            <div class="md:rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer md:py-0 md:border-none border-b border-gray-100 w-full md:w-auto">
+              <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-3 md:py-1.5 w-full md:w-auto">
                 <ion-icon class="text-lg" name="{{  $link['icon']  }}"></ion-icon>
                 <span class="text-sm font-medium">{{ $link['title'] }}</span>
               </a>

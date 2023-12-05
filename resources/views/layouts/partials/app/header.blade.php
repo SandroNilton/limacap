@@ -1,9 +1,9 @@
-<header class="sticky top-0 z-30 w-full antialiased bg-white border-b border-b-[rgb(229,231,235)] border-opacity-100">
+<header x-data="{ isOpen: false }" class="sticky top-0 z-30 w-full antialiased bg-white border-b border-b-[rgb(229,231,235)] border-opacity-100">
   <nav class="px-4 py-2 bg-white bg-opacity-100 shadow lg:px-6">
-    <div class="flex flex-wrap items-center justify-between">
+    <div class="flex items-center justify-between">
       <div class="flex items-center justify-start">
         <a href="{{ route('app.index') }}" class="flex mr-4">
-          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" alt="" class="w-full h-8">
+          <img src="https://limacap.org/wp-content/uploads/2023/03/CAP_logocolores-black.png" class="w-full h-8">
           <x-application-logo></x-application-logo>
         </a>
       </div>
@@ -42,6 +42,12 @@
             </form>
           </x-slot>
         </x-dropdown>
+        <!-- Mobile menu button -->
+        <div class="flex md:hidden">
+          <button @click="isOpen = !isOpen" type="button" class="flex text-opacity-100 p-2 items-center rounded-full text-[#6B7280] hover:bg-[#F2F2F2] hover:text-[#111b27]">
+            <ion-icon name="menu-outline" class="text-xl leading-0"></ion-icon>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -51,7 +57,7 @@
       <div class="flex items-center">
         <span class="flex flex-col md:flex-row items-center w-full overflow-y-auto whitespace-no-wrap scroll-hidden">
           @foreach ($links as $link)
-            <div class="rounded-md flex lg:inline hover:bg-[rgb(243,244,246)] bg-opacity-100 text-[rgb(75,85,99)] text-opacity-100 pointer py-2 md:py-0 md:border-b-0 border-opacity-100 w-full md:w-auto">
+            <div class="md:rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer py-2 md:py-0 md:border-none border-b border-gray-100 w-full md:w-auto">
               <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-1.5">
                 <ion-icon class="text-lg" name="{{  $link['icon']  }}"></ion-icon>
                 <span class="text-sm font-medium">{{ $link['title'] }}</span>

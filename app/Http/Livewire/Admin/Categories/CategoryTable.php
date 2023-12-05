@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use App\Exports\CategoriesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Category;

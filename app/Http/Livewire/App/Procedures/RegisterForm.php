@@ -30,7 +30,7 @@ class RegisterForm extends Component
       if(is_null($categoryid) || empty($categoryid)){
         $this->selectedTypeprocedure = NULL;
       }else{
-        $this->typeprocedures = Typeprocedure::where([['category_id', $categoryid], ['state', '=', 'activo']])->get();
+        $this->typeprocedures = Typeprocedure::where([['category_id', $categoryid], ['state', '=', '1']])->get();
         $this->reset('selectedTypeprocedure');
         $this->selectedTypeprocedure = "";
         $this->categorydata = Category::where([['id', '=', $categoryid]])->get();
@@ -45,7 +45,7 @@ class RegisterForm extends Component
         $this->requirements = DB::table('requirement_typeprocedure')
           ->join('requirements', 'requirement_typeprocedure.requirement_id', '=', 'requirements.id')
           ->join('typeprocedures', 'requirement_typeprocedure.typeprocedure_id', '=', 'typeprocedures.id')
-          ->where([['requirement_typeprocedure.typeprocedure_id', '=', $typeprocedureid], ['requirements.state', '=', 'activo']])
+          ->where([['requirement_typeprocedure.typeprocedure_id', '=', $typeprocedureid], ['requirements.state', '=', '1']])
           ->select('requirements.*')->get();
         $this->typeproceduredata = Typeprocedure::where([['id', '=', $typeprocedureid]])->get();
       }
@@ -53,7 +53,7 @@ class RegisterForm extends Component
 
     public function render()
     {
-        $this->categories = Category::where([['state', '=', 'activo']])->get();
+        $this->categories = Category::where([['state', '=', '1']])->get();
         return view('livewire.app.procedures.register-form');
     }
 }

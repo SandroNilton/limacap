@@ -1,7 +1,7 @@
 <div class="flex space-x-2">
   @can('admin.customers.edit')
-    <a class="text-[#dcaa3f] px-2 rounded-[3px] text-[13px] items-center inline-flex gap-1" href="{{ route('admin.customers.edit', ['customer' => $value ]) }}">
-      <ion-icon name="pencil-outline" wire:ignore></ion-icon> Editar
+    <a class="text-[#6B7280] inline-flex" href="{{ route('admin.customers.edit', ['customer' => $value ]) }}">
+      <ion-icon name="settings-outline" class="text-lg" wire:ignore></ion-icon>
     </a>
   @endcan
 </div>

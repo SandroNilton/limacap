@@ -36,7 +36,7 @@ class ProcedureController extends Controller
         'admin_id' => NULL,
         'description' => $request->description,
         'date' => Carbon::now(),
-        'state' => 'sin asignar'
+        'state' => '0'
       ]);
       Procedurehistory::create([
         'procedure_id' => $procedure->id,
@@ -44,7 +44,7 @@ class ProcedureController extends Controller
         'area_id' => $typeprocedure_area[0]->area_id,
         'admin_id' => auth()->user()->id,
         'action' => "El usuario ". auth()->user()->name ." registro un nuevo trámite.",
-        'state' => 'sin asignar'
+        'state' => '0'
       ]);
       $date = Carbon::now()->format('Y');
       foreach ($request['files'] as $file) {
@@ -54,7 +54,7 @@ class ProcedureController extends Controller
           'requirement_id' => $file['id'],
           'name' => $file['file']->GetClientOriginalName(),
           'file' => (string)$file_url,
-          'state' => 'sinverificar'
+          'state' => '0'
         ]);
       }
 

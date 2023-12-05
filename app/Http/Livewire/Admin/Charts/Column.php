@@ -10,8 +10,8 @@ use Asantibanez\LivewireCharts\Models\TreeMapChartModel;
 
 class Column extends Component
 {
-    public $state = ["sin asignar", "asignado", "observado", "revisado", "aprobado", "rechazado"];
-    public $colors = ["sin asignar" => '#f6ad55', "asignado" => '#fc8181', "observado" => '#90cdf4', "revisado" => '#66DA26', "aprobado" => '#cbd5e0', "rechazado" => '#66DA26'];
+    public $state = ["Sin asignar", "Asignado", "Observado", "Revisado", "Aprobado", "Rechazado"];
+    public $colors = ["Sin asignar" => '#f6ad55', "Asignado" => '#fc8181', "Observado" => '#90cdf4', "Revisado" => '#66DA26', "Aprobado" => '#cbd5e0', "Rechazado" => '#66DA26'];
 
     public $firstRun = true;
     public $showDataLabels = false;
@@ -47,9 +47,9 @@ class Column extends Component
     {
         $procedures = Procedure::All();
 
-        $columnChartModel = $procedures->groupBy('state')->reduce(function ($columnChartModel, $data) {
-          $state = $data->first()->state;
-          $value = $data->count('state');
+        $columnChartModel = $procedures->groupBy('status')->reduce(function ($columnChartModel, $data) {
+          $state = $data->first()->status;
+          $value = $data->count('status');
           return $columnChartModel->addColumn($state, $value, $this->colors[$state]);
          } , LivewireCharts::columnChartModel()
           ->setAnimated($this->firstRun)
