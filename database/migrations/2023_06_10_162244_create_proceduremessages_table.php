@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('proceduremessages', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('user_id');
             $table->string('procedure_id');
             $table->longText('description');
             $table->timestamps();

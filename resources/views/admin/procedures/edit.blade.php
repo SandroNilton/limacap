@@ -23,13 +23,17 @@
             </div>
           </div>
         @endif
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <livewire:admin.procedures.chat :procedure="$procedure"/>
+          </div>
+        </div>
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <livewire:admin.procedures.file-uploaded :procedure="$procedure"/>
+          </div>
+        </div>
         
-        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          
-        </div>
-        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          
-        </div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           
         </div>

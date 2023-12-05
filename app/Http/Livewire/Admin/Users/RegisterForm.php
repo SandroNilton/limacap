@@ -46,7 +46,7 @@ class RegisterForm extends Component
         $this->validate();
 
         $user = User::create([
-            'type' => 4,
+            'type' => 3,
             'name' => $this->name,
             'email' => $this->email,
             'email_verified_at' => Carbon::now()->timestamp,
