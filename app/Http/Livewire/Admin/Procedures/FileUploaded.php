@@ -40,7 +40,7 @@ class FileUploaded extends Component
 
     public function render()
     {
-        $this->files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 0]])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 1]])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 2]])->get();
+        $this->files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 100]])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 101]])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 102]])->get();
         return view('livewire.admin.procedures.file-uploaded');
     }
 }

@@ -1,6 +1,6 @@
 <div>
   <div class="flex justify-between mb-5">
-    <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
+    <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
     <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
       <x-wire-loading class="w-8 h-8"/>
       <ion-icon name="refresh-outline" wire:ignore></ion-icon>

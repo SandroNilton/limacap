@@ -25,7 +25,7 @@ class FileAnswers extends Component
 
     public function render()
     {
-        $this->files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '=', 4]])->orWhere([['procedure_id', '=', $this->procedure->id], ['state', '=', 5]])->get();
+        $this->files = Fileprocedure::where([['procedure_id', '=', $this->procedure->id], ['state', '!=', 100], ['state', '!=', 101], ['state', '!=', 102], ['state', '!=', 4], ['state', '!=', 5]])->get();
         return view('livewire.admin.procedures.file-answers');
     }
 }

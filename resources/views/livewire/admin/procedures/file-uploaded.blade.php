@@ -22,9 +22,9 @@
               <form wire:submit.prevent="changeState(Object.fromEntries(new FormData($event.target)))" class="flex gap-3">
                 <input type="hidden" name="file_id" value="{{ $file->id }}">
                 <x-select id="{{ $file->id }}" name="state">
-                  <option value="0" @if($file->state == "0") @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                  <option value="1" @if($file->state == "1") @selected(true) @else @selected(false) @endif>Aceptado</option>
-                  <option value="2" @if($file->state == "2") @selected(true) @else @selected(false) @endif>Rechazado</option>
+                  <option value="100" @if($file->state == "100") @selected(true) @else @selected(false) @endif>Sin verificar</option>
+                  <option value="101" @if($file->state == "101") @selected(true) @else @selected(false) @endif>Aceptado</option>
+                  <option value="102" @if($file->state == "102") @selected(true) @else @selected(false) @endif>Rechazado</option>
                 </x-select>
                 <x-primary-button>
                   <ion-icon wire:ignore name="refresh-outline" class="text-lg"></ion-icon>
