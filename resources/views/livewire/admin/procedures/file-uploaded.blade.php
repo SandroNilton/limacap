@@ -8,36 +8,36 @@
   </div>
   <div>
     @forelse ($files as $file)
-              <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
-                <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
-                  <button wire:click="downloadFile('{{ $procedure_file->id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
-                    <ion-icon  wire:ignore name="download-outline"></ion-icon>
-                  </button>
-                  <div class="flex-1">
-                    <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
-                    @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'cancelado')
-                    @else
-                      <div class="flex gap-x-3">
-                        <form wire:submit.prevent="changeStateFile(Object.fromEntries(new FormData($event.target)))" class="flex w-full gap-x-2.5">
-                          <input type="hidden" name="procedurefile_id" value="{{ $procedure_file->id }}">
-                          <select id="{{ $procedure_file->id }}" name="state_id" class="w-full py-1.5 text-[13px] leading-4 rounded-[3px] border-[#cdd5de] focus:border-[#4482ff] hover:border-[#4482ff] focus:ring-0 transition duration-300">
-                            <option value="sinverificar" @if($procedure_file->state == "sinverificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                            <option value="aceptado" @if($procedure_file->state == "aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
-                            <option value="rechazado" @if($procedure_file->state == "rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
-                          </select>
-                          <button class="bg-[#0d8a72] px-1.5 rounded-[3px] text-white text-[16px] py-1 inline-flex items-center">
-                            <ion-icon  wire:ignore name="refresh-outline"></ion-icon>
-                          </button>
-                        </form>
-                      </div>
-                    @endif
-                  </div>
-                </div>
-              </div>
-            @empty
-              <div class="w-full border border-dashed border-[#cdd5de] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-[#cdd5de]">
-                No hay archivos
-              </div>
-            @endforelse
+      <div class="items-center border border-gray-200 rounded-md p-3">
+        <div class="text-sm w-52 truncate text-[rgb(17,24,39)] mb-1.5" title="{{ $file->name }}">{{ $file->name }}</div>
+        <div class="grid gap-3 grid-cols-6">
+          <div class="col-span-1">
+            <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
+              <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
+            </x-secondary-button>
+          </div>
+          @if ($procedure->state == 'aprobado' || $procedure->state == 'cancelado')
+          @else
+            <div class="col-span-5">
+              <form wire:submit.prevent="changeState(Object.fromEntries(new FormData($event.target)))" class="flex gap-3">
+                <input type="hidden" name="file_id" value="{{ $file->id }}">
+                <x-select id="{{ $file->id }}" name="state">
+                  <option value="0" @if($file->state == "0") @selected(true) @else @selected(false) @endif>Sin verificar</option>
+                  <option value="1" @if($file->state == "1") @selected(true) @else @selected(false) @endif>Aceptado</option>
+                  <option value="2" @if($file->state == "2") @selected(true) @else @selected(false) @endif>Rechazado</option>
+                </x-select>
+                <x-primary-button>
+                  <ion-icon wire:ignore name="refresh-outline" class="text-lg"></ion-icon>
+                </x-primary-button>
+              </form>
+            </div>
+          @endif
+        </div>
+      </div>
+    @empty
+      <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+        No hay archivos
+      </div>
+    @endforelse
   </div>
 </div>

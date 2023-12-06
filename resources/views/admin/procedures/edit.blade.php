@@ -9,7 +9,7 @@
           </x-secondary-button>
         </a>
       </div>
-      <div class="grid grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div>
           <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
             <livewire:admin.procedures.data :procedure="$procedure"/>
@@ -33,7 +33,21 @@
             <livewire:admin.procedures.file-uploaded :procedure="$procedure"/>
           </div>
         </div>
-        
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <livewire:admin.procedures.file-answers :procedure="$procedure"/>
+          </div>
+        </div>
+
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          
+        </div>
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          
+        </div>
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          
+        </div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           
         </div>

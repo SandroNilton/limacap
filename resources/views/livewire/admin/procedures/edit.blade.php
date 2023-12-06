@@ -144,12 +144,11 @@
     </div>
 
 
-    <!---->
 
 
 
 
-    
+
 
     <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
       <!-- files -->
@@ -195,6 +194,9 @@
         </div>
       </div>
 
+
+
+
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
           <span class="text-[13px] leading-4 text-[#414d6a]">Respuestas de trámite:</span>
@@ -221,6 +223,11 @@
           </li>
         </div>
       </div>
+
+    <!---->
+
+
+
       <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
         <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
           <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de cambios de estado:</span>
