@@ -14,18 +14,18 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'type' => 'admin',
+            'type' => 'Admin',
             'code' => null,
             'code_type'=> null,
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'name' => 'Super usuario',
+            'email' => 'superuser@limacap.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('superuser'),
             'address' => null,
             'phone' => null,
             'area_id' => null,
             'is_admin' => 1,
-            'state' => 1,
+            'state' => "Activo",
           ])->assignRole('admin');
     }
 }

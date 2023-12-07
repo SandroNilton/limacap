@@ -14,7 +14,7 @@ class UpdateForm extends Component
     public $areas;
     public $roles;
 
-    public $user, $name, $email, $area, $password, $password_confirmation, $state = 0;
+    public $user, $name, $email, $area, $password, $password_confirmation, $state = "Inactivo";
 
     public $roles_val;
 
@@ -38,7 +38,7 @@ class UpdateForm extends Component
         $this->roles_val = $this->user->roles()->pluck('id')->toArray();
 
         $this->roles = Role::all();
-        $this->areas = Area::where('state', '=', '1')->get();
+        $this->areas = Area::where('state', '=', 'Activo')->get();
     }
 
     public function updated($fields): void
@@ -49,16 +49,13 @@ class UpdateForm extends Component
     public function update()
     {
         $this->validate();
-
         $this->user->update([
             'name' => $this->name,
             'email' => $this->email,
             'area_id' => $this->area,
             'state' => $this->state
         ]);
-
         $this->user->roles()->sync($this->roles_val);
-
         return redirect()->route('admin.users.index')->notice('El usuario se actualizo correctamente', 'success');
     }
 

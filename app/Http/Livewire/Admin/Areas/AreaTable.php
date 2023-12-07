@@ -77,16 +77,13 @@ class AreaTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Descripción", "description")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->sortable()
                 ->searchable(),
             Column::make("Creado", "created_at")
-                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
+                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i a').'')->html(),
             Column::make("Acción", "id")
                 ->format(fn($value, $row, Column $column) => view('admin.areas.actions')->withRow($row)->withValue($value)),
         ];
@@ -94,7 +91,6 @@ class AreaTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Area::query();
-        //return Area::query()->orderBy('created_at', 'desc');
+        return Area::query()->orderBy('created_at', 'desc');
     }
 }

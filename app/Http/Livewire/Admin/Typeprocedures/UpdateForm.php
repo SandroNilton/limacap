@@ -13,7 +13,7 @@ class UpdateForm extends Component
     public $areas;
     public $categories;
 
-    public $typeprocedure, $name, $area, $category, $requirements = [], $price, $description, $state = 0;
+    public $typeprocedure, $name, $area, $category, $requirements = [], $price, $description, $state;
 
     public array $requirements_val;
 
@@ -37,8 +37,8 @@ class UpdateForm extends Component
         $this->state = $typeprocedure->state;
         $this->typeprocedure = $typeprocedure;
         $this->requirements_val = $this->typeprocedure->requirements->pluck('id')->toArray();
-        $this->areas = Area::where('state', '=', '1')->get();
-        $this->categories = Category::where('state', '=', '1')->get();
+        $this->areas = Area::where('state', '=', 'Activo')->get();
+        $this->categories = Category::where('state', '=', 'Activo')->get();
     }
 
     public function updated($fields): void

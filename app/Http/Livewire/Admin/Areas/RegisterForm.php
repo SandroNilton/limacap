@@ -9,7 +9,7 @@ class RegisterForm extends Component
 {
     public $name = '';
     public $description = '';
-    public $state = 0;
+    public $state = "Activo";
 
     protected $rules = [
         'name' => 'required|unique:areas',
@@ -23,13 +23,11 @@ class RegisterForm extends Component
     public function store()
     {
         $this->validate();
-        
         Area::create([
             'name' => $this->name,
             'description' => $this->description,
             'state' => $this->state
         ]);
-
         return redirect()->route('admin.areas.index')->notice('El área se creo correctamente', 'success');
     }
 

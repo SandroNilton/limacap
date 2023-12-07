@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('admin_id')->nullable();
             $table->longText('description')->nullable();
             $table->dateTime('date');
-            $table->tinyInteger('state')->default(0);
+            $table->string('state')->default("Sin asignar");
             $table->timestamps();
         });
     }

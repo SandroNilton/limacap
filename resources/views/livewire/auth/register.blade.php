@@ -18,9 +18,9 @@
           <div class="text-sm">
             <select wire:model="selectTypeuser" name="type" id="type" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0">
               <option value="">Seleccione tipo de usuario</option>
-              <option value="natural">Persona Natural</option>
-              <option value="juridico">Persona Juridica</option>
-              <option value="agremiado">Agremiados</option>
+              <option value="Natural">Persona Natural</option>
+              <option value="Juridico">Persona Juridica</option>
+              <option value="Agremiado">Agremiados</option>
             </select>
           </div>
           @if ($optionSelected == 'natural')

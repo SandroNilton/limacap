@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class UpdateForm extends Component
 {
-    public $area, $name, $description, $state = 0;
+    public $area, $name, $description, $state;
 
     protected function rules()
     {
@@ -35,13 +35,11 @@ class UpdateForm extends Component
     public function update()
     {
         $this->validate();
-
         $this->area->update([
             'name' => $this->name,
             'description' => $this->description,
             'state' => $this->state
         ]);
-
         return redirect()->route('admin.areas.index')->notice('El área se creo correctamente', 'success');
     }
 
@@ -50,7 +48,6 @@ class UpdateForm extends Component
         $area_exist_type_procedure = Typeprocedure::where([['area_id', '=', $area]])->get();
         $area_exist_procedure = Procedure::where([['area_id', '=', $area]])->get();
         $area_exist_user = User::where([['area_id', '=', $area]])->get();
-
         if($area_exist_type_procedure->count() > 0 || $area_exist_procedure->count() > 0 || $area_exist_user->count() > 0){
             $this->notice('El área se encuentra en uso actualmente', 'info');
         } else {

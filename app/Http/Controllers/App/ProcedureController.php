@@ -27,24 +27,24 @@ class ProcedureController extends Controller
 
     public function store(Request $request)
     {
-      $typeprocedure_area = Typeprocedure::where([['id', '=', $request->typeprocedure_id]])->get();
+      $typeprocedure = Typeprocedure::where([['id', '=', $request->typeprocedure_id]])->first();
 
       $procedure = Procedure::create([
         'user_id' => auth()->user()->id,
-        'area_id' => $typeprocedure_area[0]->area_id,
+        'area_id' => $typeprocedure->area_id,
         'typeprocedure_id' => $request->typeprocedure_id,
         'admin_id' => NULL,
         'description' => $request->description,
         'date' => Carbon::now(),
-        'state' => '0'
+        'state' => 'Sin asignar'
       ]);
       Procedurehistory::create([
         'procedure_id' => $procedure->id,
         'typeprocedure_id' => $request->typeprocedure_id,
-        'area_id' => $typeprocedure_area[0]->area_id,
+        'area_id' => $typeprocedure->area_id,
         'admin_id' => auth()->user()->id,
         'action' => "El usuario ". auth()->user()->name ." registro un nuevo trámite.",
-        'state' => '0'
+        'state' => 'Sin asignar'
       ]);
       $date = Carbon::now()->format('Y');
       foreach ($request['files'] as $file) {
@@ -54,11 +54,11 @@ class ProcedureController extends Controller
           'requirement_id' => $file['id'],
           'name' => $file['file']->GetClientOriginalName(),
           'file' => (string)$file_url,
-          'state' => '0'
+          'state' => 'Sin verificar'
         ]);
       }
 
-      $data = ["idprocedure" => $procedure->id, "typeprocedure" => $typeprocedure_area[0]->name];
+      $data = ["idprocedure" => $procedure->id, "typeprocedure" => $typeprocedure->name];
 
 
       Mail::to(auth()->user()->email)->send(new CreateProcedureMailable($data));

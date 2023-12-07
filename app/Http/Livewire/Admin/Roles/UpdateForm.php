@@ -36,20 +36,16 @@ class UpdateForm extends Component
     public function update()
     {
         $this->validate();
-
         $this->role->update([
             'name' => $this->name,
         ]);
-
         $this->role->permissions()->sync($this->permissions_val);
-
         return redirect()->route('admin.roles.index')->notice('El rol se actualizo correctamente', 'success');
     }
 
     public function destroy($role)
     {
         $role_exist_user = DB::table('model_has_roles')->where('role_id', '=', $role)->get();
-
         if($role_exist_user->count() > 0){
             $this->notice('El rol se encuentra en uso actualmente', 'info');
         } else {

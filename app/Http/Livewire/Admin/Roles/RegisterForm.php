@@ -19,7 +19,7 @@ class RegisterForm extends Component
 
     public function mount(): void
     {
-      $this->permissions = Permission::all();
+        $this->permissions = Permission::all();
     }
 
     public function updated($fields): void
@@ -30,13 +30,10 @@ class RegisterForm extends Component
     public function store()
     {
         $this->validate();
-
         $role = Role::create([
             'name' => $this->name,
         ]);
-
         $role->permissions()->sync($this->permissions_val);
-
         return redirect()->route('admin.roles.index')->notice('El rol se creo correctamente', 'success');
     }
 

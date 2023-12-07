@@ -26,9 +26,9 @@ class CustomerTable extends DataTableComponent
                 ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
                 ->filter(function(Builder $builder, string $value) {
                     if ($value === 'activo') {
-                        $builder->where('users.state', '1');
+                        $builder->where('users.state', 'Activo');
                     } elseif ($value === 'inactivo') {
-                        $builder->where('users.state', '0');
+                        $builder->where('users.state', 'Inactivo');
                     }
                 }),
             SelectFilter::make('Tipo')
@@ -37,11 +37,11 @@ class CustomerTable extends DataTableComponent
                 ->options(['' => 'Todo', 'natural' => 'Natural', 'juridico' => 'Jurídico', 'agremiado' => 'Agremiado'])
                 ->filter(function(Builder $builder, string $value) {
                     if ($value === 'natural') {
-                        $builder->where('type', '0');
+                        $builder->where('type', 'Natural');
                     } elseif ($value === 'juridico') {
-                        $builder->where('type', '1');
+                        $builder->where('type', 'Juridico');
                     } elseif ($value === 'agremiado') {
-                        $builder->where('type', '2');
+                        $builder->where('type', 'Agremiado');
                 }
             }),
         ];
@@ -61,18 +61,18 @@ class CustomerTable extends DataTableComponent
             'inactivate' => 'Inactivar',
             'export' => 'Exportar',
         ];
-      }
+    }
 
     public function activate(): void
     {
-        User::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        User::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
     public function inactivate(): void
     {
-        User::whereIn('id', $this->getSelected())->update(['state' => '0']);
+        User::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
         $this->notice('Se desactivo correctamente', 'alert');
         $this->clearSelected();
     }
@@ -89,28 +89,19 @@ class CustomerTable extends DataTableComponent
     {
         return [
             Column::make("Clase", "type")
-                ->sortable()
-                ->format(
-                  fn($value, $row, Column $column) => $row->class
-                ),
+                ->searchable(),
             Column::make("Tipo doc.", "code_type")
                 ->sortable(),
             Column::make("Documento", "code")
-                ->sortable()
                 ->searchable(),
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Correo", "email")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->searchable(),
             Column::make("Creado", "created_at")
-                ->sortable()
-                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
+                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i a').'')->html(),
             Column::make("Acción", "id")
                 ->format(fn($value, $row, Column $column) => view('admin.customers.actions')->withRow($row)->withValue($value)),
         ];
@@ -118,7 +109,6 @@ class CustomerTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return User::query()->where('type', '!=', 4)->where('is_admin', '!=', 1);
-        //User::query()->where('type', '!=', 10)->where('is_admin', '!=', 1)->orderBy('created_at', 'desc');
+        return User::query()->where('type', '!=', "Usuario")->where('is_admin', '!=', 1)->orderBy('created_at', 'desc');
     }
 }

@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class UpdateForm extends Component
 {
-    public $customer, $name, $email, $state = 0;
+    public $customer, $name, $email, $state;
 
     public function mount(User $customer): void
     {

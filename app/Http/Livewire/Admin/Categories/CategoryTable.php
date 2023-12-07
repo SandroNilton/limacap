@@ -26,9 +26,9 @@ class CategoryTable extends DataTableComponent
               ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
               ->filter(function(Builder $builder, string $value) {
                 if ($value === 'activo') {
-                    $builder->where('categories.state', '1');
+                    $builder->where('categories.state', 'Activo');
                 } elseif ($value === 'inactivo') {
-                    $builder->where('categories.state', '0');
+                    $builder->where('categories.state', 'Inactivo');
                 }
             }),
         ];
@@ -52,14 +52,14 @@ class CategoryTable extends DataTableComponent
 
     public function activate(): void
     {
-        Category::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        Category::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
     public function inactivate(): void
     {
-        Category::whereIn('id', $this->getSelected())->update(['state' => '0']);
+        Category::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
         $this->notice('Se inactivo correctamente', 'alert');
         $this->clearSelected();
     }
@@ -76,17 +76,13 @@ class CategoryTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Descripción", "description")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->searchable(),
             Column::make("Creado", "created_at")
-                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
+                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i a').'')->html(),
             Column::make("Acción", "id")
                 ->format(fn($value, $row, Column $column) => view('admin.categories.actions')->withRow($row)->withValue($value)),
         ];
@@ -94,7 +90,6 @@ class CategoryTable extends DataTableComponent
 
     public function builder(): Builder
     {
-      return Category::query();
-      //return Category::query()->orderBy('created_at', 'desc');
+        return Category::query()->orderBy('created_at', 'desc');
     }
 }

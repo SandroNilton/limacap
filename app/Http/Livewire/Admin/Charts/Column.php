@@ -47,9 +47,9 @@ class Column extends Component
     {
         $procedures = Procedure::All();
 
-        $columnChartModel = $procedures->groupBy('status')->reduce(function ($columnChartModel, $data) {
-          $state = $data->first()->status;
-          $value = $data->count('status');
+        $columnChartModel = $procedures->groupBy('state')->reduce(function ($columnChartModel, $data) {
+          $state = $data->first()->state;
+          $value = $data->count('state');
           return $columnChartModel->addColumn($state, $value, $this->colors[$state]);
          } , LivewireCharts::columnChartModel()
           ->setAnimated($this->firstRun)

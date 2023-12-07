@@ -7,7 +7,6 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateTimeFilter;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use App\Exports\TypeproceduresExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Typeprocedure;
@@ -27,9 +26,9 @@ class TypeprocedureTable extends DataTableComponent
             ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
             ->filter(function(Builder $builder, string $value) {
                 if ($value === 'activo') {
-                    $builder->where('typeprocedures.state', '1');
+                    $builder->where('typeprocedures.state', 'Activo');
                 } elseif ($value === 'inactivo') {
-                    $builder->where('typeprocedures.state', '0');
+                    $builder->where('typeprocedures.state', 'Inactivo');
                 }
             }),
         ];
@@ -53,14 +52,14 @@ class TypeprocedureTable extends DataTableComponent
 
     public function activate(): void
     {
-        Typeprocedure::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        Typeprocedure::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
     public function inactivate(): void
     {
-        Typeprocedure::whereIn('id', $this->getSelected())->update(['state' => '0']);
+        Typeprocedure::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
         $this->notice('Se desactivo correctamente', 'alert');
         $this->clearSelected();
     }
@@ -77,21 +76,15 @@ class TypeprocedureTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Description", "description")
-                ->sortable()
                 ->searchable(),
             Column::make("Área", "area.name")
-                ->sortable()
                 ->searchable(),
             Column::make("Categoría", "category.name")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->searchable(),
             Column::make("Creado", "created_at")
                 ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
             Column::make("Acción", "id")

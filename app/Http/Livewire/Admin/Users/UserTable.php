@@ -26,9 +26,9 @@ class UserTable extends DataTableComponent
             ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
             ->filter(function(Builder $builder, string $value) {
               if ($value === 'activo') {
-                  $builder->where('users.state', '1');
+                  $builder->where('users.state', 'Activo');
               } elseif ($value === 'inactivo') {
-                  $builder->where('users.state', '0');
+                  $builder->where('users.state', 'Inactivo');
               }
             }),
         ];
@@ -52,15 +52,15 @@ class UserTable extends DataTableComponent
 
     public function activate(): void
     {
-        User::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        User::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
     public function inactivate(): void
     {
-        User::whereIn('id', $this->getSelected())->update(['state' => '0']);
-        $this->notice('Se desactivo correctamente', 'alert');
+        User::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
+        $this->notice('Se inactivo correctamente', 'alert');
         $this->clearSelected();
     }
 
@@ -85,9 +85,8 @@ class UserTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->sortable()
+                ->searchable(),
             Column::make("Creado", "created_at")
                 ->sortable()
                 ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),

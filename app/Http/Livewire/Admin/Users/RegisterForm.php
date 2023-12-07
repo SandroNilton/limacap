@@ -19,7 +19,7 @@ class RegisterForm extends Component
     public $area;
     public $password = '';
     public $password_confirmation = '';
-    public $state = 0;
+    public $state = "Inactivo";
     public $roles_val = [];
 
     protected $rules = [
@@ -32,7 +32,7 @@ class RegisterForm extends Component
 
     public function mount(): void
     {
-        $this->areas = Area::where('state', '=', 1)->get();
+        $this->areas = Area::where('state', '=', 'Activo')->get();
         $this->roles = Role::all();
     }
 

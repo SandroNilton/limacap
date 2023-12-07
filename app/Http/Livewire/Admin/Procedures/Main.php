@@ -37,7 +37,6 @@ class Main extends Component
     public function assignArea(): void
     {
         $this->validate(['area' => 'required']);
-
         if($this->procedure->area_id != $this->area){
             $area = Area::where('id', '=', $this->area)->first();
             $this->procedure->update(['area_id' => $this->area]);
@@ -46,17 +45,13 @@ class Main extends Component
                 'area_id' => $this->area,
                 'admin_id' => auth()->user()->id,
                 'action' => "El usuario ". auth()->user()->name." asigno al area ".$area->name.".",
-                'state' => 1
+                'state' => "Asignado"
             ]);
-
             $users_area = User::where([['area_id', '=', $this->area]])->get();
-
             $data = ["idprocedure" => $this->procedure->id, "area" => $area->name, "admin" => auth()->user()->name];
-
             foreach ($users_area as $user) {
               Mail::to($user->email)->send(new ChangeAreaProcedureMailable($data));
             }
-
             $this->notice('Se asigno al area correctamente', 'success');
         } else {
             $this->notice('El tramite ya se encuenrta en el área seleccionada actualmente', 'info');
@@ -75,8 +70,8 @@ class Main extends Component
                     'procedure_id' => $this->procedure->id,
                     'area_id' => $user->area_id,
                     'admin_id' => auth()->user()->id,
-                    'action' => "El usuario ".auth()->user()->name." asigno al usuario ".$user->name.".",
-                    'state' => 1
+                    'action' => "El usuario ".auth()->user()->name." asigno al usuario ".$user->name." y paso al area ".$user->area->name,
+                    'state' => "Asignado"
                 ]);
                 $data = ["idprocedure" => $this->procedure->id, "area" => $user->area->name, "user" =>  $user->name, "admin" => auth()->user()->name];
                 Mail::to($user->email)->send(new ChangeAssigneProcedureMailable($data));
@@ -169,16 +164,15 @@ class Main extends Component
     public function render()
     {
         $this->procedure_data = Procedure::where([['id', '=', $this->procedure->id]])->first();
-        $this->areas = Area::where('state', '=', 1)->get();
-        $this->users = User::where('state', '=', 1)->where('type', '=', 3)->get();
+        $this->areas = Area::where('state', '=', "Activo")->get();
+        $this->users = User::where('state', '=', "Activo")->where('type', '=', "Usuario")->get();
         $this->comments = Proceduremessage::where('procedure_id', '=', $this->procedure_data->id)->orderBy('created_at', 'desc')->get();
-        $this->files_uploaded = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 100]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 101]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 102]])->get();
-        $this->files_answers = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '!=', 100], ['state', '!=', 101], ['state', '!=', 102], ['state', '!=', 4], ['state', '!=', 5]])->get();
-        $this->files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 4]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 5]])->get();
+        $this->files_uploaded = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Sin verificar"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Aceptado"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Rechazado"]])->get();
+        $this->files_answers = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '!=', "Sin verificar"], ['state', '!=', "Aceptado"], ['state', '!=', "Rechazado"], ['state', '!=', "Aprobado"], ['state', '!=', "Cancelado"]])->get();
+        $this->files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Aprobado"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Cancelado"]])->get();
         $this->records = Procedurehistory::where([['procedure_id', '=',  $this->procedure_data->id]])->get();
-        $this->files_out = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 100]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', 102]])->get();
+        $this->files_out = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Sin verificar"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Rechazado"]])->get();
         $this->comments_finish = Proceduremessagefinish::where([['procedure_id', '=', $this->procedure_data->id]])->get();
-
         return view('livewire.admin.procedures.main');
     }
 }

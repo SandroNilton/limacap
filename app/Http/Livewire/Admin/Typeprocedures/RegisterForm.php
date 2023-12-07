@@ -18,7 +18,7 @@ class RegisterForm extends Component
     public $requirements = [];
     public $price = '0.00';
     public $description = '';
-    public $state = 0;
+    public $state = "Activo";
 
     protected $rules = [
         'name' => 'required|unique:requirements',
@@ -29,8 +29,8 @@ class RegisterForm extends Component
 
     public function mount(): void
     {
-        $this->areas = Area::where('state', '=', 1)->get();
-        $this->categories = Category::where('state', '=', 1)->get();
+        $this->areas = Area::where('state', '=', 'Activo')->get();
+        $this->categories = Category::where('state', '=', 'Activo')->get();
     }
 
     public function updated($fields): void
@@ -41,7 +41,6 @@ class RegisterForm extends Component
     public function store()
     {
         $this->validate();
-
         $type_procedure = Typeprocedure::create([
           'name' => $this->name,
           'area_id' => $this->area,
@@ -50,9 +49,7 @@ class RegisterForm extends Component
           'price' => $this->price,
           'state' => $this->state
         ]);
-
         $type_procedure->requirements()->sync($this->requirements);
-
         return redirect()->route('admin.typeprocedures.index')->notice('El tipo de trámite se creo correctamente', 'success');
     }
 

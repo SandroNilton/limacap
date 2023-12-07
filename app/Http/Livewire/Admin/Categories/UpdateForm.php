@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class UpdateForm extends Component
 {
-    public $category, $name, $description, $state = 0;
+    public $category, $name, $description, $state;
 
     protected function rules()
     {

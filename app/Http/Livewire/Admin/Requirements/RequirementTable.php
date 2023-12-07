@@ -26,9 +26,9 @@ class RequirementTable extends DataTableComponent
                 ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
                 ->filter(function(Builder $builder, string $value) {
                   if ($value === 'activo') {
-                      $builder->where('requirements.state', '1');
+                      $builder->where('requirements.state', 'Activo');
                   } elseif ($value === 'inactivo') {
-                      $builder->where('requirements.state', '0');
+                      $builder->where('requirements.state', 'Inactivo');
                   }
             }),
         ];
@@ -50,16 +50,16 @@ class RequirementTable extends DataTableComponent
         ];
     }
 
-    public function activate()
+    public function activate(): void
     {
-        Requirement::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        Requirement::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
-    public function inactivate()
+    public function inactivate(): void
     {
-        Requirement::whereIn('id', $this->getSelected())->update(['state' => '0']);
+        Requirement::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
         $this->notice('Se desactivo correctamente', 'alert');
         $this->clearSelected();
     }
@@ -76,18 +76,13 @@ class RequirementTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Descripción", "description")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->searchable(),
             Column::make("Creado", "created_at")
-                ->sortable()
-                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
+                ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i a').'')->html(),
             Column::make("Acción", "id")
                 ->format(fn($value, $row, Column $column) => view('admin.requirements.actions')->withRow($row)->withValue($value)),
         ];
@@ -95,7 +90,6 @@ class RequirementTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Requirement::query();
-        //return Requirement::query()->orderBy('created_at', 'desc');
+        return Requirement::query()->orderBy('created_at', 'desc');
     }
 }

@@ -7,11 +7,11 @@
         </div>
         <span class="flex items-center gap-3 mb-3 text-emerald-500">
           <ion-icon name="hourglass-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">{{ $this->procedure_data->status }}</span>
+          <span class="text-sm font-medium">{{ $this->procedure_data->state }}</span>
         </span>
         <span class="flex items-center gap-3 mb-3">
           <ion-icon name="people-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Clase: {{ $this->procedure_data->user->class }}</span>
+          <span class="text-sm font-medium">Clase: {{ $this->procedure_data->user->type }}</span>
         </span>
         <span class="flex items-center gap-3 mb-3">
           <ion-icon name="person-outline" class="text-lg" wire:ignore></ion-icon>
@@ -39,7 +39,7 @@
         </span>
       </div>
     </div>
-    @if ($this->procedure_data->state == 4 || $this->procedure_data->state == 5)
+    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
     @else
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
@@ -90,7 +90,7 @@
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Comentarios</h4>
         </div>
         <div>
-          @if ($this->procedure_data->state == 4 || $this->procedure_data->state == 5)
+          @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
           @else
             <form wire:submit.prevent="addComment" class="flex w-full gap-x-2.5 mb-3">
               <x-text-input type="text" wire:model="comment" name="comment" placeholder="Ingrese un mensaje"/>
@@ -140,15 +140,15 @@
                     <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
                   </x-secondary-button>
                 </div>
-                @if ($this->procedure_data->state == 4 || $this->procedure_data->state == 5)
+                @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
                 @else
                   <div class="col-span-5">
                     <form wire:submit.prevent="changeState(Object.fromEntries(new FormData($event.target)))" class="flex gap-3">
                       <input type="hidden" name="file_id" value="{{ $file->id }}">
                       <x-select id="{{ $file->id }}" name="state">
-                        <option value="100" @if($file->state == "100") @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                        <option value="101" @if($file->state == "101") @selected(true) @else @selected(false) @endif>Aceptado</option>
-                        <option value="102" @if($file->state == "102") @selected(true) @else @selected(false) @endif>Rechazado</option>
+                        <option value="Sin verificar" @if($file->state == "Sin verificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
+                        <option value="Aceptado" @if($file->state == "Aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
+                        <option value="Rechazado" @if($file->state == "Rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
                       </x-select>
                       <x-primary-button>
                         <ion-icon wire:ignore name="refresh-outline" class="text-lg"></ion-icon>
@@ -179,7 +179,7 @@
                   <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
                 </x-secondary-button>
                 <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
-                <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->status }}">{{ $file->status }}</div>
+                <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
               </div>
             </div>
           @empty
@@ -213,7 +213,7 @@
         </div>
       </div>
     </div>
-    @if ($this->procedure_data->state == 4 || $this->procedure_data->state == 5)
+    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
@@ -231,7 +231,7 @@
                     <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
                   </x-secondary-button>
                   <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
-                  <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->status }}">{{ $file->status }}</div>
+                  <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
                 </div>
               </div>
             @empty
@@ -266,7 +266,7 @@
         </div>
       </div>
     </div>
-    @if ($this->procedure_data->state == 4 || $this->procedure_data->state == 5)
+    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
     @else
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
@@ -280,13 +280,13 @@
           <form wire:submit.prevent="assignState" enctype="multipart/form-data">
             <x-select wire:model="state" class="mb-3">
               <option value="">Seleccione el area</option>
-              <option value="2" @if( $this->procedure_data->state == 2) @selected(true) @else @selected(false) @endif>Observado</option>
-              <option value="3" @if( $this->procedure_data->state == 3) @selected(true) @else @selected(false) @endif>Revisado</option>
+              <option value="Observado" @if( $this->procedure_data->state == "Observado") @selected(true) @else @selected(false) @endif>Observado</option>
+              <option value="Revisado" @if( $this->procedure_data->state == "Revisado") @selected(true) @else @selected(false) @endif>Revisado</option>
               @if ($files_out->count() > 0)
               @else
-                <option value="4" @if( $this->procedure_data->state == 4) @selected(true) @else @selected(false) @endif>Aprobado</option>
+                <option value="Aprobado" @if( $this->procedure_data->state == "Aprobado") @selected(true) @else @selected(false) @endif>Aprobado</option>
               @endif
-              <option value="5" @if( $this->procedure_data->state == 5) @selected(true) @else @selected(false) @endif>Cancelado</option>
+              <option value="Cancelado" @if( $this->procedure_data->state == "Cancelado") @selected(true) @else @selected(false) @endif>Cancelado</option>
             </x-select>
             <x-text-area wire:model="description" name="description" placeholder="descripción" class="mb-3"></x-text-area>
             <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] flex flex-row rounded-md mb-3">

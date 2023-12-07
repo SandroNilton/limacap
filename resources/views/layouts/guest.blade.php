@@ -12,12 +12,6 @@
     @stack('css')
   </head>
   <body class="antialiased font-inter bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400">
-    <main class="bg-white">
-      <div class="relative flex">
-        <!-- Content -->
-        <div class="w-full md:w-1/2">
-          <div class="flex flex-col h-full min-h-screen after:flex-1">
-            
     <livewire:laravel-notification.notice/>
     {{ $slot }}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

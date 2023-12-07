@@ -29,7 +29,6 @@ class RoleTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Creado", "created_at")
                 ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
@@ -40,7 +39,6 @@ class RoleTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return Role::query();
-        //return Role::query()->orderBy('created_at', 'desc');
+        return Role::query()->orderBy('created_at', 'desc');
     }
 }

@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class UpdateForm extends Component
 {
-    public $requirement, $name, $description, $state = 0;
+    public $requirement, $name, $description, $state;
 
     protected function rules()
     {
@@ -33,13 +33,11 @@ class UpdateForm extends Component
     public function update()
     {
         $this->validate();
-
         $this->requirement->update([
             'name' => $this->name,
             'description' => $this->description,
             'state' => $this->state
         ]);
-
         return redirect()->route('admin.requirements.index')->notice('El requisito se actualizo correctamente', 'success');
     }
 

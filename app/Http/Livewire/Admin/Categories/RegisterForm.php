@@ -9,7 +9,7 @@ class RegisterForm extends Component
 {
     public $name = '';
     public $description = '';
-    public $state = 0;
+    public $state = 'Activo';
 
     protected $rules = [
         'name' => 'required|unique:categories',
@@ -23,13 +23,11 @@ class RegisterForm extends Component
     public function store()
     {
         $this->validate();
-
-        $category = Category::create([
+        Category::create([
             'name' => $this->name,
             'description' => $this->description,
             'state' => $this->state
         ]);
-
         return redirect()->route('admin.categories.index')->notice('La categoría se creo correctamente', 'success');
     }
 
