@@ -48,8 +48,10 @@
           </div>
         </form>
         <div class="mt-4 flex">
-          <span class="text-[13px] text-[#414d6a] leading-4">¿No tienes una cuenta?</span>
-          <x-primary-button type="button" href="{{ route('register') }}">Registrarte aquí</x-primary-button>
+          <span class="text-[13px] text-[#414d6a] leading-4 mr-3">¿No tienes una cuenta?</span>
+          <a href="{{ route('register') }}">
+            <x-primary-button type="button">Registrarte aquí</x-primary-button>
+          </a>
         </div>
       </div>
     </div>
