@@ -38,8 +38,9 @@ class ProcedureTable extends DataTableComponent
                   fn($value, $row, Column $column) => ''. (!empty($row->description)) ? $row->description : '--' .''
                 ),
             Column::make("Estado", "state")
-                ->sortable()
-                ->searchable(),
+                ->format(
+                  fn($value, $row, Column $column) => $row->status
+                ), 
             Column::make("Fecha de creación", "created_at")
                 ->sortable()
                 ->format(

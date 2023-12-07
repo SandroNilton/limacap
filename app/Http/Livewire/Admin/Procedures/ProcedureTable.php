@@ -23,15 +23,15 @@ class ProcedureTable extends DataTableComponent
       DateTimeFilter::make('Creación a')->filter(function(Builder $builder, string $value) { $builder->where('procedures.created_at', '<=', $value); }),
       SelectFilter::make('Estado')
       ->setFilterPillTitle('Estado')
-      ->setFilterPillValues(['1' => 'Sin asignar', '2' => 'Asignado', '3' => 'Observado', '4' => 'Revisado', '5' => 'Aprobado', '6' => 'Rechazado'])
-      ->options(['' => 'Todo', '1' => 'Sin asignar', '2' => 'Asignado', '3' => 'Observado', '4' => 'Revisado', '5' => 'Aprobado', '6' => 'Rechazado'])
+      ->setFilterPillValues(['0' => 'Sin asignar', '1' => 'Asignado', '2' => 'Observado', '3' => 'Revisado', '4' => 'Aprobado', '5' => 'Rechazado'])
+      ->options(['' => 'Todo', '0' => 'Sin asignar', '1' => 'Asignado', '2' => 'Observado', '3' => 'Revisado', '4' => 'Aprobado', '5' => 'Rechazado'])
       ->filter(function(Builder $builder, string $value) {
-        if ($value === '1') { $builder->where('procedures.state', 1); }
-        elseif ($value === '2') { $builder->where('procedures.state', 2); }
-        elseif ($value === '3') { $builder->where('procedures.state', 3); }
-        elseif ($value === '4') { $builder->where('procedures.state', 4); }
-        elseif ($value === '5') { $builder->where('procedures.state', 5); }
-        elseif ($value === '6') { $builder->where('procedures.state', 6); }
+        if ($value === '1') { $builder->where('procedures.state', 0); }
+        elseif ($value === '2') { $builder->where('procedures.state', 1); }
+        elseif ($value === '3') { $builder->where('procedures.state', 2); }
+        elseif ($value === '4') { $builder->where('procedures.state', 3); }
+        elseif ($value === '5') { $builder->where('procedures.state', 4); }
+        elseif ($value === '6') { $builder->where('procedures.state', 5); }
       }),
     ];
   }
@@ -43,16 +43,17 @@ class ProcedureTable extends DataTableComponent
 
   public function assignme($id)
   {
-    $unassigned_procedure = Procedure::where([['id', '=', $id], [ 'admin_id', '=', NULL]])->get();
-    if($unassigned_procedure->count() > 0) {
-      Procedure::where('id', $unassigned_procedure[0]->id)->update(['admin_id' => auth()->user()->id]);
-      Procedure::where('id', $unassigned_procedure[0]->id)->update(['state' => 'asignado']);
+    $procedure = Procedure::where([['id', '=', $id], [ 'admin_id', '=', NULL]])->first();
+
+    if($procedure->count() > 0) {
+      Procedure::where('id', $procedure->id)->update(['admin_id' => auth()->user()->id]);
+      Procedure::where('id', $procedure->id)->update(['state' => 1]);
       Procedurehistory::create([
-        'procedure_id' => $unassigned_procedure[0]->id,
-        'area_id' => $unassigned_procedure[0]->area_id,
+        'procedure_id' => $procedure->id,
+        'area_id' => $procedure->area_id,
         'admin_id' => auth()->user()->id,
         'action' => "El usuario ". auth()->user()->name ." se autoasigno el trámite." ,
-        'state' => 2
+        'state' => 1
       ]);
       $this->notice('Tomaste este trámite', 'success');
     } else {
@@ -75,8 +76,9 @@ class ProcedureTable extends DataTableComponent
       Column::make('Usuario', 'admin_id')
         ->format( fn($value, $row, Column $column) => view('admin.procedures.assign')->withRow($row)->withValue($value) ),
       Column::make("Estado", "state")
-        ->sortable()
-        ->searchable(),
+        ->format(
+          fn($value, $row, Column $column) => $row->status
+        ), 
       Column::make("Fecha de creación", "created_at")
         ->sortable()
         ->format( fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'' )->html(),

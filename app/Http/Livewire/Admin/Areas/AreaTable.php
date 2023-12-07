@@ -27,9 +27,9 @@ class AreaTable extends DataTableComponent
             ->options(['' => 'Todo', 'activo' => 'Activo', 'inactivo' => 'Inactivo',])
             ->filter(function(Builder $builder, string $value) {
                 if ($value === 'activo') {
-                    $builder->where('areas.state', '1');
+                    $builder->where('areas.state', 'Activo');
                 } elseif ($value === 'inactivo') {
-                    $builder->where('areas.state', '0');
+                    $builder->where('areas.state', 'Inactivo');
                 }
           }),
         ];
@@ -53,14 +53,14 @@ class AreaTable extends DataTableComponent
 
     public function activate(): void
     {
-        Area::whereIn('id', $this->getSelected())->update(['state' => '1']);
+        Area::whereIn('id', $this->getSelected())->update(['state' => 'Activo']);
         $this->notice('Se activo correctamente', 'success');
         $this->clearSelected();
     }
 
     public function inactivate(): void
     {
-        Area::whereIn('id', $this->getSelected())->update(['state' => '0']);
+        Area::whereIn('id', $this->getSelected())->update(['state' => 'Inactivo']);
         $this->notice('Se inactivo correctamente', 'alert');
         $this->clearSelected();
     }
@@ -83,9 +83,8 @@ class AreaTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->sortable()
+                ->searchable(),
             Column::make("Creado", "created_at")
                 ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
             Column::make("Acción", "id")

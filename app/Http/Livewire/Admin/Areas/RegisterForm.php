@@ -24,7 +24,7 @@ class RegisterForm extends Component
     {
         $this->validate();
         
-        $area = Area::create([
+        Area::create([
             'name' => $this->name,
             'description' => $this->description,
             'state' => $this->state
