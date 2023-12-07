@@ -14,7 +14,7 @@ class UpdateForm extends Component
     public $areas;
     public $roles;
 
-    public $user, $name, $email, $area, $password, $password_confirmation, $state = "Inactivo";
+    public $user, $name, $email, $area, $password, $password_confirmation, $state;
 
     public $roles_val;
 

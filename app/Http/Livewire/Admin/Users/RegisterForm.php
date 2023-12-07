@@ -19,7 +19,7 @@ class RegisterForm extends Component
     public $area;
     public $password = '';
     public $password_confirmation = '';
-    public $state = "Inactivo";
+    public $state = "Activo";
     public $roles_val = [];
 
     protected $rules = [
@@ -46,7 +46,7 @@ class RegisterForm extends Component
         $this->validate();
 
         $user = User::create([
-            'type' => 3,
+            'type' => "Usuario",
             'name' => $this->name,
             'email' => $this->email,
             'email_verified_at' => Carbon::now()->timestamp,

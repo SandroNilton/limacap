@@ -76,19 +76,14 @@ class UserTable extends DataTableComponent
     {
         return [
             Column::make("Nombre", "name")
-                ->sortable()
                 ->searchable(),
             Column::make("Correo", "email")
-                ->sortable()
                 ->searchable(),
             Column::make("Area", "area.name")
-                ->sortable()
                 ->searchable(),
             Column::make("Estado", "state")
-                ->sortable()
                 ->searchable(),
             Column::make("Creado", "created_at")
-                ->sortable()
                 ->format(fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').'')->html(),
             Column::make('Acción', "id")
                 ->format(  fn($value, $row, Column $column) => view('admin.users.actions')->withRow($row)->withValue($value) ),
@@ -97,7 +92,7 @@ class UserTable extends DataTableComponent
 
     public function builder(): Builder
     {
-        return User::query()->where('users.email', '!=', 'admin@gmail.com')->where('is_admin', '=', 1);
-        //return User::query()->where('users.email', '!=', 'admin@gmail.com')->where('is_admin', '=', 1)->orderBy('created_at', 'desc');
+        return User::query()->where('users.email', '!=', 'superuser@limacap.com')->where('is_admin', '=', 1);
+        return User::query()->where('users.email', '!=', 'admin@gmail.com')->where('is_admin', '=', 1)->orderBy('created_at', 'desc');
     }
 }
