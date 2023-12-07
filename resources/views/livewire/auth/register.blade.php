@@ -135,7 +135,7 @@
                 <input type="hidden" id="type" name="type" value="{{ $optionSelected }}">
                 <input type="hidden" id="code_type" name="code_type">
                 <input wire:model="code" id="code" name="code" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="99999999999" placeholder="Codigo de cap" @required(true)>
-                <input wire:model="keycap" id="keycap" name="keycap" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="99999999999" placeholder="Clave de cap" @required(true)>
+                <input wire:model="keycap" id="keycap" name="keycap" type="text" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" x-mask="99999999999" placeholder="Codigo secreto" @required(true)>
                 <a wire:click="searchAgremiado" class="px-1.5 py-1.5 cursor-pointer bg-[#cfa133] text-white self-center rounded">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="32px" height="32px" viewBox="0 0 32 32" version="1.1">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">

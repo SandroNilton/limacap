@@ -49,7 +49,7 @@
         </form>
         <div class="mt-4 flex justify-between">
           <span class="text-[13px] text-[#414d6a] leading-4">¿No tienes una cuenta?</span>
-          <a href="{{ route('register') }}" class="text-[13px] leading-4 text-[#42a692] hover:text-[#2c6f62] transition duration-300">Registrarte aquí</a>
+          <x-primary-button href="{{ route('register') }}" class="text-[13px] leading-4 text-[#42a692] hover:text-[#2c6f62] transition duration-300">Registrarte aquí</x-primary-button>
         </div>
       </div>
     </div>
