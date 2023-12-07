@@ -23,7 +23,7 @@
               <option value="Agremiado">Agremiados</option>
             </select>
           </div>
-          @if ($optionSelected == 'natural')
+          @if ($optionSelected == 'Natural')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
               <div class="mt-3 mb-3">
@@ -82,7 +82,7 @@
                 <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
               </div>
             </form>
-          @elseif ($optionSelected == 'juridico')
+          @elseif ($optionSelected == 'Juridico')
             <form method="POST" action="{{ route('register') }}" class="w-full">
               @csrf
               <div class="mt-3 mb-3">
@@ -127,7 +127,7 @@
                 <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
               </div>
             </form>
-          @elseif ($optionSelected == 'agremiado')
+          @elseif ($optionSelected == 'Agremiado')
           <form method="POST" action="{{ route('register') }}" class="w-full">
             @csrf
             <div class="mt-3 mb-3">
