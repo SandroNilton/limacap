@@ -33,21 +33,17 @@ class ProcedureTable extends DataTableComponent
             Column::make("Tipo de trámite", "typeprocedure.name")
                 ->sortable(),
             Column::make("Comentarios", "description")
-                ->sortable()
                 ->format(
                   fn($value, $row, Column $column) => ''. (!empty($row->description)) ? $row->description : '--' .''
                 ),
             Column::make("Estado", "state")
-                ->format(
-                  fn($value, $row, Column $column) => $row->status
-                ), 
+                ->searchable(),
             Column::make("Fecha de creación", "created_at")
-                ->sortable()
                 ->format(
                   fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i').''
                 )
                 ->html(),
-            Column::make('Acciones', 'id')
+            Column::make('Accion', 'id')
                 ->format(
                   fn($value, $row, Column $column) => view('app.procedures.actions')->withValue($value)
                 ),
