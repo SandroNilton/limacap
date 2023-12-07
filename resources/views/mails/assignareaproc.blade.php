@@ -346,12 +346,18 @@ img {
         Colegio de Arquitectos del Perú
       </p>
       <img src="https://limacap.org/wp-content/uploads/2021/12/logo-niubiz.jpg" height="300" width="300" style="margin: -15px">
-        <h1>Asunto: Nueva Solicitud Trámite documentario – expediente </h1>
+        <h1>Expediente: [{{ $data['idprocedure'] }}]</h1>
       <p>
-        Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} de tipo de trámite ({{ $data['typeprocedure'] }}) categoría ha sido {{ $data['state'] }}.
+        El usuario {{ $data['admin'] }} asigno el tramite con numero de expediente.
       </p>
       <p>
-        Puede visualizar la solicitud en el siguiente link: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">link del trámite</a>
+        Numero de expediente: {{ $data['idprocedure'] }}.
+      </p>
+      <p>
+        al area {{ $data['area'] }}
+      </p>
+      <p>
+        Por favor continuat con el proceso de la solicitud a través del siguiente enlace: : <a href="{{ config('app.url') }}/admin/procedures/{{ $data['idprocedure'] }}/edit">link del trámite</a>
       </p>
     </td>
     </tr>

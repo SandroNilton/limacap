@@ -351,7 +351,7 @@ img {
         Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} de tipo de trámite ({{ $data['typeprocedure'] }}) categoría ha sido registrada.
       </p>
       <p>
-        Puede visualizar la solicitud en el siguiente link: <a href="https://mesalimacap-ojczk.ondigitalocean.app/procedures/{{ $data['idprocedure'] }}">link del trámite</a>
+        Puede visualizar la solicitud en el siguiente link: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">link del trámite</a>
       </p>
     </td>
     </tr>

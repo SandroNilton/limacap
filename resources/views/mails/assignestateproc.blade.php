@@ -357,7 +357,7 @@ img {
         Le ah sido asignado por {{ $data['admin'] }}
       </p>
       <p>
-        Por favor continuat con el proceso de la solicitud a través del siguiente enlace: : <a href="https://mesalimacap-ojczk.ondigitalocean.app/admin/procedures/{{ $data['idprocedure'] }}/edit">link del trámite</a>
+        Por favor continuat con el proceso de la solicitud a través del siguiente enlace: : <a href="{{ config('app.url') }}/admin/procedures/{{ $data['idprocedure'] }}/edit">link del trámite</a>
       </p>
     </td>
     </tr>

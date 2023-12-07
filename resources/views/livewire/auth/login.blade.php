@@ -9,6 +9,7 @@
           <img src="https://i.postimg.cc/PqDTPv8d/logo-niubiz-removebg-preview-3.png" width="220" alt="">
         </div>
 
+
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Mail\ChangeAssigneProcedureMailable;
+use App\Mail\ChangeAreaProcedureMailable;
 use App\Models\Proceduremessage;
 use App\Models\Fileprocedure;
 use App\Models\Proceduremessagefinish;
@@ -47,6 +48,15 @@ class Main extends Component
                 'action' => "El usuario ". auth()->user()->name." asigno al area ".$area->name.".",
                 'state' => 1
             ]);
+
+            $users_area = User::where([['area_id', '=', $this->area]])->get();
+
+            $data = ["idprocedure" => $this->procedure->id, "area" => $area->name, "admin" => auth()->user()->name];
+
+            foreach ($users_area as $user) {
+              Mail::to($user->email)->send(new ChangeAreaProcedureMailable($data));
+            }
+
             $this->notice('Se asigno al area correctamente', 'success');
         } else {
             $this->notice('El tramite ya se encuenrta en el área seleccionada actualmente', 'info');
