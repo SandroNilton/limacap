@@ -60,7 +60,7 @@ class UpdateForm extends Component
         return redirect()->route('admin.users.index')->notice('El usuario se actualizo correctamente', 'success');
     }
 
-    public function deleteUser($user)
+    public function destroy($user)
     {
         User::where('id', $user)->delete();
         $this->user->roles()->sync([]);
