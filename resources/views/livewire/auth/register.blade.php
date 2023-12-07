@@ -120,12 +120,13 @@
                 <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
               </div>
               <div class="mb-3">
+                <div class="flex space-x-1">
+                  <span class="text-sm text-red-500">Nota:</span>
+                  <span class="text-sm text-black">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
+                </div>
                 <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
               </div>
-              <div class="flex space-x-1">
-                <span class="text-xs text-red-500">Nota:</span>
-                <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
-              </div>
+              
             </form>
           @elseif ($optionSelected == 'Agremiado')
           <form method="POST" action="{{ route('register') }}" class="w-full">
