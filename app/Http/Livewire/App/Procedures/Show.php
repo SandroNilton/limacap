@@ -50,7 +50,7 @@ class Show extends Component
                 'requirement_id' => $requirement_id,
                 'name' =>  $file->GetClientOriginalName(),
                 'file' => (string)$file_url,
-                'state' => 'sinverificar'
+                'state' => 'Sin verificar'
             ]);
         }
 
@@ -64,10 +64,10 @@ class Show extends Component
     public function render()
     {
         $this->procedure_data = Procedure::where('id', '=', $this->procedure)->get();
-        $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'sinverificar']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'aceptado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'rechazado']])->get();
-        $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'aprobado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'cancelado']])->get();
+        $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'Sin verificar']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Aceptado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Rechazado']])->get();
+        $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'Aprobado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Cancelado']])->get();
 
-        $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '!=', 'sinverificar'], ['state', '!=', 'aceptado'], ['state', '!=', 'rechazado'], ['state', '!=', 'aprobado'], ['state', '!=', 'cancelado']])->get();
+        $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '!=', 'Sin verificar'], ['state', '!=', 'Aceptado'], ['state', '!=', 'Rechazado'], ['state', '!=', 'Aprobado'], ['state', '!=', 'Cancelado']])->get();
         $this->procedure_message_finish = Proceduremessagefinish::where([['procedure_id', '=', $this->procedure]])->get();
 
         return view('livewire.app.procedures.show');
