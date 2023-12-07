@@ -2,7 +2,7 @@
   <form enctype="multipart/form-data" action="{{ route('app.procedures.store') }}" method="POST">
     @csrf
     <div class="mb-3">
-      <x-input-label>Categoría <x-wire-loading /></x-input-label>
+      <x-input-label>Categoría</x-input-label>
       <x-select wire:model="selectedCategory" name="category_id" id="category_id" required="true">
         <option value="">seleccione la categoría</option>
         @forelse ($categories as $category)
@@ -13,7 +13,7 @@
     </div>
     @if ($selectedCategory)
       <div class="mb-3">
-        <x-input-label>Tipo de trámite <x-wire-loading /></x-input-label>
+        <x-input-label>Tipo de trámite</x-input-label>
         <x-select wire:model="selectedTypeprocedure" name="typeprocedure_id" id="typeprocedure_id" required="true">
           <option value="">Seleccione tipo de trámite</option>
           @forelse ($typeprocedures as $typeprocedure)

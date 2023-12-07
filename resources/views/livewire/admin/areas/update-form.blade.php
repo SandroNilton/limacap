@@ -1,7 +1,7 @@
 <div>
   <form wire:submit.prevent="update">
     <div class="mb-3">
-      <x-input-label>Nombre <x-wire-loading /></x-input-label>
+      <x-input-label>Nombre</x-input-label>
       <x-text-input wire:model="name" type="text" name="name" placeholder="Nombre"/>
       <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>

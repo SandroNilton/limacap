@@ -4,7 +4,7 @@
       <div class="col-span-2">
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="mb-3">
-            <x-input-label>Nombre <x-wire-loading /></x-input-label>
+            <x-input-label>Nombre</x-input-label>
             <x-text-input wire:model="name" type="text" name="name" placeholder="Nombre"/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
           </div>

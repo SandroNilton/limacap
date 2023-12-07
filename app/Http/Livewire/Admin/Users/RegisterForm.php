@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class RegisterForm extends Component
@@ -47,7 +48,7 @@ class RegisterForm extends Component
 
         $user = User::create([
             'type' => "Usuario",
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'email' => $this->email,
             'email_verified_at' => Carbon::now()->timestamp,
             'password' => Hash::make($this->password),

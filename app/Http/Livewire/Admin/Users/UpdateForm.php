@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Area;
 use App\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
@@ -50,7 +51,7 @@ class UpdateForm extends Component
     {
         $this->validate();
         $this->user->update([
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'email' => $this->email,
             'area_id' => $this->area,
             'state' => $this->state
