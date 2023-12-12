@@ -12,8 +12,8 @@
     <div class="mb-3">
       <x-input-label>Estado</x-input-label>
       <x-select wire:model="state" name="state">
-        <option value="0">Inactivo</option>
-        <option value="1">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+        <option value="Activo">Activo</option>
       </x-select>
     </div>
     <div class="flex gap-3">
