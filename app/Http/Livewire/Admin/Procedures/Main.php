@@ -9,6 +9,7 @@ use App\Models\Procedurehistory;
 use Livewire\WithFileUploads;
 use App\Mail\ChangeAssigneProcedureMailable;
 use App\Mail\ChangeAreaProcedureMailable;
+use App\Mail\ChangeStateProcedureMailable;
 use App\Models\Proceduremessage;
 use App\Models\Fileprocedure;
 use App\Models\Proceduremessagefinish;
