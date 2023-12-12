@@ -39,7 +39,7 @@ class ChangeAreaProcedureMailable extends Mailable
     public function content(): Content
     {
       return new Content(
-        view: 'mails.assigneareaproc',
+        view: 'mails.assignareaproc',
     );
     }
 
