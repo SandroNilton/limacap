@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Typeprocedure;
+use App\Models\User;
 use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
