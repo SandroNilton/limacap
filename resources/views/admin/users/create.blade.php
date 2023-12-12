@@ -5,7 +5,7 @@
         <p class="text-md font-semibold text-[rgb(17,24,39)] text-opacity-100">Nuevo Usuario</p>
         <a href="{{ route('admin.users.index') }}">
           <x-secondary-button type="button" class="gap-2">
-            <ion-icon name="list-circle-outline" wire:ignore class="text-lg"></ion-icon>Lista
+            <ion-icon name="list-circle-outline" wire:ignore class="text-lg"></ion-icon>Bandeja de entrada
           </x-secondary-button>
         </a>
       </div>
