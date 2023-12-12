@@ -41,7 +41,7 @@ class ProcedureTable extends DataTableComponent
         $this->setPrimaryKey('id');
     }
 
-    public function assignMe($id)
+    public function assignme($id)
     {
         $procedure = Procedure::where([['id', '=', $id], [ 'admin_id', '=', NULL]])->first();
         if($procedure->count() > 0) {
