@@ -11,6 +11,7 @@ use App\Models\Fileprocedure;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Mail\CreateProcedureMailable;
+use App\Mail\NewAreaProcedureMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -66,6 +67,10 @@ class ProcedureController extends Controller
 
       $data = ["idprocedure" => $procedure->id, "typeprocedure" => $typeprocedure->name];
 
+      $users_area = User::where([['area_id', '=', $typeprocedure->area_id]])->get();
+      foreach ($users_area as $user) {
+        Mail::to($user->email)->send(new NewAreaProcedureMailable($data));
+      }
 
       Mail::to(auth()->user()->email)->send(new CreateProcedureMailable($data));
 
