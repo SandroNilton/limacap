@@ -350,7 +350,7 @@ img {
         Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} de tipo de trámite ({{ $data['typeprocedure'] }}) categoría ha sido registrada.
       </p>
       <p>
-        Puede visualizar la solicitud en el siguiente link: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">link del trámite</a>
+        Puede realizar el seguimiento de su trámite en el siguiente enlace: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">click aquí</a>
       </p>
     </td>
     </tr>

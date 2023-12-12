@@ -30,6 +30,8 @@ class ProcedureTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make("Expediente", "id")
+                ->sortable(),
             Column::make("Tipo de trámite", "typeprocedure.name")
                 ->sortable(),
             Column::make("Comentarios", "description")
