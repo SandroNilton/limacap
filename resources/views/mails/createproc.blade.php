@@ -346,7 +346,6 @@ img {
         Colegio de Arquitectos del Perú
       </p>
       <img src="https://limacap.org/wp-content/uploads/2021/12/logo-niubiz.jpg" height="300" width="300" style="margin: -15px">
-        <h1>Asunto: Nueva Solicitud Trámite documentario – expediente </h1>
       <p>
         Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} de tipo de trámite ({{ $data['typeprocedure'] }}) categoría ha sido registrada.
       </p>

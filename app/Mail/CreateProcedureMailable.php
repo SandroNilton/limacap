@@ -29,7 +29,7 @@ class CreateProcedureMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Registro de nuevo trámite',
+            subject: 'Registro de nuevo trámite - '.$data['idprocedure'],
         );
     }
 
