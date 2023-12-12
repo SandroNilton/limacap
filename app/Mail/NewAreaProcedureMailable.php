@@ -40,7 +40,7 @@ class NewAreaProcedureMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.newareaproc',
+            view: 'mails.newareaproc',
         );
     }
 
