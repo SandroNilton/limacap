@@ -21,10 +21,9 @@ class RegisterForm extends Component
     public $state = "Activo";
 
     protected $rules = [
-        'name' => 'required|unique:requirements',
+        'name' => 'required|unique:typeprocedures',
         'area' => 'required',
         'category' => 'required',
-        'requirements' => 'required',
     ];
 
     public function mount(): void
