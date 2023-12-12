@@ -9,6 +9,7 @@ use App\Models\Procedure;
 use App\Models\Procedurehistory;
 use App\Models\Fileprocedure;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Mail\CreateProcedureMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,7 @@ class ProcedureController extends Controller
         'area_id' => $typeprocedure->area_id,
         'typeprocedure_id' => $request->typeprocedure_id,
         'admin_id' => NULL,
-        'description' => $request->description,
+        'description' => Str::upper($request->description),
         'date' => Carbon::now(),
         'state' => 'Sin asignar'
       ]);

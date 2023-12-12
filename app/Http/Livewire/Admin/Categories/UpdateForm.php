@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Categories;
 
 use App\Models\Typeprocedure;
+use Illuminate\Support\Str;
 use App\Models\Category;
 use Livewire\Component;
 
@@ -35,7 +36,7 @@ class UpdateForm extends Component
         $this->validate();
 
         $this->category->update([
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'description' => $this->description,
             'state' => $this->state
         ]);

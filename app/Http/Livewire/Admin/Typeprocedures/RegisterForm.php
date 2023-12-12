@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Typeprocedures;
 use App\Models\Area;
 use App\Models\Category;
 use App\Models\Typeprocedure;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class RegisterForm extends Component
@@ -41,7 +42,7 @@ class RegisterForm extends Component
     {
         $this->validate();
         $type_procedure = Typeprocedure::create([
-          'name' => $this->name,
+          'name' => Str::upper($this->name),
           'area_id' => $this->area,
           'category_id' => $this->category,
           'description' => $this->description,

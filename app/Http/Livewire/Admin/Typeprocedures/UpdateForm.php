@@ -51,7 +51,7 @@ class UpdateForm extends Component
         $this->validate();
 
         $this->typeprocedure->update([
-          'name' => $this->name,
+          'name' => Str::upper($this->name),
           'area_id' => $this->area,
           'category_id' => $this->category,
           'price' => $this->price,

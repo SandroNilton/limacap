@@ -6,6 +6,7 @@ use App\Models\Typeprocedure;
 use App\Models\Procedure;
 use App\Models\User;
 use App\Models\Area;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class UpdateForm extends Component
@@ -36,7 +37,7 @@ class UpdateForm extends Component
     {
         $this->validate();
         $this->area->update([
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'description' => $this->description,
             'state' => $this->state
         ]);

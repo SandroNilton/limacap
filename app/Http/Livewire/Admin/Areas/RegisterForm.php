@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Areas;
 
 use App\Models\Area;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class RegisterForm extends Component
 {
@@ -24,7 +25,7 @@ class RegisterForm extends Component
     {
         $this->validate();
         Area::create([
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'description' => $this->description,
             'state' => $this->state
         ]);

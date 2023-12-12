@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Categories;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class RegisterForm extends Component
@@ -24,7 +25,7 @@ class RegisterForm extends Component
     {
         $this->validate();
         Category::create([
-            'name' => $this->name,
+            'name' => Str::upper($this->name),
             'description' => $this->description,
             'state' => $this->state
         ]);
