@@ -350,7 +350,7 @@ img {
         Le informamos que el expediente con número {{ $data['idprocedure'] }} ha sido registrado en su area para su atención.
       </p>
       <p>
-        Puede atender el siguiente trámite a traves de este enlace: <a href="{{ config('app.url') }}/admin/procedures/edit/{{ $data['idprocedure'] }}">click aquí</a>
+        Puede atender el siguiente trámite a traves de este enlace: <a href="{{ config('app.url') }}/admin/procedures">click aquí</a>
       </p>
     </td>
     </tr>
