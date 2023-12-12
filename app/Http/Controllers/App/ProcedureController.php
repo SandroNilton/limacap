@@ -48,15 +48,20 @@ class ProcedureController extends Controller
         'state' => 'Sin asignar'
       ]);
       $date = Carbon::now()->format('Y');
-      foreach ($request['files'] as $file) {
-        $file_url = Storage::put('procedures/'.$date.'/'.$procedure->id, $file['file']);
-        Fileprocedure::create([
-          'procedure_id' => $procedure->id,
-          'requirement_id' => $file['id'],
-          'name' => $file['file']->GetClientOriginalName(),
-          'file' => (string)$file_url,
-          'state' => 'Sin verificar'
-        ]);
+
+      if ($request['files'] == NULL) {
+        # code...
+      }else{
+        foreach ($request['files'] as $file) {
+          $file_url = Storage::put('procedures/'.$date.'/'.$procedure->id, $file['file']);
+          Fileprocedure::create([
+            'procedure_id' => $procedure->id,
+            'requirement_id' => $file['id'],
+            'name' => $file['file']->GetClientOriginalName(),
+            'file' => (string)$file_url,
+            'state' => 'Sin verificar'
+          ]);
+        }
       }
 
       $data = ["idprocedure" => $procedure->id, "typeprocedure" => $typeprocedure->name];
