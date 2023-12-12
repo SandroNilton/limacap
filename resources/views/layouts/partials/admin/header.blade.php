@@ -57,12 +57,14 @@
       <div class="flex items-center">
         <span class="flex flex-col md:flex-row items-center w-full overflow-y-auto whitespace-no-wrap scroll-hidden">
           @foreach ($links as $link)
-            <div class="md:rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer md:py-0 md:border-none border-b border-gray-100 w-full md:w-auto">
-              <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-3 md:py-1.5 w-full md:w-auto">
-                <ion-icon class="text-lg" name="{{  $link['icon']  }}"></ion-icon>
-                <span class="text-sm font-medium">{{ $link['title'] }}</span>
-              </a>
-            </div>
+            @can($link['can'])
+              <div class="md:rounded-md flex lg:inline hover:bg-[#f3f4f6] bg-opacity-100 text-[#4b5563] text-opacity-100 pointer md:py-0 md:border-none border-b border-gray-100 w-full md:w-auto">
+                <a href="{{ $link['url'] }}" class="flex items-center gap-2 px-3 py-3 md:py-1.5 w-full md:w-auto">
+                  <ion-icon class="text-lg" name="{{  $link['icon']  }}"></ion-icon>
+                  <span class="text-sm font-medium">{{ $link['title'] }}</span>
+                </a>
+              </div>
+            @endcan
           @endforeach
         </span>
       </div>
