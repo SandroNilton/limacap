@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\User;
 use App\Models\Procedure;
 use App\Models\Procedurehistory;
+use Livewire\WithFileUploads;
 use App\Mail\ChangeAssigneProcedureMailable;
 use App\Mail\ChangeAreaProcedureMailable;
 use App\Models\Proceduremessage;
@@ -17,6 +18,9 @@ use Livewire\Component;
 
 class Main extends Component
 {
+
+  use WithFileUploads;
+
     public $procedure;
     public $procedure_data;
 
