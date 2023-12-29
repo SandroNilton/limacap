@@ -3,11 +3,6 @@
     <div class="flex flex-col h-full gap-4">
       <div class="flex items-center justify-between">
         <p class="text-md font-semibold text-[rgb(17,24,39)] text-opacity-100">Mis trámites</p>
-        <a href="{{ route('app.procedures.create') }}">
-          <x-primary-button type="button" class="gap-2">
-            <ion-icon name="add-circle-outline" wire:ignore class="text-lg"></ion-icon>Nuevo
-          </x-primary-button>
-        </a>
       </div>
       <div class="grid grid-cols-1">
         <div>
