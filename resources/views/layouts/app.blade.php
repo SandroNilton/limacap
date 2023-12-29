@@ -27,7 +27,7 @@
             'url' => route('app.procedures.index'),
             'active' => request()->routeIs('app.procedures.index') or request()->routeIs('app.procedures.create') or request()->routeIs('app.procedures.edit'),
             'icon' => 'document-outline',
-          ]
+  ],
           [
             'title' => 'Nuevo trámite',
             'url' => route('app.procedures.create'),
