@@ -62,8 +62,6 @@ class ProcedureTable extends DataTableComponent
     public function columns(): array
     {
         return [
-          Column::make("Expediente", "type")
-                ->sortable(),
             Column::make("Expediente", "id")
                 ->sortable(),
             Column::make("Cliente", "user.name")
