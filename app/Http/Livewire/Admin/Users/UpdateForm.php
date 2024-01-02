@@ -62,8 +62,11 @@ class UpdateForm extends Component
 
     public function destroy($user)
     {
+        Procedures::where('admin', $user)->update(['admin' => NULL]);
+
         User::where('id', $user)->delete();
         $this->user->roles()->sync([]);
+
         return redirect()->route('admin.users.index')->notice('Se eliminó el usuario correctamente', 'alert');
     }
 
