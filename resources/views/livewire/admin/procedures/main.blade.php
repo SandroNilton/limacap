@@ -1,7 +1,7 @@
 <div>
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
 
-    <div>
+    <div class="space-y-6">
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
@@ -86,51 +86,53 @@
           </div>
         </div>
       @endif
-    </div>
-
-
-
-    <div>
-      <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-        <div class="flex justify-between mb-5">
-          <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Comentarios</h4>
-        </div>
-        <div>
-          @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
-          @else
-            <form wire:submit.prevent="addComment" class="flex w-full gap-x-2.5 mb-3">
-              <x-text-input type="text" wire:model="comment" name="comment" placeholder="Ingrese un mensaje"/>
-              <x-primary-button wire:ignore>
-                <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
-              </x-primary-button>
-            </form>
-            <x-input-error :messages="$errors->get('comment')" class="mt-2" />
-          @endif
-          <hr class="my-4">
-          <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px] scroll">
-            @forelse ($comments as $comment)
-              <div class="flex items-center mb-2 group gap-x-3">
-                <div class="flex items-end">
-                    <div class="flex flex-col items-start order-2 max-w-xs mx-2 space-y-2">
-                      <div>
-                        <span class="px-4 py-2 rounded-lg rounded-bl-none bg-gray-100 text-[rgb(17,24,39)] grid">
-                          <span class="text-xs">{{ $comment->user->name }} - {{ $comment->created_at->format('d/m/Y h:i a') }}</span>
-                          <span class="text-sm">{{ $comment->description }}</span>
-                        </span>
+      <div>
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          <div class="flex justify-between mb-5">
+            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Comentarios</h4>
+          </div>
+          <div>
+            @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+            @else
+              <form wire:submit.prevent="addComment" class="flex w-full gap-x-2.5 mb-3">
+                <x-text-input type="text" wire:model="comment" name="comment" placeholder="Ingrese un mensaje"/>
+                <x-primary-button wire:ignore>
+                  <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
+                </x-primary-button>
+              </form>
+              <x-input-error :messages="$errors->get('comment')" class="mt-2" />
+            @endif
+            <hr class="my-4">
+            <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px] scroll">
+              @forelse ($comments as $comment)
+                <div class="flex items-center mb-2 group gap-x-3">
+                  <div class="flex items-end">
+                      <div class="flex flex-col items-start order-2 max-w-xs mx-2 space-y-2">
+                        <div>
+                          <span class="px-4 py-2 rounded-lg rounded-bl-none bg-gray-100 text-[rgb(17,24,39)] grid">
+                            <span class="text-xs">{{ $comment->user->name }} - {{ $comment->created_at->format('d/m/Y h:i a') }}</span>
+                            <span class="text-sm">{{ $comment->description }}</span>
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <img src="https://c1.klipartz.com/pngpicture/823/765/sticker-png-login-icon-system-administrator-user-user-profile-icon-design-avatar-face-head.png" alt="My profile" class="order-1 rounded-full w-7 h-7">
+                      <img src="https://c1.klipartz.com/pngpicture/823/765/sticker-png-login-icon-system-administrator-user-user-profile-icon-design-avatar-face-head.png" alt="My profile" class="order-1 rounded-full w-7 h-7">
+                  </div>
                 </div>
-              </div>
-            @empty
-              <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-                No hay comentarios
-              </div>
-            @endforelse
+              @empty
+                <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+                  No hay comentarios
+                </div>
+              @endforelse
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
+
+    
+
     <div>
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
