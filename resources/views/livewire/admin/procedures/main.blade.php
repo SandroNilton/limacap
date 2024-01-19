@@ -3,7 +3,7 @@
     <div>
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
-          <h4 class=" text-base text-opacity-100 text-[rgb(17,24,39)] font-semibold">Detalles</h4>
+          <h4 class=" text-md text-opacity-100 text-[rgb(17,24,39)] font-bold">DETALLE DEL TRAMITE</h4>
         </div>
         <span class="flex items-center gap-3 mb-3 text-emerald-500">
           <ion-icon name="hourglass-outline" class="text-lg" wire:ignore></ion-icon>
@@ -44,7 +44,7 @@
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Control</h4>
+            <h4 class="text-opacity-100 text-md text-[rgb(17,24,39)] font-bold">ASIGNACION TRÁMITE</h4>
           </div>
           <div>
             <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a área</h4>
@@ -219,7 +219,6 @@
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
             <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
-              <x-wire-loading class="w-8 h-8"/>
               <ion-icon name="refresh-outline" wire:ignore></ion-icon>
             </a>
           </div>
@@ -273,7 +272,6 @@
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Estado</h4>
             <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
-              <x-wire-loading class="w-8 h-8"/>
               <ion-icon name="refresh-outline" wire:ignore></ion-icon>
             </a>
           </div>

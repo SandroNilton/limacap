@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
+use App\Models\Procedure;
 use App\Models\Area;
 use App\Models\Role;
 use Carbon\Carbon;
@@ -31,6 +32,10 @@ class UpdateForm extends Component
 
     public function mount(User $user): void
     {
+
+        Procedure::where('id','=','')
+
+
         $this->name = $user->name;
         $this->email = $user->email;
         $this->area = $user->area_id;
@@ -62,7 +67,7 @@ class UpdateForm extends Component
 
     public function destroy($user)
     {
-        Procedures::where('admin', $user)->update(['admin' => NULL]);
+        Procedures::where('admin_id', $user)->update(['admin_id' => NULL]);
 
         User::where('id', $user)->delete();
         $this->user->roles()->sync([]);
