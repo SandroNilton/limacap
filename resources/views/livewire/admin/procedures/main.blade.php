@@ -1,89 +1,95 @@
 <div>
   <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+
     <div>
-      <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-        <div class="flex justify-between mb-5">
-          <h4 class=" text-md text-opacity-100 text-[rgb(17,24,39)] font-bold">DETALLE DEL TRAMITE</h4>
-        </div>
-        <span class="flex items-center gap-3 mb-3 text-emerald-500">
-          <ion-icon name="hourglass-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">{{ $this->procedure_data->state }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="people-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Clase: {{ $this->procedure_data->user->type }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="person-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Nombre: {{ $this->procedure_data->user->name }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="folder-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Categoría: {{ $this->procedure_data->typeprocedure->category->name }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="file-tray-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Área: {{ $this->procedure_data->area->name }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="briefcase-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Tipo: {{ $this->procedure_data->typeprocedure->name }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="chatbox-ellipses-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Descripción: {{ $this->procedure_data->description }}</span>
-        </span>
-        <span class="flex items-center gap-3 mb-3">
-          <ion-icon name="calendar-clear-outline" class="text-lg" wire:ignore></ion-icon>
-          <span class="text-sm font-medium">Creado: {{ $this->procedure_data->created_at->format('d/m/Y h:i a') }}</span>
-        </span>
-      </div>
-    </div>
-    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
-    @else
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-md text-[rgb(17,24,39)] font-bold">ASIGNACION TRÁMITE</h4>
+            <h4 class=" text-md text-opacity-100 text-[rgb(17,24,39)] font-bold">DETALLE DEL TRAMITE</h4>
           </div>
-          <div>
-            <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a área</h4>
-            @can('admin.procedures.assign_area')
-              <form wire:submit.prevent="assignArea" class="flex w-full gap-x-2.5 mb-3">
-                <x-select wire:model="area">
-                  <option value="">Seleccione el area</option>
-                  @foreach ($areas as $area)
-                    <option value="{{ $area->id }}">{{ $area->name }}</option>
-                  @endforeach
-                </x-select>
-                <x-primary-button wire:ignore>
-                  <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
-                </x-primary-button>
-              </form>
-              <x-input-error :messages="$errors->get('area')" class="mt-2" />
-            @endcan
-          </div>
-          <hr class="my-4">
-          <div>
-            <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a usuario</h4>
-            @can('admin.procedures.assign_user')
-              <form wire:submit.prevent="assignUser" class="flex w-full gap-x-2.5 mb-3">
-                <x-select wire:model="user">
-                  <option value="">Seleccione el usuario</option>
-                  @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                  @endforeach
-                </x-select>
-                <x-primary-button wire:ignore>
-                  <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
-                </x-primary-button>
-              </form>
-              <x-input-error :messages="$errors->get('user')" class="mt-2" />
-            @endcan
-          </div>
+          <span class="flex items-center gap-3 mb-3 text-emerald-500">
+            <ion-icon name="hourglass-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">{{ $this->procedure_data->state }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="people-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Clase: {{ $this->procedure_data->user->type }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="person-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Nombre: {{ $this->procedure_data->user->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="folder-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Categoría: {{ $this->procedure_data->typeprocedure->category->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="file-tray-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Área: {{ $this->procedure_data->area->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="briefcase-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Tipo: {{ $this->procedure_data->typeprocedure->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="chatbox-ellipses-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Descripción: {{ $this->procedure_data->description }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="calendar-clear-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Creado: {{ $this->procedure_data->created_at->format('d/m/Y h:i a') }}</span>
+          </span>
         </div>
       </div>
-    @endif
+      @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+      @else
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <div class="flex justify-between mb-5">
+              <h4 class="text-opacity-100 text-md text-[rgb(17,24,39)] font-bold">ASIGNACION TRÁMITE</h4>
+            </div>
+            <div>
+              <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a área</h4>
+              @can('admin.procedures.assign_area')
+                <form wire:submit.prevent="assignArea" class="flex w-full gap-x-2.5 mb-3">
+                  <x-select wire:model="area">
+                    <option value="">Seleccione el area</option>
+                    @foreach ($areas as $area)
+                      <option value="{{ $area->id }}">{{ $area->name }}</option>
+                    @endforeach
+                  </x-select>
+                  <x-primary-button wire:ignore>
+                    <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
+                  </x-primary-button>
+                </form>
+                <x-input-error :messages="$errors->get('area')" class="mt-2" />
+              @endcan
+            </div>
+            <hr class="my-4">
+            <div>
+              <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a usuario</h4>
+              @can('admin.procedures.assign_user')
+                <form wire:submit.prevent="assignUser" class="flex w-full gap-x-2.5 mb-3">
+                  <x-select wire:model="user">
+                    <option value="">Seleccione el usuario</option>
+                    @foreach ($users as $user)
+                      <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                  </x-select>
+                  <x-primary-button wire:ignore>
+                    <ion-icon name="checkmark-circle-outline" class="text-lg"></ion-icon>
+                  </x-primary-button>
+                </form>
+                <x-input-error :messages="$errors->get('user')" class="mt-2" />
+              @endcan
+            </div>
+          </div>
+        </div>
+      @endif
+    </div>
+
+
+
     <div>
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
