@@ -171,6 +171,48 @@
             @endforelse
           </div>
         </div>
+      </div>
+      <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">RESPUESTA AL SOLICITANTE</h4>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          <div class="flex justify-between mb-5">
+            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
+          </div>
+          <div>
+            @forelse ($files_uploaded as $file)
+              <div class="items-center p-3 border border-gray-200 rounded-md">
+                <div class="text-sm w-52 truncate text-[rgb(17,24,39)] mb-1.5" title="{{ $file->name }}">{{ $file->name }}</div>
+                <div class="grid grid-cols-6 gap-3">
+                  <div class="col-span-1">
+                    <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
+                      <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
+                    </x-secondary-button>
+                  </div>
+                  @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+                  @else
+                    <div class="col-span-5">
+                      <form wire:submit.prevent="changeState(Object.fromEntries(new FormData($event.target)))" class="flex gap-3">
+                        <input type="hidden" name="file_id" value="{{ $file->id }}">
+                        <x-select id="{{ $file->id }}" name="state">
+                          <option value="Sin verificar" @if($file->state == "Sin verificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
+                          <option value="Aceptado" @if($file->state == "Aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
+                          <option value="Rechazado" @if($file->state == "Rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
+                        </x-select>
+                        <x-primary-button>
+                          <ion-icon wire:ignore name="refresh-outline" class="text-lg"></ion-icon>
+                        </x-primary-button>
+                      </form>
+                    </div>
+                  @endif
+                </div>
+              </div>
+            @empty
+              <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+                No hay archivos
+              </div>
+            @endforelse
+          </div>
+        </div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
