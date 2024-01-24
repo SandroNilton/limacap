@@ -1,6 +1,5 @@
 <div>
   <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
-
     <div class="space-y-6">
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
@@ -128,7 +127,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-span-2 space-y-6">
       <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">APROBACION DOCUMENTARIA</h4>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
@@ -231,88 +229,84 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    
-    <div>
-      
-    </div>
-    <div>
-      <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-        <div class="flex justify-between mb-5">
-          <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Comentarios de cambios de estado</h4>
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <div class="flex justify-between mb-5">
+              <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Comentarios de cambios de estado</h4>
+            </div>
+            <div class="overflow-y-scroll scrollbar max-h-80 scroll">
+              @forelse ($comments_finish as $comment)
+                <div class="relative flex pb-2 overflow-hidden gap-x-4">
+                  <div wire:ignore class="mt-0.5 relative h-full">
+                    <ion-icon name="chatbox-ellipses-outline" class="text-lg p-1 rounded-full bg-[#10B981] text-white"></ion-icon>
+                  </div>
+                  <p class="px-1 py-1 text-sm">
+                    <span class="text-[#10B981] font-medium">{{ $comment->created_at->format('d/m/Y h:i a') }}: </span><span class="text-[rgb(17,24,39)] text-opacity-100">{{ $comment->description }}</span>
+                  </p>
+                </div>
+              @empty
+                <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+                  No hay registros
+                </div>
+              @endforelse
+            </div>
+          </div>
         </div>
-        <div class="overflow-y-scroll scrollbar max-h-80 scroll">
-          @forelse ($comments_finish as $comment)
-            <div class="relative flex pb-2 overflow-hidden gap-x-4">
-              <div wire:ignore class="mt-0.5 relative h-full">
-                <ion-icon name="chatbox-ellipses-outline" class="text-lg p-1 rounded-full bg-[#10B981] text-white"></ion-icon>
+        @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+          <div>
+            <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+              <div class="flex justify-between mb-5">
+                <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
+                <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
+                  <ion-icon name="refresh-outline" wire:ignore></ion-icon>
+                </a>
               </div>
-              <p class="px-1 py-1 text-sm">
-                <span class="text-[#10B981] font-medium">{{ $comment->created_at->format('d/m/Y h:i a') }}: </span><span class="text-[rgb(17,24,39)] text-opacity-100">{{ $comment->description }}</span>
-              </p>
+              <div>
+                @forelse ($files_finish as $file)
+                  <div class="items-center p-3 mb-3 border border-gray-200 rounded-md">
+                    <div class="flex items-center justify-between gap-3">
+                      <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
+                        <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
+                      </x-secondary-button>
+                      <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
+                      <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
+                    </div>
+                  </div>
+                @empty
+                  <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+                    No hay archivos
+                  </div>
+                @endforelse
+              </div>
             </div>
-          @empty
-            <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-              No hay registros
-            </div>
-          @endforelse
-        </div>
+          </div>
+        @endif
       </div>
     </div>
-    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+    <div class="space-y-6">
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
-            <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
-              <ion-icon name="refresh-outline" wire:ignore></ion-icon>
-            </a>
+            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Historial</h4>
           </div>
-          <div>
-            @forelse ($files_finish as $file)
-              <div class="items-center p-3 mb-3 border border-gray-200 rounded-md">
-                <div class="flex items-center justify-between gap-3">
-                  <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
-                    <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
-                  </x-secondary-button>
-                  <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
-                  <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
+          <div class="overflow-y-scroll scrollbar max-h-80 scroll">
+            @forelse ($records as $record)
+              <div class="relative flex pb-2 overflow-hidden gap-x-4">
+                <div wire:ignore class="mt-0.5 relative h-full">
+                  <ion-icon name="time-outline" class="text-lg p-1 rounded-full bg-[#10B981] text-white"></ion-icon>
                 </div>
+                <p class="px-1 py-1 text-sm">
+                  <span class="text-[#10B981] font-medium">{{ $record->created_at->format('d/m/Y h:i a') }}: </span><span class="text-[rgb(17,24,39)] text-opacity-100">{{ $record->action }}</span>
+                </p>
               </div>
             @empty
               <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-                No hay archivos
+                No hay registros
               </div>
             @endforelse
           </div>
         </div>
       </div>
-    @endif
-    <div>
-      <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-        <div class="flex justify-between mb-5">
-          <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Historial</h4>
-        </div>
-        <div class="overflow-y-scroll scrollbar max-h-80 scroll">
-          @forelse ($records as $record)
-            <div class="relative flex pb-2 overflow-hidden gap-x-4">
-              <div wire:ignore class="mt-0.5 relative h-full">
-                <ion-icon name="time-outline" class="text-lg p-1 rounded-full bg-[#10B981] text-white"></ion-icon>
-              </div>
-              <p class="px-1 py-1 text-sm">
-                <span class="text-[#10B981] font-medium">{{ $record->created_at->format('d/m/Y h:i a') }}: </span><span class="text-[rgb(17,24,39)] text-opacity-100">{{ $record->action }}</span>
-              </p>
-            </div>
-          @empty
-            <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-              No hay registros
-            </div>
-          @endforelse
-        </div>
-      </div>
     </div>
-    
   </div>
 </div>
