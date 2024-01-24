@@ -207,26 +207,28 @@
             </form>
           </div>
         @endif
-        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
-          </div>
-          <div>
-            @forelse ($files_answers as $file)
-              <div class="items-center p-3 mb-3 border border-gray-200 rounded-md">
-                <div class="flex items-center justify-between gap-3">
-                  <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
-                    <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
-                  </x-secondary-button>
-                  <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
-                  <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
+        <div>
+          <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <div class="flex justify-between mb-5">
+              <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
+            </div>
+            <div>
+              @forelse ($files_answers as $file)
+                <div class="items-center p-3 mb-3 border border-gray-200 rounded-md">
+                  <div class="flex items-center justify-between gap-3">
+                    <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
+                      <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
+                    </x-secondary-button>
+                    <div class="text-sm w-52 truncate text-[rgb(17,24,39)]" title="{{ $file->name }}">{{ $file->name }}</div>
+                    <div class="text-sm text-[rgb(17,24,39)]" title="{{ $file->state }}">{{ $file->state }}</div>
+                  </div>
                 </div>
-              </div>
-            @empty
-              <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-                No hay archivos
-              </div>
-            @endforelse
+              @empty
+                <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
+                  No hay archivos
+                </div>
+              @endforelse
+            </div>
           </div>
         </div>
       </div>
