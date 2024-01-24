@@ -130,7 +130,7 @@
     </div>
 
     <div class="col-span-2 space-y-6">
-      <p class="w-full font-bold text-center uppercase">APROBACION DOCUMENTARIA</p>
+      <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">APROBACION DOCUMENTARIA</h4>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
