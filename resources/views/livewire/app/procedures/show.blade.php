@@ -1,6 +1,40 @@
 <div>
   <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
-    
+    <div class="space-y-6">
+      <div>
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          <div class="flex justify-between mb-5">
+            <h4 class=" text-md text-opacity-100 text-[rgb(17,24,39)] font-bold">DETALLE DEL TRAMITE</h4>
+          </div>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="people-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Clase: @switch($procedure_data[0]->user->type) @case(1) Natural @break @case(2) Juridica  @break @case(3) Agremiado @break @case(10)  Administrativo @break @endswitch</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="person-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Nombre: {{ $procedure_data[0]->user->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="file-tray-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Área: {{ $procedure_data[0]->area->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="briefcase-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Tipo: {{ $procedure_data[0]->typeprocedure->name }}</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="chatbox-ellipses-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Descripción: @if (!empty($procedure_data[0]->description)) {{ $procedure_data[0]->description }} @else --  @endif</span>
+          </span>
+          <span class="flex items-center gap-3 mb-3">
+            <ion-icon name="calendar-clear-outline" class="text-lg" wire:ignore></ion-icon>
+            <span class="text-sm font-medium">Creado: {{ $procedure_data[0]->created_at->format('d/m/Y h:i') }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div>
