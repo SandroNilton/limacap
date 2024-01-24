@@ -174,45 +174,41 @@
       </div>
       <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">RESPUESTA AL SOLICITANTE</h4>
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
-        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
-          </div>
+        @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+        @else
           <div>
-            @forelse ($files_uploaded as $file)
-              <div class="items-center p-3 border border-gray-200 rounded-md">
-                <div class="text-sm w-52 truncate text-[rgb(17,24,39)] mb-1.5" title="{{ $file->name }}">{{ $file->name }}</div>
-                <div class="grid grid-cols-6 gap-3">
-                  <div class="col-span-1">
-                    <x-secondary-button wire:click="downloadFile('{{ $file->id }}', '{{ $file->name }}', '{{ $file->file }}')">
-                      <ion-icon  wire:ignore name="download-outline" class="text-lg"></ion-icon>
-                    </x-secondary-button>
-                  </div>
-                  @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
+            <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+              <div class="flex justify-between mb-5">
+                <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Estado</h4>
+                <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
+                  <ion-icon name="refresh-outline" wire:ignore></ion-icon>
+                </a>
+              </div>
+              <form wire:submit.prevent="assignState" enctype="multipart/form-data">
+                <x-select wire:model="state" class="mb-3">
+                  <option value="">Seleccione el area</option>
+                  <option value="Observado" @if( $this->procedure_data->state == "Observado") @selected(true) @else @selected(false) @endif>Observado</option>
+                  <option value="Revisado" @if( $this->procedure_data->state == "Revisado") @selected(true) @else @selected(false) @endif>Revisado</option>
+                  @if ($files_out->count() > 0)
                   @else
-                    <div class="col-span-5">
-                      <form wire:submit.prevent="changeState(Object.fromEntries(new FormData($event.target)))" class="flex gap-3">
-                        <input type="hidden" name="file_id" value="{{ $file->id }}">
-                        <x-select id="{{ $file->id }}" name="state">
-                          <option value="Sin verificar" @if($file->state == "Sin verificar") @selected(true) @else @selected(false) @endif>Sin verificar</option>
-                          <option value="Aceptado" @if($file->state == "Aceptado") @selected(true) @else @selected(false) @endif>Aceptado</option>
-                          <option value="Rechazado" @if($file->state == "Rechazado") @selected(true) @else @selected(false) @endif>Rechazado</option>
-                        </x-select>
-                        <x-primary-button>
-                          <ion-icon wire:ignore name="refresh-outline" class="text-lg"></ion-icon>
-                        </x-primary-button>
-                      </form>
-                    </div>
+                    <option value="Aprobado" @if( $this->procedure_data->state == "Aprobado") @selected(true) @else @selected(false) @endif>Aprobado</option>
                   @endif
+                  <option value="Cancelado" @if( $this->procedure_data->state == "Cancelado") @selected(true) @else @selected(false) @endif>Cancelado</option>
+                </x-select>
+                <x-text-area wire:model="description" name="description" placeholder="descripción" class="mb-3"></x-text-area>
+                <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] flex flex-row rounded-md mb-3">
+                  <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
+                    <span class="text-sm text-[rgb(17,24,39)]">Archivos</span>
+                  </div>
+                  <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
                 </div>
+                <x-primary-button class="text-sm">
+                  Guardar
+                </x-primary-button>
               </div>
-            @empty
-              <div class="w-full border border-dashed border-gray-300 rounded-[3px] flex py-1.5 justify-center text-sm">
-                No hay archivos
-              </div>
-            @endforelse
+            </div>
           </div>
-        </div>
+        @endif
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
@@ -319,40 +315,6 @@
         </div>
       </div>
     </div>
-    @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
-    @else
-      <div>
-        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          <div class="flex justify-between mb-5">
-            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Estado</h4>
-            <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
-              <ion-icon name="refresh-outline" wire:ignore></ion-icon>
-            </a>
-          </div>
-          <form wire:submit.prevent="assignState" enctype="multipart/form-data">
-            <x-select wire:model="state" class="mb-3">
-              <option value="">Seleccione el area</option>
-              <option value="Observado" @if( $this->procedure_data->state == "Observado") @selected(true) @else @selected(false) @endif>Observado</option>
-              <option value="Revisado" @if( $this->procedure_data->state == "Revisado") @selected(true) @else @selected(false) @endif>Revisado</option>
-              @if ($files_out->count() > 0)
-              @else
-                <option value="Aprobado" @if( $this->procedure_data->state == "Aprobado") @selected(true) @else @selected(false) @endif>Aprobado</option>
-              @endif
-              <option value="Cancelado" @if( $this->procedure_data->state == "Cancelado") @selected(true) @else @selected(false) @endif>Cancelado</option>
-            </x-select>
-            <x-text-area wire:model="description" name="description" placeholder="descripción" class="mb-3"></x-text-area>
-            <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] flex flex-row rounded-md mb-3">
-              <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
-                <span class="text-sm text-[rgb(17,24,39)]">Archivos</span>
-              </div>
-              <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
-            </div>
-            <x-primary-button class="text-sm">
-              Guardar
-            </x-primary-button>
-          </div>
-        </div>
-      </div>
-    @endif
+    
   </div>
 </div>
