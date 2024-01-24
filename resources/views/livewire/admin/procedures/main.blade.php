@@ -131,6 +131,7 @@
 
     <div class="col-span-2 space-y-6">
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <p class="w-full font-bold text-center uppercase">APROBACION DOCUMENTARIA</p>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
