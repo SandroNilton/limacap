@@ -200,7 +200,7 @@
                 <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
               </div>
               <x-primary-button class="text-sm">
-                Guardar
+                Finalizar
               </x-primary-button>
             </form>
           </div>
