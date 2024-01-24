@@ -129,11 +129,8 @@
       </div>
     </div>
 
-
-
-    
-
-    <div>
+    <div class="space-y-6 lg:col-span-2">
+      
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
@@ -173,8 +170,7 @@
           @endforelse
         </div>
       </div>
-    </div>
-    <div>
+
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
@@ -197,6 +193,15 @@
           @endforelse
         </div>
       </div>
+    
+
+    <div>
+
+      
+      
+    </div>
+    <div>
+      
     </div>
     <div>
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
