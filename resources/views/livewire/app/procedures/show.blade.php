@@ -1,4 +1,9 @@
 <div>
+  <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
+    
+
+
+<div>
  <div class="flex justify-between items-center py-2.5 px-2.5 border-b border-[#cdd5de] bg-white">
     <span class="text-[#414d6a] text-xs">Mi trámite</span>
   </div>
