@@ -129,7 +129,7 @@
       </div>
     </div>
 
-    <div class="space-y-6">
+    <div class="flex col-span-2 gap-6 space-y-6">
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
