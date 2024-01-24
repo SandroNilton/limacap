@@ -1,5 +1,5 @@
 <div>
-  <div class="grid grid-cols-1 gap-6 divide-x-4 divide-slate-400/25 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
 
     <div class="space-y-6">
       <div>
