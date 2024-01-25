@@ -200,9 +200,11 @@
                 </div>
                 <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
               </div>
-              <x-primary-button class="text-sm w-full text-center self-center items-center">
-                Finalizar
-              </x-primary-button>
+              <div class="w-full text-center items-center self-center flex">
+                <x-primary-button class="text-sm">
+                  Finalizar
+                </x-primary-button>
+              </div>
             </form>
           </div>
         @endif
