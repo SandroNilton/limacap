@@ -193,11 +193,11 @@
                 <option value="Cancelado" @if( $this->procedure_data->state == "Cancelado") @selected(true) @else @selected(false) @endif>Cancelado</option>
               </x-select>
               <x-text-area wire:model="description" name="description" placeholder="descripción" class="mb-3"></x-text-area>
+              <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Adjuntar documento Memorandum, Carta de respuesta, etc.</h4>
               <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] flex flex-row rounded-md mb-3">
                 <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
                   <span class="text-sm text-[rgb(17,24,39)]">Archivos</span>
                 </div>
-                <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Adjuntar documento Memorandum, Carta de respuesta, etc.</h4>
                 <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
               </div>
               <x-primary-button class="text-sm">
