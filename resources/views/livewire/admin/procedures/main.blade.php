@@ -201,7 +201,7 @@
                 <input type="file" multiple wire:model="files" id="file_finish" class="cursor-pointer w-full flex text-sm text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
               </div>
               <div class="w-full text-center items-center self-center flex">
-                <button type="submit" class="inline-flex items-center px-3 py-1.5 bg-[#10B981] rounded-md font-medium uppercase text-xs text-white tracking-widest focus:outline-none focus:ring-0 transition ease-in-out duration-150">
+                <button type="submit" class="items-center px-3 py-1.5 bg-[#10B981] rounded-md font-medium uppercase text-xs text-white tracking-widest focus:outline-none focus:ring-0 transition ease-in-out duration-150">
                   Finalizar
                 </button>
               </div>
