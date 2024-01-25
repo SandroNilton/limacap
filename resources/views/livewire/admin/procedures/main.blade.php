@@ -186,7 +186,6 @@
               <x-select wire:model="state" class="mb-3">
                 <option value="">Seleccione el area</option>
                 <option value="Observado" @if( $this->procedure_data->state == "Observado") @selected(true) @else @selected(false) @endif>Observado</option>
-                <option value="Revisado" @if( $this->procedure_data->state == "Revisado") @selected(true) @else @selected(false) @endif>Revisado</option>
                 @if ($files_out->count() > 0)
                 @else
                   <option value="Aprobado" @if( $this->procedure_data->state == "Aprobado") @selected(true) @else @selected(false) @endif>Aprobado</option>
