@@ -45,7 +45,7 @@
         <div>
           <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
             <div class="flex justify-between mb-5">
-              <h4 class="text-opacity-100 text-md text-[rgb(17,24,39)] font-bold">ASIGNACION TRÁMITE</h4>
+              <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase mb-3">ASIGNACION TRÁMITE</h4>
             </div>
             <div>
               <h4 class="mb-2 text-opacity-100 text-[rgb(17,24,39)] text-sm">Asignar a área</h4>
