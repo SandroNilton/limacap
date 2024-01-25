@@ -95,7 +95,7 @@
         <div class="flex justify-between mb-5">
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Respuestas de trámite</h4>
         </div>
-        <div class="w-full p-[12px]">
+        <div class="w-full">
           <li class="flex overflow-hidden gap-x-3">
             <p class="text-[13px] leading-4 text-[#414d6a]">
               <div class="overflow-y-scroll scrollbar h-auto max-h-72 rounded-[3px]">
