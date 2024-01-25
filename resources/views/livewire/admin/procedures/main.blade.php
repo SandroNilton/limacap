@@ -175,8 +175,8 @@
         @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
         @else
           <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+            <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase mb-3">RESPUESTA AL SOLICITANTE</h4>
             <div class="flex justify-between mb-5">
-              <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase mb-3">RESPUESTA AL SOLICITANTE</h4>
               <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Estado</h4>
               <a wire:click="$refresh" class="flex items-center gap-2 cursor-pointer transition hover:text-[#10B981] ease-in-out duration-300 text-lg text-[rgb(17,24,39)] font-medium">
                 <ion-icon name="refresh-outline" wire:ignore></ion-icon>
