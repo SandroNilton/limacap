@@ -4,7 +4,7 @@
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
-            <h4 class=" text-md text-opacity-100 text-[rgb(17,24,39)] font-bold">DETALLE DEL TRAMITE</h4>
+            <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase mb-3">DETALLE DEL TRAMITE</h4>
           </div>
           <span class="flex items-center gap-3 mb-3 text-emerald-500">
             <ion-icon name="hourglass-outline" class="text-lg" wire:ignore></ion-icon>
@@ -130,7 +130,7 @@
     <div class="col-span-2 space-y-6">
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-          <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">APROBACION DOCUMENTARIA</h4>
+          <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase mb-3">APROBACION DOCUMENTARIA</h4>
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
           </div>
