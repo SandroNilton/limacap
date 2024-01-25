@@ -90,7 +90,6 @@
       </div>
     </div>
     <div class="space-y-6">
-      <h4 class="w-full text-opacity-100 text-[rgb(17,24,39)] font-extrabold text-center uppercase">RESPUESTA AL SOLICITANTE</h4>
       <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
         <div class="flex justify-between mb-5">
           <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Respuestas de trámite</h4>
@@ -117,53 +116,38 @@
           </li>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-
-<div>
- <div class="flex justify-between items-center py-2.5 px-2.5 border-b border-[#cdd5de] bg-white">
-    <span class="text-[#414d6a] text-xs">Mi trámite</span>
-  </div>
-  <div class="p-[14px] bg-[#f1f3f6] sm:flex gap-3">
-
-    <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
- 
-          <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
-            <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
-              <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de cambios de estado:</span>
-            </div>
-            <div class="w-full p-[12px]">
-              <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
-                @forelse ($procedure_files_responses as $procedure_file_response)
-                  <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
-                    <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
-                      <button wire:click="downloadFile('{{ $procedure_file_response->id }}', '{{ $procedure_file_response->name }}', '{{ $procedure_file_response->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
-                        <ion-icon  wire:ignore name="download-outline"></ion-icon>
-                      </button>
-                      <div class="flex-1">
-                        <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file_response->name }}">{{ $procedure_file_response->name }}</div>
-                        <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file_response->state }}">{{ $procedure_file_response->state }}</div>
-                      </div>
-                    </div>
+      <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+        <div class="flex justify-between mb-5">
+          <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de cambios de estado</h4>
+        </div>
+        <div class="w-full">
+          <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
+            @forelse ($procedure_files_responses as $procedure_file_response)
+              <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
+                <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
+                  <button wire:click="downloadFile('{{ $procedure_file_response->id }}', '{{ $procedure_file_response->name }}', '{{ $procedure_file_response->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
+                    <ion-icon  wire:ignore name="download-outline"></ion-icon>
+                  </button>
+                  <div class="flex-1">
+                    <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file_response->name }}">{{ $procedure_file_response->name }}</div>
+                    <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file_response->state }}">{{ $procedure_file_response->state }}</div>
                   </div>
-                @empty
-                  <div class="w-full border border-dashed border-[#cdd5de] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-[#cdd5de]">
-                    No hay archivos
-                  </div>
-                @endforelse
+                </div>
               </div>
-            </div>
+            @empty
+              <div class="w-full border border-dashed border-[#cdd5de] rounded-[3px] flex py-1.5 justify-center text-[13px] leading-4 text-[#cdd5de]">
+                No hay archivos
+              </div>
+            @endforelse
           </div>
-    </div>
-    @if ($procedure_data[0]->state == "aprobado" || $procedure_data[0]->state == 'cancelado')
-      <div class="w-full mb-4 md:w-1/2 lg:w-1/4">
-        <div class="border border-[#cdd5de] bg-white mb-4 rounded-[3px]">
-          <div class="w-full flex justify-between items-center py-2 px-2.5 border-b border-[#cdd5de]">
-              <span class="text-[13px] leading-4 text-[#414d6a]">Archivos de  finalización:</span>
+        </div>
+      </div>
+      @if ($procedure_data[0]->state == "aprobado" || $procedure_data[0]->state == 'cancelado')
+        <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          <div class="flex justify-between mb-5">
+            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
           </div>
-          <div class="w-full p-[12px]">
+          <div class="w-full">
             <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
               @forelse ($procedure_files_finish as $procedure_file_finish)
                 <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
@@ -184,9 +168,7 @@
             </div>
           </div>
         </div>
-      </div>
-    @endif
+      @endif
+    </div>
   </div>
-<div>
-
-
+</div>
