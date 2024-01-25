@@ -30,6 +30,9 @@
       </div>
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
+          <div class="flex justify-between mb-5">
+            <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos subidos</h4>
+          </div>
           <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
             @forelse ($procedure_files as $procedure_file)
               @if($procedure_file->state == "rechazado")
