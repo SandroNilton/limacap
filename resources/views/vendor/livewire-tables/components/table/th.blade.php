@@ -12,7 +12,7 @@
 @if ($theme === 'tailwind')
     <th scope="col" {{
         $attributes->merge($customAttributes)
-            ->class(['px-6 py-2 text-left text-[rgb(17,24,39)] text-opacity-100 text-sm tracking-wider font-normal' => $customAttributes['default'] ?? true])
+            ->class(['px-6 py-2 text-left text-white bg-[#4373C6] text-[rgb(17,24,39)] text-opacity-100 text-sm tracking-wider font-normal' => $customAttributes['default'] ?? true])
             ->class(['hidden sm:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
