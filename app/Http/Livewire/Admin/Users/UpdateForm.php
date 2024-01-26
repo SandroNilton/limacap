@@ -32,10 +32,6 @@ class UpdateForm extends Component
 
     public function mount(User $user): void
     {
-
-        Procedure::where('id','=','')
-
-
         $this->name = $user->name;
         $this->email = $user->email;
         $this->area = $user->area_id;
