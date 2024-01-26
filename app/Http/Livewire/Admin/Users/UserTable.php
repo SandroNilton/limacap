@@ -75,8 +75,6 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-          Column::make("Expediente", "type")
-                ->sortable(),
             Column::make("Nombre", "name")
                 ->searchable(),
             Column::make("Correo", "email")
