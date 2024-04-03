@@ -35,7 +35,7 @@
           </div>
           <div class="flex flex-col grid-cols-1 text-sm columns-1 gap-x-3">
             @forelse ($procedure_files as $procedure_file)
-              @if($procedure_file->state == "rechazado")
+              @if($procedure_file->state == "Rechazado")
                 <div class="min-w-full border border-dashed border-[#cdd5de] rounded-[3px]">
                   <div class="flex items-center flex-1 p-2 rounded-sm gap-x-3">
                     <button wire:click="downloadFile('{{ $procedure_file->id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" class="flex justify-center items-center rounded-[3px] w-8 h-[51px] bg-[#0d8a72] text-white text-[18px] cursor-pointer">
@@ -44,7 +44,7 @@
                     <div class="flex-1">
                       {{ $procedure_data[0]->state }}
                       <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
-                      @if ($procedure_data[0]->state == 'aprobado' || $procedure_data[0]->state == 'cancelado')
+                      @if ($procedure_data[0]->state == 'Aprobado' || $procedure_data[0]->state == 'Cancelado')
                       @else
                         <div class="flex gap-x-3">
                             <div class="flex text-[13px] leading-4 mb-3">
@@ -142,7 +142,7 @@
           </div>
         </div>
       </div>
-      @if ($procedure_data[0]->state == "aprobado" || $procedure_data[0]->state == 'cancelado')
+      @if ($procedure_data[0]->state == "Aprobado" || $procedure_data[0]->state == 'Cancelado')
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
           <div class="flex justify-between mb-5">
             <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold">Archivos de finalización</h4>
