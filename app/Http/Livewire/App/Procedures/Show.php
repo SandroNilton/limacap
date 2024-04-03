@@ -64,7 +64,6 @@ class Show extends Component
     public function render()
     {
         $this->procedure_data = Procedure::where('id', '=', $this->procedure)->get();
-        dd(Fileprocedure::all());
 
         $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'Sin verificar']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Aceptado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Rechazado']])->get();
         $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure], ['state', '=', 'Aprobado']])->orWhere([['procedure_id', '=', $this->procedure], ['state', '=', 'Cancelado']])->get();
