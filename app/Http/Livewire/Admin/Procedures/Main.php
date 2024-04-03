@@ -173,7 +173,6 @@ class Main extends Component
         $this->areas = Area::where('state', '=', "Activo")->get();
         $this->users = User::where('state', '=', "Activo")->where('type', '=', "Usuario")->get();
         $this->comments = Proceduremessage::where('procedure_id', '=', $this->procedure_data->id)->orderBy('created_at', 'desc')->get();
-        dd(Fileprocedure::all());
         $this->files_uploaded = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Sin verificar"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Aceptado"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Rechazado"]])->get();
         $this->files_answers = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '!=', "Sin verificar"], ['state', '!=', "Aceptado"], ['state', '!=', "Rechazado"], ['state', '!=', "Aprobado"], ['state', '!=', "Cancelado"]])->get();
         $this->files_finish = Fileprocedure::where([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Aprobado"]])->orWhere([['procedure_id', '=', $this->procedure_data->id], ['state', '=', "Cancelado"]])->get();
