@@ -31,7 +31,7 @@
             <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-md hover:border-[#0d8a72]">
               <input type="hidden" name="files[][id]" value="{{ $requirement->id }}">
               <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white rounded-md">
-                <span class="text-[13px] text-[#414d6a]">{{ $requirement->name }}</span>
+                <span class="text-[13px] text-[#414d6a]"><b>{{ $requirement->name }}</b></span>
               </div>
               <input name="files[][file]" id="files" class="cursor-pointer rounded-md w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none" type="file" accept="" ref="fileInput" @required(true)>
             </div>
