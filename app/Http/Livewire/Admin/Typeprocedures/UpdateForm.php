@@ -6,6 +6,7 @@ use App\Models\Procedure;
 use App\Models\Category;
 use App\Models\Area;
 use App\Models\Typeprocedure;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class UpdateForm extends Component
