@@ -12,7 +12,7 @@
         </div>
         <div>
           <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
-            <iframe height="450" class="w-full scroll" src="https://www.instagram.com/lima_cap/embed" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>
+            <iframe height="450" class="w-full scroll" src="https://limacap.org/formulario-de-pago/" frameborder="0" scrolling="yes" allowtransparency="true"></iframe>
           </div>
         </div>
         <div>
