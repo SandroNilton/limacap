@@ -30,7 +30,7 @@ class Consult extends Component
     public function consult()
     {
         $this->validate();
-        $this->procedure_data = Procedure::where([['id', '=', $this->code]])->first();
+        $this->procedure_data = Procedure::where([['id', '=', $this->code]])->get();
         $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Sin verificar']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Aceptado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Rechazado']])->get();
         $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Aprobado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Cancelado']])->get();
         $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '!=', 'Sin verificar'], ['state', '!=', 'Aceptado'], ['state', '!=', 'Rechazado'], ['state', '!=', 'Aprobado'], ['state', '!=', 'Cancelado']])->get();
