@@ -4,8 +4,12 @@
     <div class="w-1/2">
         <form wire:submit.prevent="consult">
             <div class="mb-3">
-                <x-text-input wire:model="code" type="text" name="code" placeholder="Codigo"/>
-                <x-input-error :messages="$errors->get('code')" class="mt-2" />
+              <x-text-input wire:model="code" type="text" name="code" placeholder="Codigo"/>
+              <x-input-error :messages="$errors->get('code')" class="mt-2" />
+            </div>
+            <div class="mb-3">
+              <x-text-input wire:model="codeuser" type="text" name="codeuser" placeholder="DNI / RUC"/>
+              <x-input-error :messages="$errors->get('codeuser')" class="mt-2" />
             </div>
             <x-primary-button class="gap-2">
                 <ion-icon name="add-circle-outline" class="text-lg" wire:ignore></ion-icon>Consultar

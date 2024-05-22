@@ -14,11 +14,13 @@ use Livewire\Component;
 class Consult extends Component
 {
     public $code;
+    public $codeuser;
     public $procedure_data;
     use WithFileUploads;
 
     protected $rules = [
         'code' => 'required',
+        'codeuser' => 'required',
     ];
 
     public function downloadFile($id, $name, $file)
@@ -30,7 +32,7 @@ class Consult extends Component
     public function consult()
     {
         $this->validate();
-        $this->procedure_data = Procedure::where([['id', '=', $this->code]])->get();
+        $this->procedure_data = Procedure::where([['id', '=', $this->code],['user.code', '=', $this->codeuser]])->get();
         $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Sin verificar']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Aceptado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Rechazado']])->get();
         $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Aprobado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Cancelado']])->get();
         $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '!=', 'Sin verificar'], ['state', '!=', 'Aceptado'], ['state', '!=', 'Rechazado'], ['state', '!=', 'Aprobado'], ['state', '!=', 'Cancelado']])->get();
