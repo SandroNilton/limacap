@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Livewire\Component;
-
 use App\Http\Requests\Auth\LoginRequest;
+
+use App\Models\Procedure;
+use Livewire\Component;
 
 class Consult extends Component
 {
