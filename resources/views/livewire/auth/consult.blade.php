@@ -182,7 +182,7 @@
                       </div>
                 </div>
             @else
-                <div>no data buscadA</div>
+                <div>-</div>
             @endif
 
         </div>
