@@ -25,7 +25,6 @@
                               </div>
                               <span class="flex items-center gap-3 mb-3">
                                 <ion-icon name="person-outline" class="text-lg" wire:ignore></ion-icon>
-                                <span class="text-sm font-medium">Nombre: {{ $procedure_data[0]->user->name }}</span>
                               </span>
                               <span class="flex items-center gap-3 mb-3">
                                 <ion-icon name="file-tray-outline" class="text-lg" wire:ignore></ion-icon>
