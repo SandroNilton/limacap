@@ -63,22 +63,7 @@
                                           <div class="text-[13px] w-44 truncate leading-5 text-[#414d6a]" title="{{ $procedure_file->name }}">{{ $procedure_file->name }}</div>
                                           @if ($procedure_data[0]->state == 'Aprobado' || $procedure_data[0]->state == 'Cancelado')
                                           @else
-                                            <div class="flex gap-x-3">
-                                                <div class="flex text-[13px] leading-4 mb-3">
-                                                    <form wire:submit.prevent="changeFile('{{ $procedure_file->id }}', '{{ $procedure_file->requirement_id }}', '{{ $procedure_file->name }}', '{{ $procedure_file->file }}')" enctype="multipart/form-data" class="flex w-full gap-x-2.5">
-                                                        <div class="border border-dashed border-[#d9d9da] transition duration-300 flex flex-row rounded-[3px] hover:border-[#0d8a72] gap-x-2.5">
-                                                            <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
-                                                            <span class="text-[13px] text-[#414d6a]">Archivo</span>
-                                                            </div>
-                                                            <input type="file" wire:model="file_replace" id="file_replace" class="cursor-pointer w-full flex text-[13px] leading-4 text-center justify-center bg-white py-1.5 px-3.5 relative m-0 flex-auto duration-300 ease-in-out file:hidden focus:outline-none">
-                                                        </div>
-                                                        <button type="submit" class="bg-[#0d8a72] px-1 rounded-[3px] text-white text-[20px] py-1 inline-flex items-center">
-                                                            <ion-icon wire:ignore name="refresh-outline"></ion-icon>
-                                                        </button>
-                                                    </form>
-                                                  </div>
 
-                                            </div>
                                           @endif
                                         </div>
                                       </div>
