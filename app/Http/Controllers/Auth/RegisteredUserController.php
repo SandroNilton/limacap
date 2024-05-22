@@ -23,6 +23,11 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function consult(): View
+    {
+        return view('auth.consult');
+    }
+
     /**
      * Handle an incoming registration request.
      *
