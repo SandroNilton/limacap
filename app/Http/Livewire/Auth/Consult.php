@@ -19,7 +19,7 @@ class Consult extends Component
     public function consult()
     {
         $this->validate();
-        $data = Procedure::where([['id', '=', $this->code]])->first();
+        $this->data = Procedure::where([['id', '=', $this->code]])->first();
     }
 
 
