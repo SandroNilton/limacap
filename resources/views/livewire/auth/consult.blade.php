@@ -21,9 +21,6 @@
     </div>
     <div class="grid grid-cols-1 gap-4">
         <div>
-          {{ $procedure_data }}
-
-
             @if (!$procedure_data || count($procedure_data) === 0)
             <div>Datos incorrectos</div>
             @elseif ($procedure_data)
