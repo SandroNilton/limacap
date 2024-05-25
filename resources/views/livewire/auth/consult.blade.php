@@ -24,9 +24,9 @@
           {{ $procedure_data }}
 
 
-            @if ($procedure_data == [])
+            @if (!$procedure_data || count($procedure_data) === 0)
             <div>Datos incorrectos</div>
-            @elseif ($procedure_data != null || $procedure_data != [])
+            @elseif ($procedure_data)
                 <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
                     <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
                         <div class="space-y-6">
