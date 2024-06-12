@@ -16,7 +16,7 @@ class Consult extends Component
 {
     public $code;
     public $codeuser;
-    public $procedure_data;
+    public $procedure_data = ['init'];
     use WithFileUploads;
 
     protected $rules = [
