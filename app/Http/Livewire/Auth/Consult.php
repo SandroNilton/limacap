@@ -34,7 +34,10 @@ class Consult extends Component
     {
         $this->validate();
         $getuser = User::where([['code', '=', $this->codeuser]])->get();
-        $this->procedure_data = Procedure::where([['id', '=', $this->code],['user_id', '=', $getuser[0]->id]])->get();
+        if($getuser)
+            $this->procedure_data = Procedure::where([['id', '=', $this->code],['user_id', '=', $getuser[0]->id]])->get();
+        else
+            $this->procedure_data = [];
         $this->procedure_files = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Sin verificar']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Aceptado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Rechazado']])->get();
         $this->procedure_files_finish = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '=', 'Aprobado']])->orWhere([['procedure_id', '=', $this->code], ['state', '=', 'Cancelado']])->get();
         $this->procedure_files_responses = Fileprocedure::where([['procedure_id', '=', $this->code], ['state', '!=', 'Sin verificar'], ['state', '!=', 'Aceptado'], ['state', '!=', 'Rechazado'], ['state', '!=', 'Aprobado'], ['state', '!=', 'Cancelado']])->get();
