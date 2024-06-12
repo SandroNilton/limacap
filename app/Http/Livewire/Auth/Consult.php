@@ -34,7 +34,8 @@ class Consult extends Component
     {
         $this->validate();
         $getuser = User::where([['code', '=', $this->codeuser]])->get();
-        if($getuser)
+        
+        if($getuser != undefined || $getuser != null || $getuser != [])
             $this->procedure_data = Procedure::where([['id', '=', $this->code],['user_id', '=', $getuser[0]->id]])->get();
         else
             $this->procedure_data = [];
