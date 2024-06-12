@@ -55,8 +55,8 @@ class ProcedureController extends Controller
         # code...
       }else{
         foreach ($request['files'] as $file) {
-            $file_url = Storage::disk('s3')->put('procedures/'.$date.'/'.$procedure->id, $file['file']);
-          //$file_url = Storage::put('procedures/'.$date.'/'.$procedure->id, $file['file']);
+            //$file_url = Storage::disk('s3')->put('procedures/'.$date.'/'.$procedure->id, $file['file']);
+          $file_url = Storage::put('procedures/'.$date.'/'.$procedure->id, $file['file']);
           Fileprocedure::create([
             'procedure_id' => $procedure->id,
             'requirement_id' => $file['id'],
