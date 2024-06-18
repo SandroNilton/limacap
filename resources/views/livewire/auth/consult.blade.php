@@ -1,4 +1,4 @@
-<div class="w-full h-full p-4 bg-white items-center">
+<div class="w-full h-full p-4 flex flex-col bg-white items-center">
     <div class="flex flex-col h-full gap-4 w-full items-center">
         <a href="{{ route('login') }}">
             <x-primary-button type="button">Volver al Inicio</x-primary-button>
