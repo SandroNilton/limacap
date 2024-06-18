@@ -1,10 +1,10 @@
-<div class="w-full h-full p-4 bg-white">
+<div class="w-full h-full p-4 bg-white items-center">
     <div class="flex flex-col h-full gap-4 w-full items-center">
         <a href="{{ route('login') }}">
             <x-primary-button type="button">Volver al Inicio</x-primary-button>
           </a>
         <p class="mb-1 text-md font-semibold text-[rgb(17,24,39)] text-opacity-100">Consulta el estado de tu trámite</p>
-    <div class="w-1/2">
+    <div class="w-1/2" >
         <form wire:submit.prevent="consult" class="w-1/2">
             <div class="mb-3">
               <x-text-input wire:model="code" type="text" name="code" placeholder="Codigo"/>
