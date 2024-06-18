@@ -6,12 +6,12 @@
     <div class="bg-white w-full md:max-w-md lg:max-w-full md:mw-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center overflow-hidden overflow-y-scroll">
       <div class="w-full h-100 px-4">
         <div class="justify-center flex -mt-50 mb-20">
-            <a href="{{ route('consult') }}">
-                <img src="https://www.satjlo.gob.pe/dashboard/wp-content/uploads/2022/11/descarga.png" width="200" alt="">
-            </a>
+            <img src="https://i.postimg.cc/PqDTPv8d/logo-niubiz-removebg-preview-3.png" width="220" alt="">
         </div>
         <div class="justify-center flex">
-          <img src="https://i.postimg.cc/PqDTPv8d/logo-niubiz-removebg-preview-3.png" width="220" alt="">
+          <a href="{{ route('consult') }}">
+                <img src="https://www.satjlo.gob.pe/dashboard/wp-content/uploads/2022/11/descarga.png" width="200" alt="">
+            </a>
         </div>
 
         <!-- Session Status -->
