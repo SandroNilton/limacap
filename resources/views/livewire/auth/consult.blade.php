@@ -5,7 +5,7 @@
           </a>
         <p class="mb-1 text-md font-semibold text-[rgb(17,24,39)] text-opacity-100">Consulta el estado de tu trámite</p>
     <div class="w-1/2">
-        <form wire:submit.prevent="consult" class="w-10">
+        <form wire:submit.prevent="consult" class="w-1/2">
             <div class="mb-3">
               <x-text-input wire:model="code" type="text" name="code" placeholder="Codigo"/>
               <x-input-error :messages="$errors->get('code')" class="mt-2" />
