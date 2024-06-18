@@ -7,7 +7,7 @@
       <div class="w-full h-100 px-4">
         <div class="justify-center flex -mt-50 mb-20">
             <a href="{{ route('consult') }}">
-                <img src="https://www.muniranrahirca.gob.pe/img/consulta_linea.png" width="200" alt="">
+                <img src="https://www.satjlo.gob.pe/dashboard/wp-content/uploads/2022/11/descarga.png" width="200" alt="">
             </a>
         </div>
         <div class="justify-center flex">
