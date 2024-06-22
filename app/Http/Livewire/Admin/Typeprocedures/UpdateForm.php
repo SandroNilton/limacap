@@ -21,7 +21,7 @@ class UpdateForm extends Component
     protected function rules()
     {
         return [
-            'name' => 'required|unique:users,name,'.$this->typeprocedure->id,
+            'name' => 'required',
             'area' => 'required',
             'category' => 'required',
             'requirements_val.*' => 'exists:requirements,id',
