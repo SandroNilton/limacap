@@ -76,6 +76,8 @@ class ProcedureTable extends DataTableComponent
                 ->searchable(),
             Column::make("Creado", "created_at")
                 ->format( fn($value, $row, Column $column) => ''.$row->created_at->format('d/m/Y H:i a').'' )->html(),
+            Column::make("Actualizado", "updated_at")
+                ->format( fn($value, $row, Column $column) => ''.$row->updated_at->format('d/m/Y H:i a').'' )->html(),
             Column::make('Accion', 'id')
                 ->format(  fn($value, $row, Column $column) => view('admin.procedures.actions')->withRow($row)->withValue($value) ),
         ];

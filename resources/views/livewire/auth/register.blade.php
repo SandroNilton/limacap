@@ -126,7 +126,7 @@
                 </div>
                 <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
               </div>
-              
+
             </form>
           @elseif ($optionSelected == 'Agremiado')
           <form method="POST" action="{{ route('register') }}" class="w-full">
@@ -172,6 +172,7 @@
             <div class="flex space-x-1">
               <span class="text-xs text-red-500">Nota:</span>
               <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
+                <span></span>
             </div>
           </form>
           @else
@@ -246,16 +247,16 @@
       Livewire.hook('message.processed', (el, component) => {
         var data = @this.data;
         console.log(data);
-        
+
         if(data.message == "found data"){
           document.getElementById("name").value = data['result'][0]['Nombres'] + " " + data['result'][0]['Apellidos'];
           document.getElementById("address").value = data['result'][0]['Direccion'];
           document.getElementById("email").value = data['result'][0]['Email1'];
         }
-        
+
       })
 
-         
+
     });
 
   </script>

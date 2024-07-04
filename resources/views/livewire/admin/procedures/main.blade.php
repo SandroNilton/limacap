@@ -1,5 +1,5 @@
 <div>
-  <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-1 gap-6 divide-x-4 divide-gray-100 md:grid-cols-3 lg:grid-cols-4">
     <div class="space-y-6">
       <div>
         <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
@@ -85,7 +85,7 @@
           </div>
         </div>
       @endif
-     
+
     </div>
     <div class="col-span-2 space-y-6">
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
@@ -183,7 +183,7 @@
               </a>
             </div>
             <form wire:submit.prevent="assignState" enctype="multipart/form-data">
-              <x-select wire:model="state" class="mb-3">
+              <x-select wire:model="state">
                 <option value="">Seleccione el area</option>
                 <option value="Observado" @if( $this->procedure_data->state == "Observado") @selected(true) @else @selected(false) @endif>Observado</option>
                 @if ($files_out->count() > 0)
@@ -192,8 +192,12 @@
                 @endif
                 <option value="Cancelado" @if( $this->procedure_data->state == "Cancelado") @selected(true) @else @selected(false) @endif>Cancelado</option>
               </x-select>
-              <x-text-area wire:model="description" name="description" placeholder="descripción" class="mb-3"></x-text-area>
-              <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold mb-3">Adjuntar documento Memorandum, Carta de respuesta, etc.</h4>
+
+              <x-input-error :messages="$errors->get('state')" class="mt-2" />
+<div class="mt-3"></div>
+              <x-text-area wire:model="description" name="description" placeholder="descripción"></x-text-area>
+              <x-input-error :messages="$errors->get('description')" class="" />
+              <h4 class="text-opacity-100 text-[rgb(17,24,39)] font-semibold mb-3 mt-3">Adjuntar documento Memorandum, Carta de respuesta, etc.</h4>
               <div class="col-span-3 md:col-span-1 border border-dashed border-[#d9d9da] flex flex-row rounded-md mb-4">
                 <div class="px-4 inline-flex items-center border-r border-[#d9d9da] bg-white">
                   <span class="text-sm text-[rgb(17,24,39)]">Archivos</span>
@@ -208,8 +212,8 @@
             </form>
           </div>
         @endif
-       
-        
+
+
         @if ($this->procedure_data->state == "Aprobado" || $this->procedure_data->state == "Rechazado")
           <div>
             <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">

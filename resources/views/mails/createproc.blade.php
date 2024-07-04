@@ -323,7 +323,7 @@ img {
     <tr>
         <td class="header">
         <a  style="display: inline-block;">
-            Colegio de Arquitectos del Perú
+            Colegio Regional Lima
 
         </a>
         </td>
@@ -343,14 +343,14 @@ img {
     <tr>
     <td>
       <p>
-        Colegio de Arquitectos del Perú
+        Colegio Regional Lima
       </p>
       <img src="https://limacap.org/wp-content/uploads/2021/12/logo-niubiz.jpg" height="300" width="300" style="margin: -15px">
       <p>
-        Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} de tipo de trámite ({{ $data['typeprocedure'] }}) categoría ha sido registrada.
+        Le informamos que la solicitud con número de expediente {{ $data['idprocedure'] }} ha sido registrada.
       </p>
       <p>
-        Puede realizar el seguimiento de su trámite en el siguiente enlace: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">click aquí</a>
+        Puede realizar el seguimiento a su trámite en el siguiente link: <a href="{{ config('app.url') }}/procedures/{{ $data['idprocedure'] }}">click aquí</a>
       </p>
     </td>
     </tr>
@@ -367,7 +367,7 @@ img {
   <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
   <tr>
   <td class="content-cell" align="center">
-    Contáctanos
+    
   </td>
   </tr>
   </table>
