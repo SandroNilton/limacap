@@ -22,7 +22,7 @@ class RegisterForm extends Component
     public $state = "Activo";
 
     protected $rules = [
-        'name' => 'required|unique:typeprocedures',
+        'name' => 'required',
         'area' => 'required',
         'category' => 'required',
     ];

@@ -1,11 +1,11 @@
-<div class="w-full h-full p-4">
+<div class="w-full h-full p-4 flex flex-col bg-white items-center">
     <div class="flex flex-col h-full gap-4 w-full items-center">
         <a href="{{ route('login') }}">
             <x-primary-button type="button">Volver al Inicio</x-primary-button>
           </a>
         <p class="mb-1 text-md font-semibold text-[rgb(17,24,39)] text-opacity-100">Consulta el estado de tu trámite</p>
-    <div class="w-1/2">
-        <form wire:submit.prevent="consult">
+    <div class="flex flex-col h-full gap-4 items-center w-52	" >
+        <form wire:submit.prevent="consult" class="">
             <div class="mb-3">
               <x-text-input wire:model="code" type="text" name="code" placeholder="Codigo"/>
               <x-input-error :messages="$errors->get('code')" class="mt-2" />
@@ -23,6 +23,8 @@
         <div>
             @if (!$procedure_data || count($procedure_data) === 0)
             <div>Datos incorrectos</div>
+            @elseif ($procedure_data[0] === 'init' )
+            <div> - </div>
             @elseif ($procedure_data)
                 <div class="bg-white bg-opacity-100 border-b border-opacity-100 rounded-md border-[rgb(229,231,235)] shadow p-4">
                     <div class="grid grid-cols-1 gap-6 divide-x-4 divide-red-600 md:grid-cols-3 lg:grid-cols-4">
