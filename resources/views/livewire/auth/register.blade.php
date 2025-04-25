@@ -69,10 +69,10 @@
                 <input type="email" id="email" name="email" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Correo electronico" @required(true)>
               </div>
               <div class="mb-3">
-                <input type="password" id="password" name="password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
+                <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
               </div>
               <div class="mb-3">
-                <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
+                <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
               </div>
               <div class="mb-3">
                 <button type="submit" class="bg-[#42a692] rounded-[3px] peer text-white block w-full py-1.5 leading-4 text-[13px] focus:ring-0">Registrarse</button>
@@ -114,10 +114,10 @@
                 <input type="email" id="email" name="email" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Correo electronico" @required(true)>
               </div>
               <div class="mb-3">
-                <input type="password" id="password" name="password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
+                <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
               </div>
               <div class="mb-3">
-                <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
+                <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
               </div>
               <div class="mb-3">
                 <div class="flex space-x-1">
@@ -161,10 +161,10 @@
               <input type="email" id="email" name="email" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Correo electronico" @required(true)>
             </div>
             <div class="mb-3">
-              <input type="password" id="password" name="password" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
+              <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Contraseña" @required(true)>
             </div>
             <div class="mb-3">
-              <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\#?!@$%^&*\-]).{8,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
+              <input type="password" id="password_confirmation" name="password_confirmation" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" class="w-full py-1.5 text-[13px] text-[#414d6a] leading-4 rounded-[3px] border-[#cdd5de] focus:border-inherit focus:ring-0" placeholder="Confirmar contraseña" @required(true)>
             </div>
             <div class="mb-3">
               <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
