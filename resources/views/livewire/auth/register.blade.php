@@ -79,7 +79,7 @@
               </div>
               <div class="flex space-x-1">
                 <span class="text-red-500 text-[13px] leading-4">Nota:</span>
-                <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
+                <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 6 a más carácteres con una combinación de letras, números y mayúsculas.</span>
               </div>
             </form>
           @elseif ($optionSelected == 'Juridico')
@@ -122,7 +122,7 @@
               <div class="mb-3">
                 <div class="flex space-x-1">
                   <span class="text-sm text-red-500">Nota:</span>
-                  <span class="text-sm text-black">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
+                  <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 6 a más carácteres con una combinación de letras, números y mayúsculas.</span>
                 </div>
                 <button type="submit" class="w-full font-extrabold bg-[#42a692] rounded text-white text-sm py-1.5 hover:bg-[#2c6f62] transition duration-300">Registrarse</button>
               </div>
@@ -171,7 +171,7 @@
             </div>
             <div class="flex space-x-1">
               <span class="text-xs text-red-500">Nota:</span>
-              <span class="text-xs">La contraseña debe contener de 6 a más carácteres con una combinación de letras, números y mayúsculas</span>
+              <span class="text-[12px] leading-4 text-[#414d6a]">La contraseña debe contener de 6 a más carácteres con una combinación de letras, números y mayúsculas</span>
                 <span></span>
             </div>
           </form>
