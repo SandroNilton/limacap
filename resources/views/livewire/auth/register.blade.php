@@ -171,7 +171,7 @@
             </div>
             <div class="flex space-x-1">
               <span class="text-xs text-red-500">Nota:</span>
-              <span class="text-xs">La contraseña debe contener de 8 a más carácteres con una combinación de letras, números, mayúsculas y símbolos.</span>
+              <span class="text-xs">La contraseña debe contener de 6 a más carácteres con una combinación de letras, números y mayúsculas</span>
                 <span></span>
             </div>
           </form>
